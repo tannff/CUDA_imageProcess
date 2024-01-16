@@ -1,0 +1,5 @@
+﻿  Qimage_display.cpp
+Qimage_display.obj : error LNK2001: 无法解析的外部符号 "public: virtual struct QMetaObject const * __cdecl Qimage_display::metaObject(void)const " (?metaObject@Qimage_display@@UEBAPEBUQMetaObject@@XZ)
+Qimage_display.obj : error LNK2001: 无法解析的外部符号 "public: virtual void * __cdecl Qimage_display::qt_metacast(char const *)" (?qt_metacast@Qimage_display@@UEAAPEAXPEBD@Z)
+Qimage_display.obj : error LNK2001: 无法解析的外部符号 "public: virtual int __cdecl Qimage_display::qt_metacall(enum QMetaObject::Call,int,void * *)" (?qt_metacall@Qimage_display@@UEAAHW4Call@QMetaObject@@HPEAPEAX@Z)
+F:\about_lesson\ImageProcess\CUDA_ImageProcess\x64\Debug\ImageProcess.exe : fatal error LNK1120: 3 个无法解析的外部命令

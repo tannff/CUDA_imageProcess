@@ -1,0 +1,2 @@
+^F:\ABOUT_LESSON\IMAGEPROCESS\CUDA_IMAGEPROCESS\IMAGEPROCESS\QIMAGE_DISPLAY.UI
+F:\QT\5.15.2\msvc2019_64\bin\uic.exe Qimage_display.ui -o ui_Qimage_display.h
