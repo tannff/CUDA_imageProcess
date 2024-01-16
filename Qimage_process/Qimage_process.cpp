@@ -61,14 +61,14 @@ Qimage_process::Qimage_process(QWidget* parent)
 
     ui.label_6->setText(QString::fromLocal8Bit("原始图像"));
 
-    QImage image_cpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\Qimage_process\\gray_1_cpu.jpg"));
+    QImage image_cpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cpu.jpg"));
     image_cpu_out = image_cpu_out.scaled(ui.label->size(), Qt::KeepAspectRatio);
     QPixmap pix_image_cpushow = QPixmap::fromImage(image_cpu_out);
     ui.label->setPixmap(pix_image_cpushow);
     ui.label_2->setText(QString::fromLocal8Bit("采用CPU进行图像识别"));
 
 
-    QImage image_gpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\Qimage_process\\gray_1_cuda.jpg"));
+    QImage image_gpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cuda.jpg"));
     image_gpu_out = image_gpu_out.scaled(ui.label_3->size(), Qt::KeepAspectRatio);
     QPixmap pix_image_gpushow = QPixmap::fromImage(image_gpu_out);
     ui.label_3->setPixmap(pix_image_gpushow);
@@ -292,7 +292,7 @@ void Qimage_process::show_the_file() {
     QString fileName = QFileDialog::getOpenFileName(
         this,
         tr("open a file."),
-        "F:/about_the_lesson/",
+        "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/",
         tr("images(*.png *jpg *bmp);;video files(*.avi *.mp4 *.wmv);;All files(*.*)"));
         
     if (fileName.isEmpty()) {

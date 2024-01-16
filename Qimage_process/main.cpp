@@ -25,9 +25,9 @@ using namespace cv;
 	}
 
 //这些变量定义在最上面，方便修改。
-const std::string input_file_path = "F:\\about_lesson\\Qimage_process\\Qimage_process\\6.jpg";
-const std::string output1_file_path = "F:\\about_lesson\\Qimage_process\\Qimage_process\\gray_1_cuda.jpg";
-const std::string output2_file_path = "F:\\about_lesson\\Qimage_process\\Qimage_process\\gray_1_cpu.jpg";
+const std::string input_file_path = "F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\6.jpg";
+const std::string output1_file_path = "F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cuda.jpg";
+const std::string output2_file_path = "F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cpu.jpg";
 
 extern cudaError_t rgb_to_gray(unsigned char* img_in, unsigned char* img_out, int img_width, int img_height, int* hist);
 extern cudaError_t thresh_cal(const int* hist, float* sum, float* s, float* n, float* val, int img_width, int img_height, int* OtsuThresh);

@@ -35,7 +35,7 @@ __global__ void left_to_rightpass(unsigned char* colpassimg, unsigned char* left
 	//const int cols = 1216;
 	
 	//block内所有线程合作，完成一行从全局搬运到共享内存
-	extern __shared__ unsigned char rowdata[];
+	__shared__ unsigned char rowdata[500];
 	int tid = threadIdx.x;
 	
 	while (tid < img_width)
@@ -48,7 +48,7 @@ __global__ void left_to_rightpass(unsigned char* colpassimg, unsigned char* left
 
 	tid = threadIdx.x;
 	//一个线程 对共享内存的数据进行一维距离变换
-	extern __shared__ unsigned char rowdataresult[];
+	__shared__ unsigned char rowdataresult[500];
 	if (tid == 0)
 	{
 		likedt1dimhor(rowdata, rowdataresult, img_width, img_height);
@@ -71,7 +71,7 @@ __global__ void right_to_leftpass(unsigned char* colpassimg, unsigned char* righ
 	//const int cols = 1216;
 
 	//block内所有线程合作，完成一行从全局搬运到共享内存
-	extern __shared__ unsigned char rowdata[];
+	__shared__ unsigned char rowdata[500];
 	int tid = threadIdx.x;
 	while (tid < img_width)
 	{
@@ -83,7 +83,7 @@ __global__ void right_to_leftpass(unsigned char* colpassimg, unsigned char* righ
 
 	tid = threadIdx.x;
 	//一个线程 对共享内存的数据进行一维距离变换
-	extern __shared__ unsigned char rowdataresult[];
+	__shared__ unsigned char rowdataresult[500];
 	if (tid == 0)
 	{
 		likedt1dimhor(rowdata, rowdataresult, img_width, img_height);
@@ -110,13 +110,13 @@ __global__ void up_to_downscan(unsigned char* gpudtimg, unsigned char* updownpas
 	int globalid = id + img_width * rowid;
 
 	//block内所有线程合作，完成一列从全局搬运到共享内存
-	extern __shared__ unsigned char coldata[];
+	__shared__ unsigned char coldata[1216];
 	coldata[rowid] = gpudtimg[globalid];
 	__syncthreads();
 
 
 	//一个线程 对共享内存的数据进行一维距离变换
-	extern __shared__ unsigned char coldataresult[];
+	__shared__ unsigned char coldataresult[1216];
 	if (rowid == 0)
 	{
 		likedt1dimvec(coldata, coldataresult, img_width, img_height);
@@ -137,13 +137,13 @@ __global__ void down_to_upscan(unsigned char* gpudtimg, unsigned char* downuppas
 	int globalid = id + img_width * rowid;
 
 	//block内所有线程合作，完成一列从全局搬运到共享内存
-	extern __shared__ unsigned char coldata[];
+	__shared__ unsigned char coldata[1216];
 	coldata[img_height - 1 - rowid] = gpudtimg[globalid];
 	__syncthreads();
 
 
 	//一个线程 对共享内存的数据进行一维距离变换
-	extern __shared__ unsigned char coldataresult[];
+	__shared__ unsigned char coldataresult[1216];
 	__syncthreads();
 	if (rowid == 0)
 	{
@@ -187,7 +187,7 @@ __global__ void likedtresult(unsigned char* updown, unsigned char* downup, unsig
 
 extern cudaError_t distancetransform(unsigned char* img_in, unsigned char* updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height) {
 
-	dim3 block_dim(2, 500);   //定义线程块
+	dim3 block_dim(16, 16);   //定义线程块
 	dim3 grid_dim = dim3((img_width + block_dim.x - 1) / block_dim.x,
 		(img_height + block_dim.y - 1) / block_dim.y);
 
