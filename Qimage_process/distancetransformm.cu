@@ -35,8 +35,9 @@ __global__ void left_to_rightpass(unsigned char* colpassimg, unsigned char* left
 	//const int cols = 1216;
 	
 	//block内所有线程合作，完成一行从全局搬运到共享内存
-	__shared__ unsigned char rowdata[img_width];
+	extern __shared__ unsigned char rowdata[];
 	int tid = threadIdx.x;
+	
 	while (tid < img_width)
 	{
 		int thid = tid + img_width * blockIdx.y;
@@ -47,7 +48,7 @@ __global__ void left_to_rightpass(unsigned char* colpassimg, unsigned char* left
 
 	tid = threadIdx.x;
 	//一个线程 对共享内存的数据进行一维距离变换
-	__shared__ unsigned char rowdataresult[img_width];
+	extern __shared__ unsigned char rowdataresult[];
 	if (tid == 0)
 	{
 		likedt1dimhor(rowdata, rowdataresult, img_width, img_height);
@@ -70,7 +71,7 @@ __global__ void right_to_leftpass(unsigned char* colpassimg, unsigned char* righ
 	//const int cols = 1216;
 
 	//block内所有线程合作，完成一行从全局搬运到共享内存
-	__shared__ unsigned char rowdata[img_width];
+	extern __shared__ unsigned char rowdata[];
 	int tid = threadIdx.x;
 	while (tid < img_width)
 	{
@@ -82,7 +83,7 @@ __global__ void right_to_leftpass(unsigned char* colpassimg, unsigned char* righ
 
 	tid = threadIdx.x;
 	//一个线程 对共享内存的数据进行一维距离变换
-	__shared__ unsigned char rowdataresult[img_width];
+	extern __shared__ unsigned char rowdataresult[];
 	if (tid == 0)
 	{
 		likedt1dimhor(rowdata, rowdataresult, img_width, img_height);
@@ -109,13 +110,13 @@ __global__ void up_to_downscan(unsigned char* gpudtimg, unsigned char* updownpas
 	int globalid = id + img_width * rowid;
 
 	//block内所有线程合作，完成一列从全局搬运到共享内存
-	__shared__ unsigned char coldata[img_height];
+	extern __shared__ unsigned char coldata[];
 	coldata[rowid] = gpudtimg[globalid];
 	__syncthreads();
 
 
 	//一个线程 对共享内存的数据进行一维距离变换
-	__shared__ unsigned char coldataresult[img_height];
+	extern __shared__ unsigned char coldataresult[];
 	if (rowid == 0)
 	{
 		likedt1dimvec(coldata, coldataresult, img_width, img_height);
@@ -136,13 +137,13 @@ __global__ void down_to_upscan(unsigned char* gpudtimg, unsigned char* downuppas
 	int globalid = id + img_width * rowid;
 
 	//block内所有线程合作，完成一列从全局搬运到共享内存
-	__shared__ unsigned char coldata[img_height];
+	extern __shared__ unsigned char coldata[];
 	coldata[img_height - 1 - rowid] = gpudtimg[globalid];
 	__syncthreads();
 
 
 	//一个线程 对共享内存的数据进行一维距离变换
-	__shared__ unsigned char coldataresult[img_height];
+	extern __shared__ unsigned char coldataresult[];
 	__syncthreads();
 	if (rowid == 0)
 	{

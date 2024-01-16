@@ -1,4 +1,4 @@
-#include "reduction.cuh"
+#include "cuda_runtime.h"
 #include <stdio.h>
 #include <iostream>
 
