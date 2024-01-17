@@ -38,7 +38,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets;charts</QtModules>
+    <QtModules>core;gui;widgets;concurrent;charts</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -104,6 +104,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="Qimage_process.qrc" />
+    <QtUic Include="ori_image.ui" />
     <QtUic Include="Qimage_process.ui">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </QtUic>
@@ -111,6 +112,7 @@
     <ClCompile Include="camera_on.cpp" />
     <ClCompile Include="imageProcess.cpp" />
     <ClCompile Include="ImageUtils.cpp" />
+    <ClCompile Include="ori_image.cpp" />
     <ClCompile Include="Qimage_process.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -118,7 +120,6 @@
     <CudaCompile Include="canny_cuda.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </CudaCompile>
-    <CudaCompile Include="distancetransform2D.cu" />
     <CudaCompile Include="distancetransformm.cu" />
     <CudaCompile Include="ImgProcess.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -128,9 +129,7 @@
     <ClInclude Include="camera_on.h" />
     <ClInclude Include="imageProcess.h" />
     <ClInclude Include="ImageUtils.h" />
-    <CudaCompile Include="reduction.cuh">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </CudaCompile>
+    <QtMoc Include="ori_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

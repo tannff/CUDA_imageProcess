@@ -1,5 +1,12 @@
 #include "Qimage_process.h"
-
+#include "camera_on.h"
+#include "qtconcurrentrun.h"
+#include <cuda_runtime.h>
+#define CHECK_CUDA_ERROR(ret)									\
+	if (ret != cudaSuccess) {									\
+		std::cerr << cudaGetErrorString(ret) << std::endl;		\
+	}
+extern cudaError_t rgb_to_gray(unsigned char* img_in, unsigned char* img_out, int img_width, int img_height, int* hist);
 QT_CHARTS_USE_NAMESPACE      
 using namespace std;
 using namespace cv;
@@ -52,14 +59,21 @@ Qimage_process::Qimage_process(QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-
+    ori_display = new ori_image;
     //实时时间显示
     timer_calendar = new QTimer(this);//new个对象
     connect(timer_calendar, SIGNAL(timeout()), this, SLOT(timer_Update()));//timeout超时事件
     timer_calendar->start(1000);//每隔一秒调用一次槽函数
-    
 
     ui.label_6->setText(QString::fromLocal8Bit("原始图像"));
+
+    //滑块初始化
+    ui.label_46->setText("0");
+    ui.label_47->setText("0");
+    ui.label_48->setText("0");
+
+    //默认保存地址
+    ui.label_45->setText(default_Path);
 
     QImage image_cpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cpu.jpg"));
     image_cpu_out = image_cpu_out.scaled(ui.label->size(), Qt::KeepAspectRatio);
@@ -73,7 +87,8 @@ Qimage_process::Qimage_process(QWidget* parent)
     QPixmap pix_image_gpushow = QPixmap::fromImage(image_gpu_out);
     ui.label_3->setPixmap(pix_image_gpushow);
     ui.label_4->setText(QString::fromLocal8Bit("调用CUDA进行图像识别"));
-       
+    
+    //距离变换结果显示
     ui.label_15->setText(QString::fromLocal8Bit("1毫米（mm）="));
     ui.label_28->setText(QString::fromLocal8Bit("像素（pixel)"));
 
@@ -85,6 +100,26 @@ Qimage_process::Qimage_process(QWidget* parent)
     connect(ui.lineEdit_7, SIGNAL(returnPressed()), this, SLOT(show_resize()));
     connect(ui.lineEdit_6, SIGNAL(returnPressed()), this, SLOT(show_angle()));
 
+    connect(ui.action, SIGNAL(triggered()), this, SLOT(offline_image_down()));
+    connect(ui.action_8, SIGNAL(triggered()), this, SLOT(save_file()));
+    connect(ui.action_4, SIGNAL(triggered()), this, SLOT(close_app()));
+
+    //滑块设置
+    connect(ui.verticalSlider, &QSlider::valueChanged, this, [this](int value) {    
+        ui.label_46->setText(QString::number(value));
+    });
+    connect(ui.verticalSlider_3, &QSlider::valueChanged, this, [this](int value) {
+        
+        ui.label_47->setText(QString::number(value));
+    });
+    connect(ui.verticalSlider_2, &QSlider::valueChanged, this, [this](int value) {
+        ui.label_48->setText(QString::number(value));
+    });
+    
+    connect(ui.lineEdit_6, SIGNAL(returnPressed()), this, SLOT(rotated_image(float)));
+    connect(ui.label_5, SIGNAL(pre_image(QImage)), this, SLOT(return_image(QImage)));
+
+    //设置默认值
     ui.lineEdit->setPlaceholderText("40");
     ui.lineEdit_2->setPlaceholderText("480");
     ui.lineEdit_3->setPlaceholderText("320");
@@ -92,18 +127,14 @@ Qimage_process::Qimage_process(QWidget* parent)
     ui.lineEdit_6->setPlaceholderText("0");
     ui.lineEdit_7->setPlaceholderText("100");
 
+    //设置状态灯初态
     setLED(ui.label_9, 1, 16);
     setLED(ui.label_40, 2, 16);
-    
-    QPalette palette;
-    palette.setColor(QPalette::Highlight, QColor(255, 255, 0));  // 设置滑块颜色
-
-    ui.verticalSlider->setPalette(palette);  // 应用样式
-    ui.verticalSlider->setStyleSheet("border-radius: 0px; margin-top: 8px; margin-bottom: 9px;");  // 设置其他样式属性
 }
 
 Qimage_process::~Qimage_process()
 {
+
     
 }
 
@@ -240,7 +271,7 @@ void Qimage_process::show_angle() {
     if (angle_value < 0.0 || angle_value > 360.0) {
         return;
     }
-    //emit image_resize(angle_value);
+    emit image_angle(angle_value);
 }
 
 void Qimage_process::show_thresh() {
@@ -298,10 +329,12 @@ void Qimage_process::show_the_file() {
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the image!");
     }
-    QImage image_ori(fileName);
+    image_ori = QImage(fileName);
     image_ori = image_ori.scaled(ui.label->size(), Qt::KeepAspectRatio);
+    image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
     QPixmap pix_image_ori = QPixmap::fromImage(image_ori);
-    ui.label_5->setPixmap(pix_image_ori);
+    ui.label_5->setPixmap(pix_image_ori);  
+    emit pre_image(image_ori);
 
 }
 
@@ -349,4 +382,131 @@ void Qimage_process::consumer() {
 
 }
 
+void Qimage_process::new_window() {
 
+    ori_display->show();
+    QtConcurrent::run(camera_on,ori_display);
+    
+    ori_display->setText(ui.label_42->text());  
+}
+
+void Qimage_process::offline_image_down() {
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("open a file."),
+        "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/",
+        tr("images(*.png *jpg *bmp);;video files(*.avi *.mp4 *.wmv);;All files(*.*)"));
+
+}
+
+void Qimage_process::mouseMoveEvent(QMouseEvent* event)
+{
+    //ui.label_44->setText(QString::number(event->x()));//以窗口左上角为0点
+    if (event->button() == Qt::LeftButton) {
+        // 获取鼠标点击的相对坐标
+        QPoint pos = mapFromGlobal(QCursor::pos());
+        int x = pos.x();
+        int y = pos.y();
+        ui.label_44->setText(QString::number(x));
+        //ui.label_44->setText(QString::number(event->x()));
+
+    }
+
+        //// 获取图像像素值
+        //QImage image = pixmap.toImage(); // pixmap是一个QPixmap对象
+        //QRgb pixel = image.pixel(x, y);
+        //int r = qRed(pixel);
+        //int g = qGreen(pixel);
+        //int b = qBlue(pixel);
+        //qDebug() << "Pixel value at (" << x << "," << y << "): (" << r << "," << g << "," << b << ")";
+
+    
+
+    //    ui->showX->setText(QString::number(QCursor().pos().x()));//以电脑屏幕左上角为0点
+    //    ui->showY->setText(QString::number(QCursor().pos().y()));
+
+    //  ui->showdata->setText(tr("(%1,%2)").arg(event->x()).arg(event->y())); //哦。。一个标签显示两个变量是这么搞的 不好意思丢人了
+    //arg()是QString类中的一个静态函数，使用它就可以在字符串中使用变量了。所以就不用那个强制类型转换了
+    //QColor pixcolor = QColor(pool.pixel(event->x(), event->y()));//有pool.pixelColor()不知道干嘛的
+   /* ui->showR->setText("R" + QString::number(pixcolor.red()));
+    ui->showG->setText("G" + QString::number(pixcolor.green()));
+    ui->showB->setText("B" + QString::number(pixcolor.blue()));*/
+
+}
+
+void Qimage_process::default_on(){
+    ui.pushButton_23->setDefault(true);
+}
+
+void Qimage_process::save_file() {
+
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        tr("save a file."),
+        default_Path,
+        tr("images(*.png *jpg *bmp);;video files(*.avi *.mp4 *.wmv);;All files(*.*)"));
+
+        ui.label_45->setText(fileName.isEmpty() ? default_Path : fileName);
+}
+
+void Qimage_process::rotated_image(float angle_value) {
+   /* QPixmap currentPixmap = ui.label_5->pixmap();
+
+    if (currentPixmap.isNull())
+    {
+        QMessageBox::warning(this, "Warning!", "No image loaded!");
+        return;
+    }
+    QImage currentImage = currentPixmap.toImage();*/
+
+    // 旋转图像
+    QTransform transform;
+
+    transform.rotate(angle_value);
+    //QImage rotatedImage = currentImage.transformed(transform);
+
+    ui.label_5->setText(QString::number(angle_value));
+
+    // 将旋转后的图像显示在标签上
+    //QPixmap rotatedPixmap = QPixmap::fromImage(rotatedImage);
+    //ui.label_5->setPixmap(rotatedPixmap);
+}
+
+void Qimage_process::return_image(QImage image_ori) {
+    
+    QPixmap pix_image_ori = QPixmap::fromImage(image_ori);
+    //ui.label_5->setPixmap(pix_image_ori);
+}
+
+void Qimage_process::close_app() {
+    this->close();
+}
+
+void Qimage_process::gray_image() {
+    //CUDA
+    unsigned char* d_rgb;
+    qDebug() << image_ori;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_rgb, image_ori.width() * image_ori.height() * image_ori.depth()/ 8 * sizeof(unsigned char)));
+    CHECK_CUDA_ERROR(cudaMemcpy(d_rgb, image_ori.bits(), image_ori.width() * image_ori.height() * image_ori.depth()/8 * sizeof(unsigned char), cudaMemcpyHostToDevice));
+
+    unsigned char* d_gray;
+    cudaMalloc((void**)&d_gray, image_ori.width() * image_ori.height() * sizeof(unsigned char));
+
+    int* d_hist;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_hist, 256 * sizeof(int)));
+    CHECK_CUDA_ERROR(rgb_to_gray(d_rgb, d_gray, image_ori.width(), image_ori.height(), d_hist));
+
+    image_processed = QImage(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
+    CHECK_CUDA_ERROR(cudaMemcpy(image_processed.bits(), d_gray, image_ori.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+    ui.label_3->setPixmap(QPixmap::fromImage(image_processed));
+    CHECK_CUDA_ERROR(cudaFree(d_rgb));
+    CHECK_CUDA_ERROR(cudaFree(d_gray));
+    CHECK_CUDA_ERROR(cudaFree(d_hist));
+
+    ////cpu
+    //QImage gray_cpu_image;
+    ////cv::Mat gray_cpu_image(image_ori.width(), image_ori.height(), CV_8UC1);
+    ////cvtColor(image_ori, gray_cpu_image, COLOR_BGR2GRAY);
+    //rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
+    //ui.label->setPixmap(QPixmap::fromImage(gray_cpu_image));
+}

@@ -17,6 +17,7 @@ __global__ void kernel_rgb_to_gray(unsigned char* img_in, unsigned char* img_out
 	unsigned char g = img_in[3 * local_index + 1];
 	unsigned char b = img_in[3 * local_index + 2];
 	img_out[local_index] = r * 0.299 + g * 0.587 + b * 0.114;
+	//img_out[local_index] = 255;
 	atomicAdd(&hist[img_in[local_index]], 1);
 	return;
 }

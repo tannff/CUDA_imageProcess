@@ -16,6 +16,9 @@
 #include <QDateTime>
 #include <opencv2/opencv.hpp>
 #include "ui_Qimage_process.h"
+#include "ui_ori_image.h"
+#include "ori_image.h"
+#include "imageProcess.h"
 
 class Qimage_process : public QMainWindow
 {
@@ -27,6 +30,8 @@ public:
     void setLED(QLabel* label, int color, int size);
     int resize_value;
     bool switch_resize;
+    ori_image* ori_display;
+    
 
 signals:
     void image_proccess_speed(double, double, double, double, double, double, float, float, float, float, float, float);
@@ -36,6 +41,7 @@ signals:
     void image_thresh(int);
     void image_demarcate(int);
     void image_ROI(int,int);
+    void pre_image(QImage);
 
 
 public slots:
@@ -50,13 +56,26 @@ public slots:
     void offline_status();
     void show_the_file();
     void consumer();
+    void new_window();
+    void default_on();
+    void save_file();
+    void rotated_image(float);
+    void return_image(QImage);
+    void close_app();
+    void gray_image();
+
+protected:
+    void mouseMoveEvent(QMouseEvent* event);
 
 private slots:
     void timer_Update(); //定时器更新槽函数
+    void offline_image_down();
 
 private:
     Ui::Qimage_processClass ui;
     QTimer* timer_calendar;
     QTimer* timer_unit;
-   
+    QString default_Path = "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/";
+    QImage image_ori;
+    QImage image_processed;
 };

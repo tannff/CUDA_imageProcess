@@ -8,6 +8,7 @@
 #include "ImageUtils.h"
 #include "imageProcess.h"
 #include "Qimage_process.h"
+#include "camera_on.h"
 #include <QtWidgets/QApplication>
 #include <QObject>
 
@@ -44,7 +45,7 @@ int main(int argc, char* argv[]) {
 
 	QApplication a(argc, argv);
 	Qimage_process w;
-	w.show();
+
 	
 	//0.初始化cuda，也可以不加。老版本cuda需要加。
 	CHECK_CUDA_ERROR(cudaFree(0));
@@ -387,11 +388,19 @@ int main(int argc, char* argv[]) {
 		cout << "rgb to gray cost time(cpu)： " << Times << " ms" << endl;
 		ImageUtils::write_image(rgb_image, output2_file_path);  //写到指定地址
 
+		/*ori_image ori_display;
+		int reys = 1;
+		emit ori_display.test(reys);*/
+
+		//camera_on(qimage, a);
+
 		emit w.image_proccess_speed(times1, times2, times3, times4, times5, times6, 
 									cost_time, 
 									gtimes1, gtimes2, gtimes3, gtimes4, gtimes5);
 
 		emit w.width_measure(maxValue, interpolation);
+
+		w.show();
 
 		return a.exec();
 
