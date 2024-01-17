@@ -503,10 +503,8 @@ void Qimage_process::gray_image() {
     CHECK_CUDA_ERROR(cudaFree(d_gray));
     CHECK_CUDA_ERROR(cudaFree(d_hist));
 
-    ////cpu
-    //QImage gray_cpu_image;
-    ////cv::Mat gray_cpu_image(image_ori.width(), image_ori.height(), CV_8UC1);
-    ////cvtColor(image_ori, gray_cpu_image, COLOR_BGR2GRAY);
-    //rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
-    //ui.label->setPixmap(QPixmap::fromImage(gray_cpu_image));
+    //cpu
+    QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
+    rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
+    ui.label->setPixmap(QPixmap::fromImage(gray_cpu_image));
 }
