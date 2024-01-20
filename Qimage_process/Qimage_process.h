@@ -63,6 +63,7 @@ public slots:
     void return_image(QImage);
     void close_app();
     void gray_image();
+    void thresh_image();
 
 protected:
     void mouseMoveEvent(QMouseEvent* event);
@@ -77,5 +78,7 @@ private:
     QTimer* timer_unit;
     QString default_Path = "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/";
     QImage image_ori;
-    QImage image_processed;
+    QImage q_image_gray;
+    QImage q_image_thresh;
+    QImage gray_cpu_image;
 };

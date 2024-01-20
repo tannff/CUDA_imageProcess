@@ -54,11 +54,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="canny_cuda.cu" />
-    <CudaCompile Include="ImgProcess.cu" />
-    <CudaCompile Include="distancetransformm.cu" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="imageProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,6 +61,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera_on.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,5 +79,23 @@
     <QtUic Include="ori_image.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="canny_cuda.cu" />
+    <CudaCompile Include="distancetransformm.cu" />
+    <CudaCompile Include="ImgProcess.cu" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Qimage_process.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\a6avc-bfprc-001.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\awjt4-ymoqf-001.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -7,6 +7,9 @@
 		std::cerr << cudaGetErrorString(ret) << std::endl;		\
 	}
 extern cudaError_t rgb_to_gray(unsigned char* img_in, unsigned char* img_out, int img_width, int img_height, int* hist);
+extern cudaError_t thresh_cal(const int* hist, float* sum, float* s, float* n, float* val, int img_width, int img_height, int* OtsuThresh);
+extern cudaError_t gray_to_otsu_binary(unsigned char* img_in, unsigned char* img_out, int img_width, int img_height, int* hThresh);
+
 QT_CHARTS_USE_NAMESPACE      
 using namespace std;
 using namespace cv;
@@ -103,6 +106,7 @@ Qimage_process::Qimage_process(QWidget* parent)
     connect(ui.action, SIGNAL(triggered()), this, SLOT(offline_image_down()));
     connect(ui.action_8, SIGNAL(triggered()), this, SLOT(save_file()));
     connect(ui.action_4, SIGNAL(triggered()), this, SLOT(close_app()));
+
 
     //»¬¿éÉèÖÃ
     connect(ui.verticalSlider, &QSlider::valueChanged, this, [this](int value) {    
@@ -496,9 +500,9 @@ void Qimage_process::gray_image() {
     CHECK_CUDA_ERROR(cudaMalloc((void**)&d_hist, 256 * sizeof(int)));
     CHECK_CUDA_ERROR(rgb_to_gray(d_rgb, d_gray, image_ori.width(), image_ori.height(), d_hist));
 
-    image_processed = QImage(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
-    CHECK_CUDA_ERROR(cudaMemcpy(image_processed.bits(), d_gray, image_ori.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
-    ui.label_3->setPixmap(QPixmap::fromImage(image_processed));
+    q_image_gray = QImage(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
+    CHECK_CUDA_ERROR(cudaMemcpy(q_image_gray.bits(), d_gray, image_ori.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+    ui.label_3->setPixmap(QPixmap::fromImage(q_image_gray));
     CHECK_CUDA_ERROR(cudaFree(d_rgb));
     CHECK_CUDA_ERROR(cudaFree(d_gray));
     CHECK_CUDA_ERROR(cudaFree(d_hist));
@@ -507,4 +511,64 @@ void Qimage_process::gray_image() {
     QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
     rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
     ui.label->setPixmap(QPixmap::fromImage(gray_cpu_image));
+    ui.pushButton_2->setDefault(true);
+}
+
+void Qimage_process::thresh_image() {
+
+    //CUDA:to gray_image + to thresh_image
+    ui.label_3->clear();
+    ui.label_3->setPixmap(QPixmap());
+
+    unsigned char* d_gray;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gray, q_image_gray.width() * q_image_gray.height()* sizeof(unsigned char)));
+    CHECK_CUDA_ERROR(cudaMemcpy(d_gray, q_image_gray.bits(), q_image_gray.width() * q_image_gray.height()* sizeof(unsigned char), cudaMemcpyHostToDevice));
+
+    unsigned char* d_thresh;
+    cudaMalloc((void**)&d_thresh, q_image_gray.width() * q_image_gray.height() * sizeof(unsigned char));
+
+    int* d_hist;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_hist, 256 * sizeof(int)));
+
+    float* d_sum;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_sum, 256 * sizeof(int)));
+
+    float* d_s;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_s, sizeof(float)));
+
+    float* d_n;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_n, 256 * sizeof(float)));
+
+    float* d_val;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_val, 256 * sizeof(float)));
+
+    int* d_t;
+    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_t, 2 * sizeof(int)));
+    CHECK_CUDA_ERROR(thresh_cal(d_hist, d_sum, d_s, d_n, d_val, q_image_gray.width(), q_image_gray.height(), d_t));
+    CHECK_CUDA_ERROR(gray_to_otsu_binary(d_gray, d_thresh, q_image_gray.width(), q_image_gray.height(), d_t));
+
+    q_image_thresh = QImage(q_image_gray.width(), q_image_gray.height(), QImage::Format_Grayscale8);
+    CHECK_CUDA_ERROR(cudaMemcpy(q_image_thresh.bits(), d_thresh, q_image_gray.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+    ui.label_3->setPixmap(QPixmap::fromImage(q_image_thresh));
+    QCoreApplication::processEvents();
+    CHECK_CUDA_ERROR(cudaFree(d_gray));
+    CHECK_CUDA_ERROR(cudaFree(d_hist));
+    CHECK_CUDA_ERROR(cudaFree(d_sum));
+    CHECK_CUDA_ERROR(cudaFree(d_s));
+    CHECK_CUDA_ERROR(cudaFree(d_n));
+    CHECK_CUDA_ERROR(cudaFree(d_val));
+    CHECK_CUDA_ERROR(cudaFree(d_t));
+    CHECK_CUDA_ERROR(cudaFree(d_thresh));
+
+    //cpu:to gray_image + to thresh_image
+    QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
+    rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
+
+    cv::Mat gray_mat = cv::Mat(gray_cpu_image.height(), gray_cpu_image.width(), CV_8UC1, (void*)gray_cpu_image.bits(), gray_cpu_image.bytesPerLine());
+    cv::Mat binary_mat(gray_mat.cols, gray_mat.rows, CV_8UC1);
+    threshold(gray_mat, binary_mat, 45, 255, THRESH_BINARY /*| THRESH_OTSU*/);
+    QImage binary_cpu_image(binary_mat.data, binary_mat.cols, binary_mat.rows, QImage::Format_Grayscale8);
+
+    ui.label->setPixmap(QPixmap::fromImage(binary_cpu_image));
+    ui.pushButton_2->setDefault(true);
 }
