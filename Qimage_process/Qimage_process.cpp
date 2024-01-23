@@ -16,45 +16,54 @@ extern cudaError_t erosion(unsigned char* img_in, unsigned char* img_out, int im
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height, int* max_x, int* max_y);
 
 QT_CHARTS_USE_NAMESPACE      
 using namespace std;
 using namespace cv;
 
-// ¸Ãº¯Êý½«label¿Ø¼þ±ä³ÉÒ»¸öÔ²ÐÎÖ¸Ê¾µÆ£¬ÐèÒªÖ¸¶¨ÑÕÉ«colorÒÔ¼°Ö±¾¶size
-// color 0:grey 1:red 2:green 3:yellow
-// size  µ¥Î»ÊÇÏñËØ
+void Qimage_process::init_pushButton() {
+    ui.pushButton->setChecked(false);
+    ui.pushButton_2->setChecked(false);
+    ui.pushButton_3->setChecked(false);
+    ui.pushButton_4->setChecked(false);
+    ui.pushButton_5->setChecked(false);
+    ui.pushButton_6->setChecked(false);
+    ui.pushButton_7->setChecked(false);
+    ui.pushButton_8->setChecked(false);
+}
+
 void Qimage_process::setLED(QLabel* label, int color, int size)
 {
-    // ½«labelÖÐµÄÎÄ×ÖÇå¿Õ
+    // ï¿½ï¿½labelï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
     label->setText("");
-    // ÏÈÉèÖÃ¾ØÐÎ´óÐ¡
-    // Èç¹ûui½çÃæÉèÖÃµÄlabel´óÐ¡±È×îÐ¡¿í¶ÈºÍ¸ß¶ÈÐ¡£¬¾ØÐÎ½«±»ÉèÖÃÎª×îÐ¡¿í¶ÈºÍ×îÐ¡¸ß¶È£»
-    // Èç¹ûui½çÃæÉèÖÃµÄlabel´óÐ¡±È×îÐ¡¿í¶ÈºÍ¸ß¶È´ó£¬¾ØÐÎ½«±»ÉèÖÃÎª×î´ó¿í¶ÈºÍ×î´ó¸ß¶È£»
-    QString min_width = QString("min-width: %1px;").arg(size);              // ×îÐ¡¿í¶È£ºsize
-    QString min_height = QString("min-height: %1px;").arg(size);            // ×îÐ¡¸ß¶È£ºsize
-    QString max_width = QString("max-width: %1px;").arg(size);              // ×îÐ¡¿í¶È£ºsize
-    QString max_height = QString("max-height: %1px;").arg(size);            // ×îÐ¡¸ß¶È£ºsize
-    // ÔÙÉèÖÃ±ß½çÐÎ×´¼°±ß¿ò
-    QString border_radius = QString("border-radius: %1px;").arg(size / 2);    // ±ß¿òÊÇÔ²½Ç£¬°ë¾¶Îªsize/2
-    QString border = QString("border:1px solid black;");                    // ±ß¿òÎª1pxºÚÉ«
-    // ×îºóÉèÖÃ±³¾°ÑÕÉ«
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½Î´ï¿½Ð¡
+    // ï¿½ï¿½ï¿½uiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½labelï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ÈºÍ¸ß¶ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½Ð¡ï¿½ß¶È£ï¿½
+    // ï¿½ï¿½ï¿½uiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½labelï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ÈºÍ¸ß¶È´ó£¬¾ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½ß¶È£ï¿½
+    QString min_width = QString("min-width: %1px;").arg(size);              // ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½È£ï¿½size
+    QString min_height = QString("min-height: %1px;").arg(size);            // ï¿½ï¿½Ð¡ï¿½ß¶È£ï¿½size
+    QString max_width = QString("max-width: %1px;").arg(size);              // ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½È£ï¿½size
+    QString max_height = QString("max-height: %1px;").arg(size);            // ï¿½ï¿½Ð¡ï¿½ß¶È£ï¿½size
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ß½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ß¿ï¿½
+    QString border_radius = QString("border-radius: %1px;").arg(size / 2);    // ï¿½ß¿ï¿½ï¿½ï¿½Ô²ï¿½Ç£ï¿½ï¿½ë¾¶Îªsize/2
+    QString border = QString("border:1px solid black;");                    // ï¿½ß¿ï¿½Îª1pxï¿½ï¿½É«
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½É?
     QString background = "background-color:";
     switch (color) {
     case 0:
-        // »ÒÉ«
+        // ï¿½ï¿½É«
         background += "rgb(190,190,190)";
         break;
     case 1:
-        // ºìÉ«
+        // ï¿½ï¿½É«
         background += "rgb(255,0,0)";
         break;
     case 2:
-        // ÂÌÉ«
+        // ï¿½ï¿½É«
         background += "rgb(0,255,0)";
         break;
     case 3:
-        // »ÆÉ«
+        // ï¿½ï¿½É«
         background += "rgb(255,255,0)";
         break;
     default:
@@ -70,32 +79,30 @@ Qimage_process::Qimage_process(QWidget* parent)
 {
     ui.setupUi(this);
     ori_display = new ori_image;
-    //ÊµÊ±Ê±¼äÏÔÊ¾
-    timer_calendar = new QTimer(this);//new¸ö¶ÔÏó
-    connect(timer_calendar, SIGNAL(timeout()), this, SLOT(timer_Update()));//timeout³¬Ê±ÊÂ¼þ
-    timer_calendar->start(1000);//Ã¿¸ôÒ»Ãëµ÷ÓÃÒ»´Î²Ûº¯Êý
+    //ÊµÊ±Ê±ï¿½ï¿½ï¿½ï¿½Ê¾
+    timer_calendar = new QTimer(this);//newï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    connect(timer_calendar, SIGNAL(timeout()), this, SLOT(timer_Update()));//timeoutï¿½ï¿½Ê±ï¿½Â¼ï¿½
+    timer_calendar->start(1000);//Ã¿ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î²Ûºï¿½ï¿½ï¿?
 
-    //Í¼ÏñÏÔÊ¾½çÃæ³õÊ¼»¯
-    ui.label_6->setText(QString::fromLocal8Bit("Ô­Ê¼Í¼Ïñ"));
-    ui.label_5->setText(QString::fromLocal8Bit("µ±Ç°ÎÞÍ¼Ïñ£¡"));
-    ui.label_2->setText(QString::fromLocal8Bit("²ÉÓÃCPU½øÐÐÍ¼ÏñÊ¶±ð"));
-    ui.label->setText(QString::fromLocal8Bit("µ±Ç°ÎÞÍ¼Ïñ£¡"));
-    ui.label_4->setText(QString::fromLocal8Bit("µ÷ÓÃCUDA½øÐÐÍ¼ÏñÊ¶±ð"));
-    ui.label_3->setText(QString::fromLocal8Bit("µ±Ç°ÎÞÍ¼Ïñ£¡"));
+    //Í¼ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿?
+    ui.label_6->setText(QString::fromLocal8Bit("Ô­Ê¼Í¼ï¿½ï¿½"));
+    ui.label_5->setText(QString::fromLocal8Bit("ï¿½ï¿½Ç°ï¿½ï¿½Í¼ï¿½ï¿½"));
+    ui.label_2->setText(QString::fromLocal8Bit("ï¿½ï¿½ï¿½ï¿½CPUï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ê¶ï¿½ï¿½"));
+    ui.label->setText(QString::fromLocal8Bit("ï¿½ï¿½Ç°ï¿½ï¿½Í¼ï¿½ï¿½"));
+    ui.label_4->setText(QString::fromLocal8Bit("ï¿½ï¿½ï¿½ï¿½CUDAï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ê¶ï¿½ï¿½"));
+    ui.label_3->setText(QString::fromLocal8Bit("ï¿½ï¿½Ç°ï¿½ï¿½Í¼ï¿½ï¿½"));
 
-    //»¬¿é³õÊ¼»¯
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿?
     ui.label_46->setText("0");
     ui.label_47->setText("0");
     ui.label_48->setText("0");
 
-    //Ä¬ÈÏ±£´æµØÖ·
+    //Ä¬ï¿½Ï±ï¿½ï¿½ï¿½ï¿½Ö?
     ui.label_45->setText(default_Path);
     
-    //¾àÀë±ä»»½á¹ûÏÔÊ¾
-    ui.label_15->setText(QString::fromLocal8Bit("1ºÁÃ×£¨mm£©="));
-    ui.label_28->setText(QString::fromLocal8Bit("ÏñËØ£¨pixel)"));
-
-    QGridLayout* baseLayout = new QGridLayout();//²¼¾Ö¹ÜÀíÆ÷
+    //ï¿½ï¿½ï¿½ï¿½ä»»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+    ui.label_15->setText(QString::fromLocal8Bit("1ï¿½ï¿½ï¿½×£ï¿½mmï¿½ï¿½="));
+    ui.label_28->setText(QString::fromLocal8Bit("ï¿½ï¿½ï¿½Ø£ï¿½pixel)"));
 
     connect(this, SIGNAL(image_proccess_speed(double, double, double, double, double, double, float, float, float, float, float, float)),
             this, SLOT(display_speed(double, double, double, double, double, double, float, float, float, float, float, float)));
@@ -103,27 +110,25 @@ Qimage_process::Qimage_process(QWidget* parent)
     connect(ui.lineEdit_7, SIGNAL(returnPressed()), this, SLOT(show_resize()));
     connect(ui.lineEdit_6, SIGNAL(returnPressed()), this, SLOT(show_angle()));
 
-    connect(ui.action, SIGNAL(triggered()), this, SLOT(offline_image_down()));
+    connect(ui.action, SIGNAL(triggered()), this, SLOT(show_the_file()));
     connect(ui.action_8, SIGNAL(triggered()), this, SLOT(save_file()));
     connect(ui.action_4, SIGNAL(triggered()), this, SLOT(close_app()));
 
 
-    //»¬¿éÉèÖÃ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     connect(ui.verticalSlider, &QSlider::valueChanged, this, [this](int value) {    
-        ui.label_46->setText(QString::number(value));
+        ui.label_46->setText(QString::number(value-150));
     });
+      
     connect(ui.verticalSlider_3, &QSlider::valueChanged, this, [this](int value) {
         
-        ui.label_47->setText(QString::number(value));
+        ui.label_47->setText(QString::number(value-150));
     });
     connect(ui.verticalSlider_2, &QSlider::valueChanged, this, [this](int value) {
-        ui.label_48->setText(QString::number(value));
+        ui.label_48->setText(QString::number(value-150));
     });
-    
-    connect(ui.lineEdit_6, SIGNAL(returnPressed()), this, SLOT(rotated_image(float)));
-    connect(ui.label_5, SIGNAL(pre_image(QImage)), this, SLOT(return_image(QImage)));
 
-    //ÉèÖÃÄ¬ÈÏÖµ
+    //ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
     ui.lineEdit->setPlaceholderText("40");
     ui.lineEdit_2->setPlaceholderText("480");
     ui.lineEdit_3->setPlaceholderText("320");
@@ -131,7 +136,7 @@ Qimage_process::Qimage_process(QWidget* parent)
     ui.lineEdit_6->setPlaceholderText("0");
     ui.lineEdit_7->setPlaceholderText("100");
 
-    //ÉèÖÃ×´Ì¬µÆ³õÌ¬
+    //ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Æ³ï¿½Ì¬
     setLED(ui.label_9, 1, 16);
     setLED(ui.label_40, 2, 16);
 }
@@ -145,7 +150,7 @@ Qimage_process::~Qimage_process()
 void Qimage_process::timer_Update()
 {
     QDateTime time = QDateTime::currentDateTime();
-    //Äê-ÔÂ-ÈÕ Ê±£º·Ö£ºÃë ÐÇÆÚ
+    //ï¿½ï¿½-ï¿½ï¿½-ï¿½ï¿½ Ê±ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
     ui.label_43->setText(str);
 }
@@ -153,7 +158,7 @@ void Qimage_process::timer_Update()
 
 void Qimage_process::display_speed(double times1, double times2, double times3, double times4, double times5, double times6, float cost_time, float gtimes1, float gtimes2, float gtimes3, float gtimes4, float gtimes5) {
     
-    //¹¹½¨ÕÛÏßÍ¼
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 
     QLineSeries* series1 = new QLineSeries();
     QLineSeries* series2 = new QLineSeries();
@@ -183,26 +188,26 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     //chart->legend()->hide();
     
     chart->createDefaultAxes();
-    chart->legend()->setVisible(true); //ÉèÖÃÍ¼ÀýÎªÏÔÊ¾×´Ì¬
-    chart->legend()->setAlignment(Qt::AlignLeft);//ÉèÖÃÍ¼ÀýµÄÏÔÊ¾Î»ÖÃÔÚµ×²¿
+    chart->legend()->setVisible(true); //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Îªï¿½ï¿½Ê¾×´Ì¬
+    chart->legend()->setAlignment(Qt::AlignLeft);//ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Î»ï¿½ï¿½ï¿½Úµ×²ï¿½
     chart->legend()->setContentsMargins(5, 0, 0, 0);  
 
     QChartView* chartView = new QChartView();
     ui.graphicsView->setChart(chart);
 
-    QValueAxis* axisX = new QValueAxis;  //XÖá
-    axisX->setRange(0, 50);   //ÉèÖÃ×ø±êÖá·¶Î§
-    axisX->setTitleText("time(ms)");  //±êÌâ
-    axisX->setLabelFormat("%.2f");   //±êÇ©¸ñÊ½
-    axisX->setTickCount(5);    //Ö÷·Ö¸ô¸öÊý
-    axisX->setMinorTickCount(1);    //Ã¿¸öµ¥Î»Ö®¼ä»æÖÆÁË¶àÉÙÐéÍøÏß
+    QValueAxis* axisX = new QValueAxis;  //Xï¿½ï¿½
+    axisX->setRange(0, 50);   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á·¶Î§
+    axisX->setTitleText("time(ms)");  //ï¿½ï¿½ï¿½ï¿½
+    axisX->setLabelFormat("%.2f");   //ï¿½ï¿½Ç©ï¿½ï¿½Ê½
+    axisX->setTickCount(5);    //ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½
+    axisX->setMinorTickCount(1);    //Ã¿ï¿½ï¿½ï¿½ï¿½Î»Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
     chart->setAxisX(axisX, series1);
     chart->setAxisX(axisX, series2);
 
     ui.graphicsView->setRenderHint(QPainter::Antialiasing);
     ui.graphicsView->setRubberBand(QChartView::NoRubberBand);
 
-    //¹¹½¨Öù×´Í¼
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Í¼
     QBarSet* set0 = new QBarSet("cpu");
     QBarSet* set1 = new QBarSet("cuda");
 
@@ -216,7 +221,7 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     QChart* chartc = new QChart();
     ui.graphicsView_2->setChart(chartc);
 
-    QValueAxis* axisY = new QValueAxis;  //YÖá
+    QValueAxis* axisY = new QValueAxis;  //Yï¿½ï¿½
     axisY->setRange(0, 18);
     axisY->setTitleText("time(ms)");
     axisY->setLabelFormat("%.1f"); 
@@ -249,11 +254,6 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     chartc->legend()->setVisible(false); //ÉèÖÃÍ¼ÀýÎªÏÔÊ¾×´Ì¬
     chartc->legend()->setAlignment(Qt::AlignRight);//ÉèÖÃÍ¼ÀýµÄÏÔÊ¾Î»ÖÃÔÚµ×²¿
 
-    /*QChartView* chartView = new QChartView(chartc);
-    chartView = new QChartView();
-    baseLayout->addWidget(chartView, 1, 0);
-    setLayout(baseLayout);//QwidgetÌØÓÐµÄ*/
-
     ui.graphicsView_2->setRenderHint(QPainter::Antialiasing);
     ui.graphicsView_2->setRubberBand(QChartView::NoRubberBand);
      
@@ -268,14 +268,7 @@ void Qimage_process::show_resize() {
     image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
     ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
 
-    ui.pushButton->setChecked(false);
-    ui.pushButton_2->setChecked(false);
-    ui.pushButton_3->setChecked(false);
-    ui.pushButton_4->setChecked(false);
-    ui.pushButton_5->setChecked(false);
-    ui.pushButton_6->setChecked(false);
-    ui.pushButton_7->setChecked(false);
-    ui.pushButton_8->setChecked(false);
+    init_pushButton();
 }
 
 void Qimage_process::show_angle() {
@@ -287,34 +280,19 @@ void Qimage_process::show_angle() {
     }
     QMatrix matrix;
     matrix.rotate(angle_value);
-    //QImage rotated_image(image_ori.size(), image_ori.format());
     image_ori = image_ori.transformed(matrix, Qt::FastTransformation);
     image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
     ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
 
-    ui.pushButton->setChecked(false);
-    ui.pushButton_2->setChecked(false);
-    ui.pushButton_3->setChecked(false);
-    ui.pushButton_4->setChecked(false);
-    ui.pushButton_5->setChecked(false);
-    ui.pushButton_6->setChecked(false);
-    ui.pushButton_7->setChecked(false);
-    ui.pushButton_8->setChecked(false);
+    init_pushButton();
 }
 
 void Qimage_process::horizenal_flip() {
-        image_ori = image_ori.mirrored(true, false);
-        image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
-        ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
+    image_ori = image_ori.mirrored(true, false);
+    image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
+    ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
 
-        ui.pushButton->setChecked(false);
-        ui.pushButton_2->setChecked(false);
-        ui.pushButton_3->setChecked(false);
-        ui.pushButton_4->setChecked(false);
-        ui.pushButton_5->setChecked(false);
-        ui.pushButton_6->setChecked(false);
-        ui.pushButton_7->setChecked(false);
-        ui.pushButton_8->setChecked(false);
+    init_pushButton();
 }
 
 void Qimage_process::vertical_flip() {
@@ -322,24 +300,57 @@ void Qimage_process::vertical_flip() {
     image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
     ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
 
-    ui.pushButton->setChecked(false);
-    ui.pushButton_2->setChecked(false);
-    ui.pushButton_3->setChecked(false);
-    ui.pushButton_4->setChecked(false);
-    ui.pushButton_5->setChecked(false);
-    ui.pushButton_6->setChecked(false);
-    ui.pushButton_7->setChecked(false);
-    ui.pushButton_8->setChecked(false);
+    init_pushButton();
 }
 
-void Qimage_process::show_thresh() {
-    QString th = ui.lineEdit->text();
-    bool ok;
-    int thresh_value = th.toInt(&ok,10);
-    if (thresh_value < 0 || thresh_value > 255) {
-        return;
+void Qimage_process::saturation(int sat) { 
+   
+    QColor oldColor;
+    QColor newColor;
+    int h, s, l;
+
+    for (int x = 0; x < image_ori.width(); x++) {
+        for (int y = 0; y < image_ori.height(); y++) {
+            oldColor = QColor(image_ori.pixel(x, y));
+
+            newColor = oldColor.toHsl();
+            h = newColor.hue();
+            s = newColor.saturation() + sat;
+            l = newColor.lightness();
+
+            //we check if the new value is between 0 and 255  
+            s = qBound(0, s, 255);
+
+            newColor.setHsl(h, s, l);
+
+            image_ori.setPixel(x, y, qRgb(newColor.red(), newColor.green(), newColor.blue()));
+            ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
+        }
     }
-    emit image_thresh(thresh_value);
+    
+}
+
+void Qimage_process::renew(int xnull) {
+    
+    int bri = 0;
+    int cont = 0;
+    bri = ui.verticalSlider->value();
+    cont = ui.verticalSlider_3->value();
+    uint8_t* rgb = image_ori.bits();
+    int r = 0, g = 0, b = 0;
+    int size = image_ori.width() * image_ori.height();
+    for (int i = 0; i < size; i++) {
+        r = bri * 0.01 * rgb[i * 3] - 150 + cont;
+        g = bri * 0.01 * rgb[i * 3 + 1] - 150 + cont;
+        b = bri * 0.01 * rgb[i * 3 + 2] - 150 + cont;
+        r = qBound(0, r, 255);
+        g = qBound(0, g, 255);
+        b = qBound(0, b, 255);
+        rgb[i * 3] = r;
+        rgb[i * 3 + 1] = g;
+        rgb[i * 3 + 2] = b;
+        ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
+    }
 }
 
 void Qimage_process::show_demarcate() {
@@ -393,17 +404,8 @@ void Qimage_process::show_the_file() {
     image_ori = image_ori.convertToFormat(QImage::Format_RGB888);
     QPixmap pix_image_ori = QPixmap::fromImage(image_ori);
     ui.label_5->setPixmap(pix_image_ori);  
-    emit pre_image(image_ori);
 
-    ui.pushButton->setChecked(false);
-    ui.pushButton_2->setChecked(false);
-    ui.pushButton_3->setChecked(false);
-    ui.pushButton_4->setChecked(false);
-    ui.pushButton_5->setChecked(false);
-    ui.pushButton_6->setChecked(false);
-    ui.pushButton_7->setChecked(false);
-    ui.pushButton_8->setChecked(false);
-
+    init_pushButton();
 }
 
 void Qimage_process::display_width(float maxValue, double interpolation) {
@@ -445,7 +447,7 @@ void Qimage_process::consumer() {
         QFileInfo fileInfo(fileName);
         QString baseName = fileInfo.fileName();
 
-        // ½«ÎÄ¼þÃûÏÔÊ¾ÔÚ±êÇ©ÉÏ
+        // ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ú±ï¿½Ç©ï¿½ï¿½
         ui.label_42->setText(baseName);
 
 }
@@ -456,15 +458,6 @@ void Qimage_process::new_window() {
     QtConcurrent::run(camera_on,ori_display);
     
     ori_display->setText(ui.label_42->text());  
-}
-
-void Qimage_process::offline_image_down() {
-    QString fileName = QFileDialog::getOpenFileName(
-        this,
-        tr("open a file."),
-        "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/",
-        tr("images(*.png *jpg *bmp);;video files(*.avi *.mp4 *.wmv);;All files(*.*)"));
-
 }
 
 void Qimage_process::mouseMoveEvent(QMouseEvent* event)
@@ -490,7 +483,7 @@ void Qimage_process::mouseMoveEvent(QMouseEvent* event)
 
     
 
-    //    ui->showX->setText(QString::number(QCursor().pos().x()));//ÒÔµçÄÔÆÁÄ»×óÉÏ½ÇÎª0µã
+    //    ui->showX->setText(QString::number(QCursor().pos().x()));//ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½Ï½ï¿½Îª0ï¿½ï¿½
     //    ui->showY->setText(QString::number(QCursor().pos().y()));
 
     //  ui->showdata->setText(tr("(%1,%2)").arg(event->x()).arg(event->y())); //Å¶¡£¡£Ò»¸ö±êÇ©ÏÔÊ¾Á½¸ö±äÁ¿ÊÇÕâÃ´¸ãµÄ ²»ºÃÒâË¼¶ªÈËÁË
@@ -519,8 +512,12 @@ void Qimage_process::save_file() {
 
 void Qimage_process::return_image() {
     
-    QPixmap pix_image_ori = QPixmap::fromImage(image_ori);
-    ui.label_5->setPixmap(pix_image_ori);
+    ui.label_3->clear();
+    ui.label->clear();
+    ui.label_5->clear();
+    ui.verticalSlider->setValue(150);
+    ui.verticalSlider_2->setValue(150);
+    ui.verticalSlider_3->setValue(150);
 }
 
 void Qimage_process::close_app() {
@@ -531,8 +528,6 @@ void Qimage_process::gray_image(bool gray_on) {
     if (gray_on) {
         //CUDA:to gray_image
         unsigned char* d_rgb;
-        
-        qDebug() << image_ori;
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_rgb, image_ori.width() * image_ori.height() * image_ori.depth() / 8 * sizeof(unsigned char)));
         CHECK_CUDA_ERROR(cudaMemcpy(d_rgb, image_ori.bits(), image_ori.width() * image_ori.height() * image_ori.depth() / 8 * sizeof(unsigned char), cudaMemcpyHostToDevice));
 
@@ -561,8 +556,6 @@ void Qimage_process::gray_image(bool gray_on) {
 }
 
 void Qimage_process::filter_image(bool filter_on) {
-
-
     float Sigma = 1;
     int filterWidth = 5;
     if (filterWidth < 3) filterWidth = 3;
@@ -591,14 +584,13 @@ void Qimage_process::filter_image(bool filter_on) {
     if (filter_on) {
         //CUDA:to filter_image
         ui.label_3->clear();
-        ui.label_3->setPixmap(QPixmap());
 
         unsigned char* d_gray;
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gray, q_image_gray.width() * q_image_gray.height() * sizeof(unsigned char)));
         CHECK_CUDA_ERROR(cudaMemcpy(d_gray, q_image_gray.bits(), q_image_gray.width() * q_image_gray.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
 
         unsigned char* d_gauss;
-        cudaMalloc((void**)&d_gauss, q_image_gray.width() * q_image_gray.height() * sizeof(unsigned char));
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gauss, q_image_gray.width() * q_image_gray.height() * sizeof(unsigned char)));
 
         float* d_filter;
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_filter, filterWidth * filterWidth * sizeof(float)));
@@ -622,6 +614,9 @@ void Qimage_process::filter_image(bool filter_on) {
         filter_cpu_image = QImage(filter_mat.data, filter_mat.cols, filter_mat.rows, QImage::Format_Grayscale8);
         
         ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
+        //QString filename = "F:/about_lesson/Qimage_process/56.jpg"; // Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿?
+        //filter_cpu_image.save(filename, "jpg");
+        
     }
     else {
         ui.label_3->setPixmap(QPixmap::fromImage(q_image_gray));
@@ -634,7 +629,6 @@ void Qimage_process::thresh_image(bool binary_on) {
         //CUDA:to thresh_image
         ui.label_3->clear();
 
-        ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
         unsigned char* d_gauss;
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gauss, q_image_gauss.width() * q_image_gauss.height() * sizeof(unsigned char)));
         CHECK_CUDA_ERROR(cudaMemcpy(d_gauss, q_image_gauss.bits(), q_image_gauss.width() * q_image_gauss.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
@@ -643,7 +637,7 @@ void Qimage_process::thresh_image(bool binary_on) {
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_thresh, q_image_gauss.width() * q_image_gauss.height() * sizeof(unsigned char)));
 
         float* d_sum;
-        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_sum, 256 * sizeof(int)));
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_sum, 256 * sizeof(float)));
         float* d_s;
         CHECK_CUDA_ERROR(cudaMalloc((void**)&d_s, sizeof(float)));
         float* d_n;
@@ -671,11 +665,20 @@ void Qimage_process::thresh_image(bool binary_on) {
         CHECK_CUDA_ERROR(cudaFree(d_thresh));
 
         //cpu:to thresh_image
-        //ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
+        QString th = ui.lineEdit->text();
+        bool ok;                                   
+        int thresh_value = th.toInt(&ok, 10);
+        if (thresh_value < 0 || thresh_value > 255) {
+            return;
+        }
+        ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
+        //QString filename = "F:/about_lesson/Qimage_process/66.jpg"; // Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿?
+        //filter_cpu_image.save(filename, "jpg");
         //cv::Mat filter_mat = cv::Mat(filter_cpu_image.height(), filter_cpu_image.width(), CV_8UC1,  (void*)filter_cpu_image.bits(), filter_cpu_image.bytesPerLine());
+        //imshow("", filter_mat);
         //cv::Mat binary_mat(filter_mat.cols, filter_mat.rows, CV_8UC1);
         //imshow("", filter_mat);
-        //threshold(filter_mat, binary_mat, 40, 255, THRESH_BINARY /*| THRESH_OTSU*/);
+        //threshold(filter_mat, binary_mat,thresh_value, 255, THRESH_BINARY /*| THRESH_OTSU*/);
         //binary_cpu_image = QImage(binary_mat.data, binary_mat.cols, binary_mat.rows, QImage::Format_Grayscale8);
 
        // ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
@@ -690,48 +693,92 @@ void Qimage_process::closed_image(bool closed_on) {
     if (closed_on) {
         //CUDA:to closed_image
         ui.label_3->clear();
-        ui.label_3->setPixmap(QPixmap());
+        ui.label_3->setPixmap(QPixmap(""));
 
         unsigned char* d_thresh;
-        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_thresh, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
-        CHECK_CUDA_ERROR(cudaMemcpy(d_thresh, q_image_thresh.bits(), image_ori.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_thresh, q_image_thresh.width() * q_image_thresh.height() * sizeof(unsigned char)));
+        CHECK_CUDA_ERROR(cudaMemcpy(d_thresh, q_image_thresh.bits(), q_image_thresh.width() * q_image_thresh.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
 
         unsigned char* d_dil;
-        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_dil, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_dil, q_image_thresh.width() * q_image_thresh.height() * sizeof(unsigned char)));
         unsigned char* d_closed;
-        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_closed, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_closed, q_image_thresh.width() * q_image_thresh.height() * sizeof(unsigned char)));
 
-        CHECK_CUDA_ERROR(dilation(d_thresh, d_dil, image_ori.width(), image_ori.height()));
-        CHECK_CUDA_ERROR(erosion(d_dil, d_closed, image_ori.width(), image_ori.height()));
+        CHECK_CUDA_ERROR(dilation(d_thresh, d_dil, q_image_thresh.width(), q_image_thresh.height()));
+        CHECK_CUDA_ERROR(erosion(d_dil, d_closed, q_image_thresh.width(), q_image_thresh.height()));
 
-        q_image_closed = QImage(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
+        q_image_closed = QImage(q_image_thresh.width(), q_image_thresh.height(), QImage::Format_Grayscale8);
         CHECK_CUDA_ERROR(cudaMemcpy(q_image_closed.bits(), d_closed, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
         ui.label_3->setPixmap(QPixmap::fromImage(q_image_closed));
         QCoreApplication::processEvents();
 
         CHECK_CUDA_ERROR(cudaFree(d_dil));
+        CHECK_CUDA_ERROR(cudaFree(d_thresh));
         CHECK_CUDA_ERROR(cudaFree(d_closed));
 
         //cpu:to closed_image
-        //QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
-        //rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
-
-        //cv::Mat gray_mat = cv::Mat(gray_cpu_image.height(), gray_cpu_image.width(), CV_8UC1, (void*)gray_cpu_image.bits(), gray_cpu_image.bytesPerLine());
-        //cv::Mat filter_mat(gray_mat.cols, gray_mat.rows, CV_8UC1);
-        //GaussianBlur(gray_mat, filter_mat, Size(5, 5), 0, 0);
-
-        //cv::Mat binary_mat(filter_mat.cols, filter_mat.rows, CV_8UC1);
-        //threshold(filter_mat, binary_mat, 45, 255, THRESH_BINARY /*| THRESH_OTSU*/);
-        cv::Mat binary_mat(binary_cpu_image.height(), binary_cpu_image.width(), CV_8UC1, (void*)binary_cpu_image.bits(), binary_cpu_image.bytesPerLine());
+        /*cv::Mat binary_mat(binary_cpu_image.height(), binary_cpu_image.width(), CV_8UC1, (void*)binary_cpu_image.bits(), binary_cpu_image.bytesPerLine());
         cv::Mat element = getStructuringElement(MORPH_RECT, Size(7, 7));
         cv::Mat closed_mat(binary_mat.size(), CV_8UC1, Scalar(0));
         morphologyEx(binary_mat, closed_mat, MORPH_CLOSE, element);
-        closed_cpu_image = QImage(closed_mat.data, closed_mat.cols, closed_mat.rows, QImage::Format_Grayscale8);
+        closed_cpu_image = QImage(closed_mat.data, closed_mat.cols, closed_mat.rows, QImage::Format_Grayscale8);*/
 
-        ui.label->setPixmap(QPixmap::fromImage(closed_cpu_image));
+        //ui.label->setPixmap(QPixmap::fromImage(closed_cpu_image));
     }
     else {
         ui.label_3->setPixmap(QPixmap::fromImage(q_image_thresh));
+        //ui.label->setPixmap(QPixmap::fromImage(binary_cpu_image));
+    }
+}
+
+void Qimage_process::canny_image(bool canny_on) {
+    
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    int t_high = 150;
+    int t_low = 50;
+    if (canny_on) {
+        //CUDA:to canny_image
+        ui.label_3->clear();
+        ui.label_3->setPixmap(QPixmap());
+
+        unsigned char* d_closed;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_closed, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+        CHECK_CUDA_ERROR(cudaMemcpy(d_closed, q_image_closed.bits(), q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
+
+        unsigned char* d_sobel;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_sobel, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+        unsigned char* d_nms;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_nms, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+        unsigned char* d_high;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_high, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+        unsigned char* d_canny;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_canny, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+
+        int* d_gx;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gx, q_image_closed.width() * q_image_closed.height() * sizeof(int)));
+        int* d_gy;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gy, q_image_closed.width() * q_image_closed.height() * sizeof(int)));
+        unsigned* d_map;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_map, q_image_closed.width() * q_image_closed.height() * sizeof(d_map[0])));
+
+        CHECK_CUDA_ERROR(sobel_intensity_gradient(d_closed, d_sobel, d_gx, d_gy, q_image_closed.width(), q_image_closed.height()));
+        CHECK_CUDA_ERROR(non_max(d_sobel, d_nms, d_gx, d_gy, q_image_closed.width(), q_image_closed.height()));
+        CHECK_CUDA_ERROR(hysteresis(d_nms, d_high, d_canny, d_map, t_high, t_low, q_image_closed.width(), q_image_closed.height()));
+
+        q_image_canny = QImage(q_image_closed.width(), q_image_closed.height(), QImage::Format_Grayscale8);
+        CHECK_CUDA_ERROR(cudaMemcpy(q_image_canny.bits(), d_canny, q_image_canny.width() * q_image_canny.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+        ui.label_3->setPixmap(QPixmap::fromImage(q_image_canny));
+        QCoreApplication::processEvents();
+
+        CHECK_CUDA_ERROR(cudaFree(d_closed));
+        CHECK_CUDA_ERROR(cudaFree(d_sobel));
+        CHECK_CUDA_ERROR(cudaFree(d_nms));
+        CHECK_CUDA_ERROR(cudaFree(d_gx));
+        CHECK_CUDA_ERROR(cudaFree(d_gy));
+        CHECK_CUDA_ERROR(cudaFree(d_high));
+        CHECK_CUDA_ERROR(cudaFree(d_canny));
+
+        //cpu:to canny_image
         QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
         rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
 
@@ -740,88 +787,64 @@ void Qimage_process::closed_image(bool closed_on) {
         GaussianBlur(gray_mat, filter_mat, Size(5, 5), 0, 0);
 
         cv::Mat binary_mat(filter_mat.cols, filter_mat.rows, CV_8UC1);
-        threshold(filter_mat, binary_mat, 45, 255, THRESH_BINARY /*| THRESH_OTSU*/);
-        binary_cpu_image = QImage(binary_mat.data, binary_mat.cols, binary_mat.rows, QImage::Format_Grayscale8);
+        threshold(filter_mat, binary_mat, 40, 255, THRESH_BINARY /*| THRESH_OTSU*/);
 
-        ui.label->setPixmap(QPixmap::fromImage(binary_cpu_image));
+        cv::Mat element = getStructuringElement(MORPH_RECT, Size(7, 7));
+        cv::Mat closed_mat(binary_mat.size(), CV_8UC1, Scalar(0));
+        morphologyEx(binary_mat, closed_mat, MORPH_CLOSE, element);
+
+        cv::Mat canny_mat(closed_mat.cols, closed_mat.rows, CV_8UC1, Scalar(0));
+        Canny(closed_mat, canny_mat, t_low, t_high);
+        vector<vector<Point> > contour_vec;
+        vector<Vec4i> hierarchy;
+        findContours(canny_mat, contour_vec, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+
+        cv::Mat ori_image_c = cv::Mat(image_ori.height(), image_ori.width(), CV_8UC3, (void*)image_ori.bits(), image_ori.bytesPerLine());
+        for (int real_contour = 0; real_contour < contour_vec.size(); ++real_contour) {
+            drawContours(ori_image_c, contour_vec, real_contour, Scalar(255, 255, 255), 2, 8);
+        }
+        QImage canny_cpu_image(canny_mat.data, canny_mat.cols, canny_mat.rows, QImage::Format_Grayscale8);
+
+        ui.label->setPixmap(QPixmap::fromImage(canny_cpu_image));
     }
+    else 
+        ui.label_3->setPixmap(QPixmap::fromImage(q_image_closed));
 }
 
-void Qimage_process::canny_image() {
-    //¶¨ÒåãÐÖµ
-    int t_high = 150;
-    int t_low = 50;
-    //CUDA:to cann_image
-    ui.label_3->clear();
-    ui.label_3->setPixmap(QPixmap());
+void Qimage_process::distancetransform(bool dist_on) {
+    if (dist_on) {
+        //CUDA:to dist_image
+        ui.label_3->clear();
+        ui.label_3->setPixmap(QPixmap());
 
-    unsigned char* d_closed;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_closed, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
-    CHECK_CUDA_ERROR(cudaMemcpy(d_closed, q_image_closed.bits(), image_ori.width() * image_ori.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
+        unsigned char* d_closed;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_closed, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
+        CHECK_CUDA_ERROR(cudaMemcpy(d_closed, q_image_closed.bits(), q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char), cudaMemcpyHostToDevice));
 
-    unsigned char* d_sobel;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_sobel, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
-    unsigned char* d_nms;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_nms, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
-    unsigned char* d_high;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_high, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
-    unsigned char* d_canny;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_canny, image_ori.width() * image_ori.height() * sizeof(unsigned char)));
+        unsigned char* d_distrans;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_distrans, q_image_closed.width() * q_image_closed.height() * sizeof(unsigned char)));
 
-    int* d_gx;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gx, image_ori.width() * image_ori.height() * sizeof(int)));
-    int* d_gy;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gy, image_ori.width() * image_ori.height() * sizeof(int)));
-    unsigned* d_map;
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&d_map, image_ori.width() * image_ori.height() * sizeof(d_map[0])));
+        int* d_max_x;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_max_x, 256 * sizeof(int)));
+        int* d_max_y;
+        CHECK_CUDA_ERROR(cudaMalloc((void**)&d_max_y, 256 * sizeof(int)));
 
-    CHECK_CUDA_ERROR(sobel_intensity_gradient(d_closed, d_sobel, d_gx, d_gy, image_ori.width(), image_ori.height()));
-    CHECK_CUDA_ERROR(non_max(d_sobel, d_nms, d_gx, d_gy, image_ori.width(), image_ori.height()));
-    CHECK_CUDA_ERROR(hysteresis(d_nms, d_high, d_canny, d_map, t_high, t_low, image_ori.width(), image_ori.height()));
+        CHECK_CUDA_ERROR(distance_transform(d_closed, d_distrans, q_image_closed.width(), q_image_closed.height(), d_max_x, d_max_y));
+         
+        q_image_distrans = QImage(q_image_closed.width(), q_image_closed.height(), QImage::Format_Grayscale8);
+        CHECK_CUDA_ERROR(cudaMemcpy(q_image_distrans.bits(), d_distrans, q_image_distrans.width() * q_image_distrans.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+        ui.label_3->setPixmap(QPixmap::fromImage(q_image_distrans));
+        QCoreApplication::processEvents();
 
-    q_image_canny = QImage(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
-    CHECK_CUDA_ERROR(cudaMemcpy(q_image_canny.bits(), d_canny, q_image_canny.width() * q_image_canny.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
-    ui.label_3->setPixmap(QPixmap::fromImage(q_image_canny));
-    QCoreApplication::processEvents();
+        CHECK_CUDA_ERROR(cudaFree(d_closed));
+        CHECK_CUDA_ERROR(cudaFree(d_distrans));
+        CHECK_CUDA_ERROR(cudaFree(d_max_x));
+        CHECK_CUDA_ERROR(cudaFree(d_max_y));
 
-    CHECK_CUDA_ERROR(cudaFree(d_closed));
-    CHECK_CUDA_ERROR(cudaFree(d_sobel));
-    CHECK_CUDA_ERROR(cudaFree(d_nms));
-    CHECK_CUDA_ERROR(cudaFree(d_gx));
-    CHECK_CUDA_ERROR(cudaFree(d_gy));
-    CHECK_CUDA_ERROR(cudaFree(d_high));
-    CHECK_CUDA_ERROR(cudaFree(d_canny));
-
-    //cpu:to canny_image
-    QImage gray_cpu_image(image_ori.width(), image_ori.height(), QImage::Format_Grayscale8);
-    rgb2grayincpu(image_ori.bits(), gray_cpu_image.bits(), image_ori.width(), image_ori.height());
-
-    cv::Mat gray_mat = cv::Mat(gray_cpu_image.height(), gray_cpu_image.width(), CV_8UC1, (void*)gray_cpu_image.bits(), gray_cpu_image.bytesPerLine());
-    cv::Mat binary_mat(gray_mat.cols, gray_mat.rows, CV_8UC1);
-    threshold(gray_mat, binary_mat, 45, 255, THRESH_BINARY /*| THRESH_OTSU*/);
-    //QImage binary_cpu_image(binary_mat.data, binary_mat.cols, binary_mat.rows, QImage::Format_Grayscale8);
-
-    cv::Mat filter_mat(binary_mat.cols, binary_mat.rows, CV_8UC1);
-    GaussianBlur(binary_mat, filter_mat, Size(5, 5), 0, 0);
-    //QImage filter_cpu_image(filter_mat.data, filter_mat.cols, filter_mat.rows, QImage::Format_Grayscale8);
-
-    cv::Mat element = getStructuringElement(MORPH_RECT, Size(7, 7));
-    cv::Mat closed_mat(filter_mat.size(), CV_8UC1, Scalar(0));
-    morphologyEx(filter_mat, closed_mat, MORPH_CLOSE, element);
-    //QImage closed_cpu_image(closed_mat.data, closed_mat.cols, closed_mat.rows, QImage::Format_Grayscale8);
-
-    //cv::Mat closed_mat(closed_cpu_image.height(), closed_cpu_image.width(), CV_8UC1, (void*)closed_cpu_image.bits(), closed_cpu_image.bytesPerLine());
-    cv::Mat canny_mat(closed_mat.cols, closed_mat.rows, CV_8U, Scalar(0));
-    Canny(closed_mat, canny_mat, t_low, t_high);
-    vector<vector<Point> > contour_vec;
-    vector<Vec4i> hierarchy;
-    findContours(canny_mat, contour_vec, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_NONE);
-
-    cv::Mat ori_image_c = cv::Mat(image_ori.height(), image_ori.width(), CV_8UC3, (void*)image_ori.bits(), image_ori.bytesPerLine());
-    for (int real_contour = 0; real_contour < contour_vec.size(); ++real_contour) {
-        drawContours(ori_image_c, contour_vec, real_contour, Scalar(255, 255, 255), 2, 8);
+        //CPU:to dist_image
     }
-    QImage canny_cpu_image(canny_mat.data, canny_mat.cols, canny_mat.rows, QImage::Format_Grayscale8);
-
-    ui.label->setPixmap(QPixmap::fromImage(canny_cpu_image));
+    else {
+        ui.label_3->setPixmap(QPixmap::fromImage(q_image_closed));
+        //ui.label->setPixmap(QPixmap::fromImage(filter_cpu_image));
+    }
 }

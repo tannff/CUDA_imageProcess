@@ -91,9 +91,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\a6avc-bfprc-001.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\awjt4-ymoqf-001.ico">
       <Filter>Resource Files</Filter>
     </Image>

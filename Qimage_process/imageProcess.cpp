@@ -3,31 +3,6 @@
 using namespace std;
 using namespace cv;
 
-//Í¼ÏñËõ·Å
-void resize_image(cv::Mat img_in, cv::Mat img_out) 
-{
-	int a = 200;
-	float a_percent = (int)a / 100.0;
-
-	int resize_width = a_percent * img_in.cols;
-	int resize_height = a_percent * img_in.rows;
-	//resize(img_in, img_out, Size(resize_width, a_percent * resize_height), 0, 0, INTER_AREA);
-	if (resize_width < 320 || resize_width >1920) {
-		if (resize_height < 320 || resize_width > 1920) {
-			return;
-		}
-	}
-}
-
-//Í¼ÏñÐý×ª
-void rotated_image(cv::Mat img_in, cv::Mat img_out) 
-{
-	float angle = 0;
-	cv::Point2f center((img_in.cols - 1) / 2.0, (img_in.rows - 1) / 2.0);
-	Mat rotation_matix = getRotationMatrix2D(center, angle, 1.0);
-	warpAffine(img_in, img_out, rotation_matix, img_in.size());
-}
-
 //´®ÐÐ×ª»»»Ò¶ÈÍ¼Ïñ
 void rgb2grayincpu(unsigned char* const d_in, unsigned char* const d_out, uint img_width, uint img_height)
 {

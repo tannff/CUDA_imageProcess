@@ -39,7 +39,8 @@ extern cudaError_t gaussian_filter(unsigned char* img_in, unsigned char* img_gau
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy,int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
-extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
+//extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
+extern cudaError_t distancetransform(unsigned char* img_in, unsigned char* updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height);
 
 int main(int argc, char* argv[]) {
 
@@ -60,12 +61,6 @@ int main(int argc, char* argv[]) {
 	int img_width = rgb_image.cols, img_height = rgb_image.rows;
 	int img_depth = rgb_image.channels();
 	
-	//cout << "resize_value: " << w.resize_value << endl;  
-	//cout << "open/closed: " << w.switch_resize << endl; 
-	
-	resize_image(rgb_image, rgb_image);
-	rotated_image(rgb_image, rgb_image);
-
 	//3.check channnels
 	//[*]opencv的imread默认读取为bgr的格式，如果图像是四通道的，我们就将bgra转成rgb；如果图像是三通道的，就将bgr转rgb
 	if (rgb_image.channels() == 4) {
@@ -171,6 +166,11 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gx, img_width * img_height * sizeof(int)));
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_gy, img_width * img_height * sizeof(int)));
 
+		int* d_max_x;
+		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_max_x, 256 * sizeof(int)));
+		int* d_max_y;
+		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_max_y, 256 * sizeof(int)));
+
 		float* d_filter;
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_filter, filterWidth * filterWidth * sizeof(float)));
 		CHECK_CUDA_ERROR(cudaMemcpy(d_filter, filter, filterWidth * filterWidth * sizeof(float), cudaMemcpyHostToDevice));
@@ -179,8 +179,8 @@ int main(int argc, char* argv[]) {
 
 		//6.转换颜色，同时记录所用时间
 		cudaEvent_t event_begin, event_end ;
-		cudaEvent_t event_begin_gray, event_begin_thresh, event_begin_gauss, event_begin_closed, event_begin_canny,
-					event_end_gray, event_end_thresh, event_end_gauss, event_end_closed, event_end_canny;
+		cudaEvent_t event_begin_gray, event_begin_thresh, event_begin_gauss, event_begin_closed, event_begin_canny, event_begin_dist,
+					event_end_gray, event_end_thresh, event_end_gauss, event_end_closed, event_end_canny, event_end_dist;
 
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin));       //创建 CUDA 事件对象 event_begin 和 event_end
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_end));
@@ -220,21 +220,27 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(hysteresis(d_nms, d_high, d_trace, d_map, t_high, t_low, img_width, img_height));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_canny, 0));
 
-		//CHECK_CUDA_ERROR(distancetransform(img_in, updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height) {
-		CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
+		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_dist));
+		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_dist));
+		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_dist, 0));
+		//CHECK_CUDA_ERROR(distancetransform(d_closed, d_updown, d_downup, d_leftright, d_rightleft, d_dist, img_width, img_height));
+		//CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height/*, d_max_x, d_max_x*/));
+		CHECK_CUDA_ERROR(cudaEventRecord(event_end_dist, 0));
+
 		
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end, 0));      //用于记录 CUDA 事件对象 event_begin(开始） 的时间戳,在调用时记录
 		CHECK_CUDA_ERROR(cudaStreamSynchronize(0));           //同步
 
 		//7.计算时间
-		float cost_time, gtimes1, gtimes2, gtimes3, gtimes4, gtimes5;
+		float cost_time, gtimes1, gtimes2, gtimes3, gtimes4, gtimes5, gtimes6;
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&cost_time, event_begin, event_end));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes1, event_begin_gray, event_end_gray));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes2, event_begin_thresh, event_end_thresh));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes3, event_begin_gauss, event_end_gauss));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes4, event_begin_closed, event_end_closed));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes5, event_begin_canny, event_end_canny));
-		std::cout << "rgb_to_gray cost time(gpu): " << cost_time << "ms" << std::endl;
+		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes6, event_begin_dist, event_end_dist));
+		std::cout << "rgb_to_gray cost time(gpu): " << gtimes6 << "ms" << std::endl;
 
 		//8.保存图像
 		cv::Mat binary_image(img_height, img_width, CV_8UC1);

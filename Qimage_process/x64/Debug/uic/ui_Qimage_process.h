@@ -10,6 +10,7 @@
 #define UI_QIMAGE_PROCESS_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
@@ -23,7 +24,6 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
@@ -75,15 +75,15 @@ public:
     QPushButton *pushButton_19;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
-    QPushButton *pushButton_2;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_5;
     QPushButton *pushButton_4;
     QPushButton *pushButton;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_6;
     QGroupBox *groupBox_3;
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
-    QPushButton *pushButton_6;
     QGroupBox *groupBox_6;
     QWidget *horizontalLayoutWidget_7;
     QHBoxLayout *horizontalLayout_7;
@@ -116,8 +116,7 @@ public:
     QLabel *label_18;
     QLineEdit *lineEdit_3;
     QLabel *label_23;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton_3;
+    QPushButton *pushButton_26;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_2;
     QtCharts::QChartView *graphicsView_2;
@@ -165,6 +164,10 @@ public:
     QLabel *label_46;
     QLabel *label_47;
     QLabel *label_48;
+    QLabel *label_38;
+    QPushButton *pushButton_27;
+    QPushButton *pushButton_28;
+    QFrame *line_4;
     QFrame *line;
     QPushButton *pushButton_17;
     QLabel *label_7;
@@ -198,11 +201,14 @@ public:
         if (Qimage_processClass->objectName().isEmpty())
             Qimage_processClass->setObjectName(QString::fromUtf8("Qimage_processClass"));
         Qimage_processClass->setWindowModality(Qt::NonModal);
-        Qimage_processClass->resize(1659, 1087);
+        Qimage_processClass->resize(1655, 1087);
         Qimage_processClass->setMinimumSize(QSize(300, 200));
-        Qimage_processClass->setMouseTracking(true);
+        Qimage_processClass->setMouseTracking(false);
         Qimage_processClass->setTabletTracking(false);
         Qimage_processClass->setFocusPolicy(Qt::WheelFocus);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Qimage_process/a6avc-bfprc-001.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        Qimage_processClass->setWindowIcon(icon);
         Qimage_processClass->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "background-color: rgb(170\357\274\214170\357\274\214255);#\350\203\214\346\231\257\351\242\234\350\211\262\n"
 "color: white;#\345\255\227\344\275\223\351\242\234\350\211\262\n"
@@ -329,7 +335,7 @@ public:
 
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(460, 520, 131, 221));
+        groupBox->setGeometry(QRect(460, 520, 131, 261));
         QFont font1;
         font1.setFamily(QString::fromUtf8("Adobe Arabic"));
         font1.setPointSize(11);
@@ -338,27 +344,15 @@ public:
         groupBox->setFont(font1);
         groupBox->setAutoFillBackground(true);
         groupBox->setCheckable(false);
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(20, 60, 91, 31));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font2.setPointSize(10);
-        pushButton_2->setFont(font2);
-        pushButton_2->setCheckable(true);
-        pushButton_2->setAutoExclusive(false);
         pushButton_3 = new QPushButton(groupBox);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         pushButton_3->setGeometry(QRect(20, 100, 91, 31));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font2.setPointSize(10);
         pushButton_3->setFont(font2);
         pushButton_3->setCheckable(true);
         pushButton_3->setAutoExclusive(false);
-        pushButton_5 = new QPushButton(groupBox);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(20, 140, 91, 31));
-        pushButton_5->setFont(font2);
-        pushButton_5->setCheckable(true);
-        pushButton_5->setAutoExclusive(false);
         pushButton_4 = new QPushButton(groupBox);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setGeometry(QRect(20, 180, 91, 31));
@@ -371,25 +365,39 @@ public:
         pushButton->setFont(font2);
         pushButton->setCheckable(true);
         pushButton->setAutoExclusive(true);
+        pushButton_5 = new QPushButton(groupBox);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setGeometry(QRect(20, 60, 91, 31));
+        pushButton_5->setFont(font2);
+        pushButton_5->setCheckable(true);
+        pushButton_5->setAutoExclusive(false);
+        pushButton_2 = new QPushButton(groupBox);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(20, 140, 91, 31));
+        pushButton_2->setFont(font2);
+        pushButton_2->setCheckable(true);
+        pushButton_2->setAutoExclusive(false);
+        pushButton_2->setAutoRepeatDelay(10);
+        pushButton_2->setAutoRepeatInterval(0);
+        pushButton_6 = new QPushButton(groupBox);
+        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+        pushButton_6->setGeometry(QRect(20, 220, 91, 31));
+        pushButton_6->setFont(font2);
+        pushButton_6->setCheckable(true);
+        pushButton_6->setAutoExclusive(false);
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(460, 780, 131, 141));
+        groupBox_3->setGeometry(QRect(460, 820, 131, 101));
         groupBox_3->setFont(font1);
         groupBox_3->setAutoFillBackground(true);
         pushButton_7 = new QPushButton(groupBox_3);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(20, 60, 91, 31));
+        pushButton_7->setGeometry(QRect(20, 20, 91, 31));
         pushButton_7->setCheckable(true);
         pushButton_8 = new QPushButton(groupBox_3);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(20, 100, 91, 31));
+        pushButton_8->setGeometry(QRect(20, 60, 91, 31));
         pushButton_8->setCheckable(true);
-        pushButton_6 = new QPushButton(groupBox_3);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(20, 20, 91, 31));
-        pushButton_6->setFont(font2);
-        pushButton_6->setCheckable(true);
-        pushButton_6->setAutoExclusive(false);
         groupBox_6 = new QGroupBox(centralWidget);
         groupBox_6->setObjectName(QString::fromUtf8("groupBox_6"));
         groupBox_6->setGeometry(QRect(600, 820, 211, 101));
@@ -467,10 +475,10 @@ public:
 
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(670, 580, 131, 31));
+        lineEdit->setGeometry(QRect(700, 660, 101, 31));
         pushButton_12 = new QPushButton(centralWidget);
         pushButton_12->setObjectName(QString::fromUtf8("pushButton_12"));
-        pushButton_12->setGeometry(QRect(760, 580, 41, 31));
+        pushButton_12->setGeometry(QRect(760, 660, 41, 31));
         pushButton_12->setFont(font2);
         pushButton_13 = new QPushButton(centralWidget);
         pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
@@ -506,7 +514,7 @@ public:
         comboBox_3->setFont(font3);
         label_13 = new QLabel(centralWidget);
         label_13->setObjectName(QString::fromUtf8("label_13"));
-        label_13->setGeometry(QRect(600, 660, 91, 31));
+        label_13->setGeometry(QRect(600, 580, 91, 31));
         label_13->setFont(font2);
         label_13->setFrameShape(QFrame::Panel);
         label_13->setFrameShadow(QFrame::Raised);
@@ -516,7 +524,7 @@ public:
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setGeometry(QRect(710, 660, 91, 31));
+        comboBox_4->setGeometry(QRect(710, 580, 91, 31));
         comboBox_4->setFont(font2);
         comboBox_4->setStyleSheet(QString::fromUtf8("comboBox_4{\n"
 "\n"
@@ -524,7 +532,7 @@ public:
 "}"));
         label_14 = new QLabel(centralWidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
-        label_14->setGeometry(QRect(600, 580, 61, 31));
+        label_14->setGeometry(QRect(600, 660, 91, 31));
         label_14->setFont(font2);
         label_14->setFrameShape(QFrame::Panel);
         label_14->setFrameShadow(QFrame::Raised);
@@ -549,7 +557,7 @@ public:
         lineEdit_5->setFont(font3);
         groupBox_7 = new QGroupBox(centralWidget);
         groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
-        groupBox_7->setGeometry(QRect(80, 790, 311, 131));
+        groupBox_7->setGeometry(QRect(80, 820, 311, 101));
         groupBox_7->setFont(font);
         groupBox_7->setAutoFillBackground(true);
         label_16 = new QLabel(groupBox_7);
@@ -561,11 +569,11 @@ public:
         label_16->setAlignment(Qt::AlignCenter);
         lineEdit_2 = new QLineEdit(groupBox_7);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(140, 20, 61, 31));
+        lineEdit_2->setGeometry(QRect(130, 20, 51, 31));
         lineEdit_2->setMaxLength(1980);
         label_17 = new QLabel(groupBox_7);
         label_17->setObjectName(QString::fromUtf8("label_17"));
-        label_17->setGeometry(QRect(220, 20, 91, 31));
+        label_17->setGeometry(QRect(190, 20, 91, 31));
         label_18 = new QLabel(groupBox_7);
         label_18->setObjectName(QString::fromUtf8("label_18"));
         label_18->setGeometry(QRect(20, 60, 101, 31));
@@ -575,19 +583,14 @@ public:
         label_18->setAlignment(Qt::AlignCenter);
         lineEdit_3 = new QLineEdit(groupBox_7);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(140, 60, 61, 31));
+        lineEdit_3->setGeometry(QRect(130, 60, 51, 31));
         lineEdit_3->setMaxLength(1080);
         label_23 = new QLabel(groupBox_7);
         label_23->setObjectName(QString::fromUtf8("label_23"));
-        label_23->setGeometry(QRect(220, 60, 91, 31));
-        radioButton_2 = new QRadioButton(groupBox_7);
-        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
-        radioButton_2->setGeometry(QRect(180, 105, 121, 21));
-        radioButton_2->setChecked(false);
-        radioButton_3 = new QRadioButton(groupBox_7);
-        radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
-        radioButton_3->setGeometry(QRect(50, 105, 121, 21));
-        radioButton_3->setChecked(true);
+        label_23->setGeometry(QRect(190, 60, 91, 31));
+        pushButton_26 = new QPushButton(groupBox_7);
+        pushButton_26->setObjectName(QString::fromUtf8("pushButton_26"));
+        pushButton_26->setGeometry(QRect(240, 40, 51, 41));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(870, 510, 371, 411));
@@ -755,7 +758,7 @@ public:
         pushButton_23->raise();
         groupBox_4 = new QGroupBox(centralWidget);
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
-        groupBox_4->setGeometry(QRect(80, 430, 311, 351));
+        groupBox_4->setGeometry(QRect(80, 430, 311, 381));
         groupBox_4->setFont(font1);
         groupBox_4->setAutoFillBackground(false);
         groupBox_4->setFlat(false);
@@ -797,10 +800,15 @@ public:
         verticalSlider->setMouseTracking(true);
         verticalSlider->setTabletTracking(true);
         verticalSlider->setStyleSheet(QString::fromUtf8(""));
+        verticalSlider->setMinimum(0);
+        verticalSlider->setMaximum(300);
+        verticalSlider->setPageStep(38);
+        verticalSlider->setValue(150);
+        verticalSlider->setTracking(false);
         verticalSlider->setOrientation(Qt::Vertical);
         verticalSlider->setInvertedControls(false);
         verticalSlider->setTickPosition(QSlider::NoTicks);
-        verticalSlider->setTickInterval(10);
+        verticalSlider->setTickInterval(0);
 
         horizontalLayout_3->addWidget(verticalSlider);
 
@@ -811,6 +819,10 @@ public:
         verticalSlider_3 = new QSlider(horizontalLayoutWidget_3);
         verticalSlider_3->setObjectName(QString::fromUtf8("verticalSlider_3"));
         verticalSlider_3->setMouseTracking(true);
+        verticalSlider_3->setMinimum(0);
+        verticalSlider_3->setMaximum(300);
+        verticalSlider_3->setValue(150);
+        verticalSlider_3->setTracking(false);
         verticalSlider_3->setOrientation(Qt::Vertical);
 
         horizontalLayout_3->addWidget(verticalSlider_3);
@@ -822,6 +834,10 @@ public:
         verticalSlider_2 = new QSlider(horizontalLayoutWidget_3);
         verticalSlider_2->setObjectName(QString::fromUtf8("verticalSlider_2"));
         verticalSlider_2->setMouseTracking(true);
+        verticalSlider_2->setMinimum(0);
+        verticalSlider_2->setMaximum(300);
+        verticalSlider_2->setValue(150);
+        verticalSlider_2->setTracking(false);
         verticalSlider_2->setOrientation(Qt::Vertical);
 
         horizontalLayout_3->addWidget(verticalSlider_2);
@@ -854,7 +870,7 @@ public:
         pushButton_11->setCheckable(true);
         groupBox_2 = new QGroupBox(groupBox_4);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(20, 290, 271, 51));
+        groupBox_2->setGeometry(QRect(20, 320, 271, 51));
         pushButton_16 = new QPushButton(groupBox_2);
         pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));
         pushButton_16->setGeometry(QRect(10, 10, 241, 31));
@@ -862,7 +878,9 @@ public:
         pushButton_16->setMouseTracking(false);
         pushButton_16->setFocusPolicy(Qt::StrongFocus);
         pushButton_16->setCheckable(false);
-        pushButton_16->setAutoRepeatDelay(50);
+        pushButton_16->setAutoRepeat(true);
+        pushButton_16->setAutoRepeatDelay(5000);
+        pushButton_16->setAutoRepeatInterval(50);
         mdiArea_2 = new QMdiArea(groupBox_2);
         mdiArea_2->setObjectName(QString::fromUtf8("mdiArea_2"));
         mdiArea_2->setGeometry(QRect(-10, 0, 281, 51));
@@ -883,7 +901,7 @@ public:
         label_34->setIndent(27);
         line_2 = new QFrame(groupBox_4);
         line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(180, 200, 20, 71));
+        line_2->setGeometry(QRect(180, 200, 20, 91));
         line_2->setFrameShape(QFrame::VLine);
         line_2->setFrameShadow(QFrame::Sunken);
         mdiArea = new QMdiArea(groupBox_4);
@@ -904,6 +922,30 @@ public:
         label_48->setObjectName(QString::fromUtf8("label_48"));
         label_48->setGeometry(QRect(230, 20, 61, 21));
         label_48->setAlignment(Qt::AlignCenter);
+        label_38 = new QLabel(groupBox_4);
+        label_38->setObjectName(QString::fromUtf8("label_38"));
+        label_38->setGeometry(QRect(20, 280, 71, 31));
+        label_38->setFont(font2);
+        label_38->setFrameShape(QFrame::Panel);
+        label_38->setFrameShadow(QFrame::Raised);
+        label_38->setLineWidth(1);
+        label_38->setMidLineWidth(0);
+        label_38->setAlignment(Qt::AlignCenter);
+        pushButton_27 = new QPushButton(groupBox_4);
+        pushButton_27->setObjectName(QString::fromUtf8("pushButton_27"));
+        pushButton_27->setGeometry(QRect(100, 280, 71, 31));
+        pushButton_27->setFont(font3);
+        pushButton_27->setCheckable(false);
+        pushButton_28 = new QPushButton(groupBox_4);
+        pushButton_28->setObjectName(QString::fromUtf8("pushButton_28"));
+        pushButton_28->setGeometry(QRect(210, 280, 81, 31));
+        pushButton_28->setFont(font3);
+        pushButton_28->setCheckable(false);
+        line_4 = new QFrame(groupBox_4);
+        line_4->setObjectName(QString::fromUtf8("line_4"));
+        line_4->setGeometry(QRect(180, 290, 21, 20));
+        line_4->setFrameShape(QFrame::HLine);
+        line_4->setFrameShadow(QFrame::Sunken);
         mdiArea->raise();
         label_35->raise();
         lineEdit_6->raise();
@@ -922,6 +964,10 @@ public:
         label_46->raise();
         label_47->raise();
         label_48->raise();
+        label_38->raise();
+        pushButton_27->raise();
+        pushButton_28->raise();
+        line_4->raise();
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
         line->setGeometry(QRect(150, 350, 20, 21));
@@ -955,7 +1001,7 @@ public:
         label_8->setAlignment(Qt::AlignCenter);
         label_12 = new QLabel(centralWidget);
         label_12->setObjectName(QString::fromUtf8("label_12"));
-        label_12->setGeometry(QRect(440, 500, 391, 251));
+        label_12->setGeometry(QRect(440, 500, 391, 291));
         sizePolicy1.setHeightForWidth(label_12->sizePolicy().hasHeightForWidth());
         label_12->setSizePolicy(sizePolicy1);
         label_12->setMinimumSize(QSize(0, 0));
@@ -966,7 +1012,7 @@ public:
         label_12->setAlignment(Qt::AlignCenter);
         label_37 = new QLabel(centralWidget);
         label_37->setObjectName(QString::fromUtf8("label_37"));
-        label_37->setGeometry(QRect(440, 760, 391, 171));
+        label_37->setGeometry(QRect(440, 800, 391, 131));
         sizePolicy1.setHeightForWidth(label_37->sizePolicy().hasHeightForWidth());
         label_37->setSizePolicy(sizePolicy1);
         label_37->setMinimumSize(QSize(0, 0));
@@ -1105,7 +1151,7 @@ public:
         label_44->raise();
         menuBar = new QMenuBar(Qimage_processClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1659, 23));
+        menuBar->setGeometry(QRect(0, 0, 1655, 23));
         menu = new QMenu(menuBar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu->setSeparatorsCollapsible(false);
@@ -1150,20 +1196,28 @@ public:
         QObject::connect(lineEdit_6, SIGNAL(returnPressed()), Qimage_processClass, SLOT(show_angel()));
         QObject::connect(lineEdit, SIGNAL(returnPressed()), Qimage_processClass, SLOT(show_thresh()));
         QObject::connect(lineEdit_5, SIGNAL(returnPressed()), Qimage_processClass, SLOT(show_demarcate()));
-        QObject::connect(lineEdit_2, SIGNAL(returnPressed()), Qimage_processClass, SLOT(show_ROI()));
-        QObject::connect(lineEdit_3, SIGNAL(returnPressed()), Qimage_processClass, SLOT(show_ROI()));
         QObject::connect(pushButton_24, SIGNAL(clicked()), Qimage_processClass, SLOT(online_status()));
         QObject::connect(pushButton_25, SIGNAL(clicked()), Qimage_processClass, SLOT(offline_status()));
         QObject::connect(comboBox_5, SIGNAL(currentTextChanged(QString)), Qimage_processClass, SLOT(unit_conversion()));
         QObject::connect(pushButton_21, SIGNAL(clicked()), Qimage_processClass, SLOT(consumer()));
-        QObject::connect(pushButton_12, SIGNAL(clicked()), Qimage_processClass, SLOT(show_thresh()));
+        QObject::connect(pushButton_12, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(thresh_image(bool)));
         QObject::connect(pushButton_24, SIGNAL(clicked()), Qimage_processClass, SLOT(new_window()));
         QObject::connect(pushButton_25, SIGNAL(clicked()), Qimage_processClass, SLOT(default_on()));
         QObject::connect(pushButton_9, SIGNAL(clicked()), Qimage_processClass, SLOT(save_file()));
         QObject::connect(pushButton_23, SIGNAL(clicked()), Qimage_processClass, SLOT(show_the_file()));
+        QObject::connect(pushButton, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(gray_image(bool)));
+        QObject::connect(pushButton_5, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(filter_image(bool)));
+        QObject::connect(pushButton_4, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(closed_image(bool)));
+        QObject::connect(pushButton_6, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(canny_image(bool)));
+        QObject::connect(pushButton_2, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(thresh_image(bool)));
         QObject::connect(pushButton_16, SIGNAL(clicked()), Qimage_processClass, SLOT(return_image()));
-        QObject::connect(pushButton, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(gray_image()));
-        QObject::connect(pushButton_2, SIGNAL(clicked()), Qimage_processClass, SLOT(thresh_image()));
+        QObject::connect(pushButton_26, SIGNAL(clicked()), Qimage_processClass, SLOT(show_ROI()));
+        QObject::connect(pushButton_27, SIGNAL(clicked()), Qimage_processClass, SLOT(horizenal_flip()));
+        QObject::connect(pushButton_28, SIGNAL(clicked()), Qimage_processClass, SLOT(vertical_flip()));
+        QObject::connect(pushButton_7, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(distancetransform(bool)));
+        QObject::connect(verticalSlider, SIGNAL(valueChanged(int)), Qimage_processClass, SLOT(renew(int)));
+        QObject::connect(verticalSlider_3, SIGNAL(valueChanged(int)), Qimage_processClass, SLOT(renew(int)));
+        QObject::connect(verticalSlider_2, SIGNAL(valueChanged(int)), Qimage_processClass, SLOT(saturation(int)));
 
         pushButton_2->setDefault(false);
         pushButton_23->setDefault(false);
@@ -1176,7 +1230,7 @@ public:
 
     void retranslateUi(QMainWindow *Qimage_processClass)
     {
-        Qimage_processClass->setWindowTitle(QCoreApplication::translate("Qimage_processClass", "Qimage_process", nullptr));
+        Qimage_processClass->setWindowTitle(QCoreApplication::translate("Qimage_processClass", "MRCP", nullptr));
         action_3->setText(QCoreApplication::translate("Qimage_processClass", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
 #if QT_CONFIG(shortcut)
         action_3->setShortcut(QCoreApplication::translate("Qimage_processClass", "Ctrl+N", nullptr));
@@ -1239,15 +1293,15 @@ public:
         label_4->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         pushButton_19->setText(QCoreApplication::translate("Qimage_processClass", "\345\205\250\345\261\217", nullptr));
         groupBox->setTitle(QCoreApplication::translate("Qimage_processClass", "\345\233\276\345\203\217\351\242\204\345\244\204\347\220\206", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Qimage_processClass", "\351\230\210\345\200\274\345\214\226", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Qimage_processClass", "\345\233\276\345\203\217\345\242\236\345\274\272", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("Qimage_processClass", "\345\216\273\345\231\252\346\273\244\346\263\242", nullptr));
         pushButton_4->setText(QCoreApplication::translate("Qimage_processClass", "\345\275\242\346\200\201\345\255\246\345\244\204\347\220\206", nullptr));
         pushButton->setText(QCoreApplication::translate("Qimage_processClass", "\347\201\260\345\272\246\345\214\226", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("Qimage_processClass", "\345\216\273\345\231\252\346\273\244\346\263\242", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Qimage_processClass", "\351\230\210\345\200\274\345\214\226", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("Qimage_processClass", "\350\276\271\347\274\230\346\243\200\346\265\213", nullptr));
         groupBox_3->setTitle(QCoreApplication::translate("Qimage_processClass", "\347\206\224\346\261\240\347\211\271\345\276\201\350\257\206\345\210\253", nullptr));
         pushButton_7->setText(QCoreApplication::translate("Qimage_processClass", "\350\267\235\347\246\273\345\217\230\346\215\242", nullptr));
         pushButton_8->setText(QCoreApplication::translate("Qimage_processClass", "\346\244\255\345\234\206\350\277\233\351\230\266", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("Qimage_processClass", "\350\276\271\347\274\230\346\243\200\346\265\213", nullptr));
         groupBox_6->setTitle(QCoreApplication::translate("Qimage_processClass", "\345\256\275\345\272\246\350\257\206\345\210\253", nullptr));
         label_19->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label_20->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
@@ -1260,7 +1314,7 @@ public:
         comboBox_7->setItemText(1, QCoreApplication::translate("Qimage_processClass", "mil", nullptr));
 
         lineEdit->setText(QString());
-        pushButton_12->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\350\256\244", nullptr));
+        pushButton_12->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\345\256\232", nullptr));
         pushButton_13->setText(QCoreApplication::translate("Qimage_processClass", "x", nullptr));
         pushButton_14->setText(QCoreApplication::translate("Qimage_processClass", "y", nullptr));
         pushButton_15->setText(QCoreApplication::translate("Qimage_processClass", "xy", nullptr));
@@ -1274,7 +1328,7 @@ public:
         comboBox_3->setItemText(2, QCoreApplication::translate("Qimage_processClass", "7\303\2277", nullptr));
         comboBox_3->setItemText(3, QCoreApplication::translate("Qimage_processClass", "9\303\2279", nullptr));
 
-        label_13->setText(QCoreApplication::translate("Qimage_processClass", "\346\273\244\346\263\242\347\261\273\345\236\213\351\200\211\346\213\251", nullptr));
+        label_13->setText(QCoreApplication::translate("Qimage_processClass", "\346\273\244\346\263\242\347\261\273\345\236\213", nullptr));
         comboBox_4->setItemText(0, QCoreApplication::translate("Qimage_processClass", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
         comboBox_4->setItemText(1, QCoreApplication::translate("Qimage_processClass", "\344\270\255\345\200\274\346\273\244\346\263\242", nullptr));
         comboBox_4->setItemText(2, QCoreApplication::translate("Qimage_processClass", "\344\275\216\351\200\232\346\273\244\346\263\242", nullptr));
@@ -1288,12 +1342,11 @@ public:
         groupBox_7->setTitle(QCoreApplication::translate("Qimage_processClass", "ROI", nullptr));
         label_16->setText(QCoreApplication::translate("Qimage_processClass", "\346\260\264\345\271\263\345\214\272\345\237\237\351\200\211\346\213\251", nullptr));
         lineEdit_2->setText(QString());
-        label_17->setText(QCoreApplication::translate("Qimage_processClass", "\345\203\217\347\264\240(pixels)", nullptr));
+        label_17->setText(QCoreApplication::translate("Qimage_processClass", "pixels", nullptr));
         label_18->setText(QCoreApplication::translate("Qimage_processClass", "\347\253\226\347\233\264\345\214\272\345\237\237\351\200\211\346\213\251", nullptr));
         lineEdit_3->setText(QString());
-        label_23->setText(QCoreApplication::translate("Qimage_processClass", "\345\203\217\347\264\240(pixels\357\274\211", nullptr));
-        radioButton_2->setText(QCoreApplication::translate("Qimage_processClass", "\350\207\252\351\200\202\345\272\224", nullptr));
-        radioButton_3->setText(QCoreApplication::translate("Qimage_processClass", "\346\214\211\347\205\247\350\256\276\345\256\232\345\200\274", nullptr));
+        label_23->setText(QCoreApplication::translate("Qimage_processClass", "pixels", nullptr));
+        pushButton_26->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\345\256\232", nullptr));
         label_10->setText(QCoreApplication::translate("Qimage_processClass", "\345\275\223\345\211\215\345\244\204\347\220\206\350\277\233\345\261\225\357\274\232\345\267\262\345\256\214\346\210\220", nullptr));
         label_11->setText(QCoreApplication::translate("Qimage_processClass", "\347\212\266\346\200\201\357\274\232\346\255\243\345\270\270", nullptr));
         label_5->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
@@ -1317,15 +1370,18 @@ public:
         label_29->setText(QCoreApplication::translate("Qimage_processClass", "\344\272\256\345\272\246", nullptr));
         label_32->setText(QCoreApplication::translate("Qimage_processClass", "\345\257\271\346\257\224\345\272\246", nullptr));
         label_31->setText(QCoreApplication::translate("Qimage_processClass", "\351\245\261\345\222\214\345\272\246", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("Qimage_processClass", "\345\233\276\345\203\217\350\243\201\345\211\252", nullptr));
+        pushButton_10->setText(QCoreApplication::translate("Qimage_processClass", "\347\225\270\345\217\230\346\240\241\346\255\243", nullptr));
         pushButton_11->setText(QCoreApplication::translate("Qimage_processClass", "\345\203\217\347\264\240\347\202\271\346\240\207\350\256\260", nullptr));
         groupBox_2->setTitle(QString());
-        pushButton_16->setText(QCoreApplication::translate("Qimage_processClass", "\345\205\250\351\203\250\351\207\215\347\275\256", nullptr));
+        pushButton_16->setText(QCoreApplication::translate("Qimage_processClass", "\346\270\205\347\251\272\345\267\245\344\275\234\345\214\272", nullptr));
         label_34->setText(QCoreApplication::translate("Qimage_processClass", "\346\227\213\350\275\254\350\247\222\345\272\246", nullptr));
         label_46->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label_47->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label_48->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
-        pushButton_17->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\350\256\244", nullptr));
+        label_38->setText(QCoreApplication::translate("Qimage_processClass", "\345\233\276\345\203\217\347\277\273\350\275\254", nullptr));
+        pushButton_27->setText(QCoreApplication::translate("Qimage_processClass", "\346\260\264\345\271\263\347\277\273\350\275\254", nullptr));
+        pushButton_28->setText(QCoreApplication::translate("Qimage_processClass", "\347\253\226\347\233\264\347\277\273\350\275\254", nullptr));
+        pushButton_17->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\345\256\232", nullptr));
         label_7->setText(QString());
         label_8->setText(QString());
         label_12->setText(QString());
