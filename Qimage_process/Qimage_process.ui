@@ -1,0 +1,3527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Qimage_processClass</class>
+ <widget class="QMainWindow" name="Qimage_processClass">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1659</width>
+    <height>1087</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::WheelFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>MRCP</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Qimage_process.qrc">
+    <normaloff>:/Qimage_process/a6avc-bfprc-001.ico</normaloff>:/Qimage_process/a6avc-bfprc-001.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel{
+background-color: rgb(170，170，255);#背景颜色
+color: white;#字体颜色
+border-radius: lpx; border: 2px groove gray;#圆角设置
+border-style: outset;#样式为外凹}</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>-1</y>
+      <width>1151</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="font">
+        <font>
+         <family>SimSun-ExtB</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="margin">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_20">
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>全屏</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>SimSun-ExtB</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="margin">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_18">
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>全屏</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>60</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <family>SimSun-ExtB</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_19">
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>全屏</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>520</y>
+      <width>131</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>图像预处理</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>图像增强</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>180</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>形态学处理</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>灰度化</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>去噪滤波</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>阈值化</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>10</number>
+     </property>
+     <property name="autoRepeatInterval">
+      <number>0</number>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>边缘检测</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>820</y>
+      <width>131</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>熔池特征识别</string>
+    </property>
+    <widget class="QPushButton" name="pushButton_7">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>距离变换</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_8">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>椭圆进阶</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_6">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>820</y>
+      <width>211</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>宽度识别</string>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>204</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QLabel" name="label_19">
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_20">
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_5">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::InsertAtTop</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>mm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>mil</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>204</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="label_21">
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_22">
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_7">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>SimSun-ExtB</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::InsertAtTop</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>mm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>mil</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>660</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_12">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>660</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>确定</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_13">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>620</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_14">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>620</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>y</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_15">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>620</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>xy</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>700</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>开运算</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>闭运算</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>膨胀</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>侵蚀</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_3">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>700</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>3×3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>5×5</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>7×7</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>9×9</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>580</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>滤波类型选择</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_4">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>580</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">comboBox_4{
+
+rgb(255, 255, 255)
+}</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>高斯滤波</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>中值滤波</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>低通滤波</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>660</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>阈值设置</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>370</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>像素标定</string>
+    </property>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_28">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_5">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_7">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>820</y>
+      <width>311</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>ROI</string>
+    </property>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string>水平区域选择</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>1980</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>20</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>pixels</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string>竖直区域选择</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_3">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>60</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>1080</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_23">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>60</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>pixels</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_26">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>40</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>确定</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>510</y>
+      <width>371</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QtCharts::QChartView" name="graphicsView_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>205</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="dragMode">
+        <enum>QGraphicsView::RubberBandDrag</enum>
+       </property>
+       <property name="transformationAnchor">
+        <enum>QGraphicsView::NoAnchor</enum>
+       </property>
+       <property name="viewportUpdateMode">
+        <enum>QGraphicsView::FullViewportUpdate</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QtCharts::QChartView" name="graphicsView">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>7</pointsize>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="renderHints">
+        <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+       </property>
+       <property name="dragMode">
+        <enum>QGraphicsView::RubberBandDrag</enum>
+       </property>
+       <property name="transformationAnchor">
+        <enum>QGraphicsView::NoAnchor</enum>
+       </property>
+       <property name="resizeAnchor">
+        <enum>QGraphicsView::AnchorViewCenter</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>940</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>当前处理进展：已完成</string>
+    </property>
+    <property name="margin">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>940</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>状态：正常</string>
+    </property>
+    <property name="margin">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>1219</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>386</width>
+         <height>319</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="lineWidth">
+        <number>5</number>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>397</width>
+         <height>319</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="lineWidth">
+        <number>5</number>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="minimumSize">
+        <size>
+         <width>389</width>
+         <height>319</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="lineWidth">
+        <number>5</number>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>350</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="text">
+     <string>（x,y):(97,254)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_25">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>350</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>RGB:(97,254,34)</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>380</y>
+      <width>351</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>读写设置</string>
+    </property>
+    <widget class="QLabel" name="label_26">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string>文件路径</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_27">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string>保存设置</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_9">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>60</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>保存</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_23">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>20</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>浏览</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_41">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>20</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="text">
+      <string>F:/about_lesson/</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_45">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>60</y>
+       <width>231</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="text">
+      <string>F:/about_lesson/</string>
+     </property>
+    </widget>
+    <zorder>label_45</zorder>
+    <zorder>label_41</zorder>
+    <zorder>label_26</zorder>
+    <zorder>label_27</zorder>
+    <zorder>pushButton_9</zorder>
+    <zorder>pushButton_23</zorder>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>430</y>
+      <width>311</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>图像编辑</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <widget class="QLabel" name="label_35">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>240</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string>缩放设置</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_6">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>200</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>360</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_30">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>200</y>
+       <width>20</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>°</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_7">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>240</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_33">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>240</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>％</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>231</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QSlider" name="verticalSlider">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="tabletTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="invertedControls">
+         <bool>false</bool>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::NoTicks</enum>
+        </property>
+        <property name="tickInterval">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>3</width>
+          <height>5</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QSlider" name="verticalSlider_3">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>3</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QSlider" name="verticalSlider_2">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_29">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>亮度</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_32">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>160</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>对比度</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_31">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>160</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>饱和度</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_10">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>200</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>畸变校正</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_11">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>240</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>像素点标记</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>320</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="pushButton_16">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>241</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Adobe Arabic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
+      <property name="text">
+       <string>清空工作区</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoRepeatDelay">
+       <number>50</number>
+      </property>
+     </widget>
+     <widget class="QMdiArea" name="mdiArea_2">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>0</y>
+        <width>281</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="background">
+       <brush brushstyle="SolidPattern">
+        <color alpha="50">
+         <red>160</red>
+         <green>160</green>
+         <blue>160</blue>
+        </color>
+       </brush>
+      </property>
+     </widget>
+     <zorder>mdiArea_2</zorder>
+     <zorder>pushButton_16</zorder>
+    </widget>
+    <widget class="QLabel" name="label_34">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string>旋转角度</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="indent">
+      <number>27</number>
+     </property>
+    </widget>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>200</y>
+       <width>20</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QMdiArea" name="mdiArea">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>271</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="50">
+        <red>160</red>
+        <green>160</green>
+        <blue>160</blue>
+       </color>
+      </brush>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_46">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_47">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_48">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>20</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_38">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>280</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string>图像翻转</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_27">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>280</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>水平翻转</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_28">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>280</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>竖直翻转</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="Line" name="line_4">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>290</y>
+       <width>21</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <zorder>mdiArea</zorder>
+    <zorder>label_35</zorder>
+    <zorder>lineEdit_6</zorder>
+    <zorder>label_30</zorder>
+    <zorder>lineEdit_7</zorder>
+    <zorder>label_33</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
+    <zorder>label_29</zorder>
+    <zorder>label_32</zorder>
+    <zorder>label_31</zorder>
+    <zorder>pushButton_10</zorder>
+    <zorder>pushButton_11</zorder>
+    <zorder>groupBox_2</zorder>
+    <zorder>label_34</zorder>
+    <zorder>line_2</zorder>
+    <zorder>label_46</zorder>
+    <zorder>label_47</zorder>
+    <zorder>label_48</zorder>
+    <zorder>label_38</zorder>
+    <zorder>pushButton_27</zorder>
+    <zorder>pushButton_28</zorder>
+    <zorder>line_4</zorder>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>350</y>
+      <width>20</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_17">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>700</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>确定</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>57</x>
+      <y>410</y>
+      <width>351</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>360</y>
+      <width>391</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>500</y>
+      <width>391</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_37">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>800</y>
+      <width>391</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_39">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>500</y>
+      <width>391</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_9">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>430</y>
+      <width>341</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>自定义入口</string>
+    </property>
+    <widget class="QPushButton" name="pushButton_22">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>20</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>添加</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string>自定义算法</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_21">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>浏览</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_42">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>161</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>label_42</zorder>
+    <zorder>pushButton_22</zorder>
+    <zorder>label_36</zorder>
+    <zorder>pushButton_21</zorder>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>910</y>
+      <width>1261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_24">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>375</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>在线</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_25">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>375</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>离线</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>381</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_40">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>381</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_43">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>940</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="margin">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_44">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>360</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>SimSun-ExtB</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_49">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>740</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>检测范围</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>label_8</zorder>
+   <zorder>groupBox_9</zorder>
+   <zorder>label_12</zorder>
+   <zorder>label_39</zorder>
+   <zorder>label_37</zorder>
+   <zorder>label_7</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>groupBox_3</zorder>
+   <zorder>groupBox_6</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>pushButton_12</zorder>
+   <zorder>pushButton_13</zorder>
+   <zorder>pushButton_14</zorder>
+   <zorder>pushButton_15</zorder>
+   <zorder>comboBox_2</zorder>
+   <zorder>comboBox_3</zorder>
+   <zorder>label_13</zorder>
+   <zorder>comboBox_4</zorder>
+   <zorder>label_14</zorder>
+   <zorder>groupBox_5</zorder>
+   <zorder>groupBox_7</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_11</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>label_24</zorder>
+   <zorder>label_25</zorder>
+   <zorder>groupBox_8</zorder>
+   <zorder>groupBox_4</zorder>
+   <zorder>line</zorder>
+   <zorder>pushButton_17</zorder>
+   <zorder>line_3</zorder>
+   <zorder>pushButton_24</zorder>
+   <zorder>pushButton_25</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_40</zorder>
+   <zorder>label_43</zorder>
+   <zorder>label_44</zorder>
+   <zorder>label_49</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1659</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>开始</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>新建</string>
+     </property>
+     <addaction name="action_3"/>
+    </widget>
+    <widget class="QMenu" name="menu_5">
+     <property name="title">
+      <string>保存图像</string>
+     </property>
+     <addaction name="action_CPU_3"/>
+     <addaction name="action_CUDA_3"/>
+     <addaction name="action_18"/>
+    </widget>
+    <addaction name="menu_2"/>
+    <addaction name="action"/>
+    <addaction name="separator"/>
+    <addaction name="action_14"/>
+    <addaction name="menu_5"/>
+    <addaction name="action_16"/>
+    <addaction name="action_19"/>
+    <addaction name="separator"/>
+    <addaction name="action_4"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action_9"/>
+   </widget>
+   <widget class="QMenu" name="menu_7">
+    <property name="title">
+     <string>设置</string>
+    </property>
+    <addaction name="action_2"/>
+    <addaction name="action_20"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_7"/>
+   <addaction name="menu_6"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_3">
+   <property name="text">
+    <string>新建项目</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_cpu">
+   <property name="text">
+    <string>保存cpu图像</string>
+   </property>
+  </action>
+  <action name="action_gpu">
+   <property name="text">
+    <string>保存gpu图像</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>保存项目</string>
+   </property>
+  </action>
+  <action name="action_cpu_2">
+   <property name="text">
+    <string>保存cpu图像</string>
+   </property>
+  </action>
+  <action name="action_gpu_2">
+   <property name="text">
+    <string>保存gpu图像</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>项目另存为</string>
+   </property>
+  </action>
+  <action name="action_9">
+   <property name="text">
+    <string>使用说明</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>默认保存地址</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_CPU">
+   <property name="text">
+    <string>保存CPU图像</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_CUDA">
+   <property name="text">
+    <string>保存CUDA图像</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="text">
+    <string>全部保存</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="action_11">
+   <property name="text">
+    <string>项目另存为</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_14">
+   <property name="text">
+    <string>全部保存</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="action_15">
+   <property name="text">
+    <string>保存选定项</string>
+   </property>
+  </action>
+  <action name="action_CPU_2">
+   <property name="text">
+    <string>保存CPU图像</string>
+   </property>
+  </action>
+  <action name="action_CUDA_2">
+   <property name="text">
+    <string>保存CUDA图像</string>
+   </property>
+  </action>
+  <action name="action_16">
+   <property name="text">
+    <string>项目另存为</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+L</string>
+   </property>
+  </action>
+  <action name="action_CPU_3">
+   <property name="text">
+    <string>保存CPU图像</string>
+   </property>
+  </action>
+  <action name="action_CUDA_3">
+   <property name="text">
+    <string>保存CUDA图像</string>
+   </property>
+  </action>
+  <action name="action_18">
+   <property name="text">
+    <string>保存原图</string>
+   </property>
+  </action>
+  <action name="action_19">
+   <property name="text">
+    <string>保存相关数据</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+D</string>
+   </property>
+  </action>
+  <action name="action_20">
+   <property name="text">
+    <string>属性</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QtCharts::QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>qchartview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Qimage_process.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>lineEdit_7</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_reszie()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>729</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>19</x>
+     <y>731</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_6</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_angel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>190</x>
+     <y>693</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>15</x>
+     <y>669</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_thresh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>690</x>
+     <y>695</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>865</x>
+     <y>459</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_5</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_demarcate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1094</x>
+     <y>444</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1049</x>
+     <y>406</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_24</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>online_status()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>440</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_25</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>offline_status()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>280</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>416</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_5</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>unit_conversion()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>812</x>
+     <y>880</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>845</x>
+     <y>750</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_21</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>consumer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1035</x>
+     <y>502</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>858</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_24</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>new_window()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_25</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>default_on()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>432</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>447</x>
+     <y>43</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>save_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>760</x>
+     <y>505</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>1022</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_23</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_the_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>760</x>
+     <y>465</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>900</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>gray_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>530</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>481</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>filter_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>526</x>
+     <y>631</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>719</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>closed_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>747</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>787</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>canny_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>805</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>835</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>thresh_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>706</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>605</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_16</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>return_image()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>218</x>
+     <y>808</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>21</x>
+     <y>797</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_26</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>show_ROI()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>337</x>
+     <y>908</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>1001</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_27</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>horizenal_flip()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>762</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>30</x>
+     <y>767</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_28</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>vertical_flip()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>764</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>22</x>
+     <y>849</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>renew(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>24</x>
+     <y>526</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>renew(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>234</x>
+     <y>564</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>25</x>
+     <y>588</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>saturation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>334</x>
+     <y>561</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>37</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>distancetransform(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>891</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>566</x>
+     <y>1046</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>show_reszie()</slot>
+  <slot>show_angel()</slot>
+  <slot>show_thresh()</slot>
+  <slot>show_demarcate()</slot>
+  <slot>show_ROI()</slot>
+  <slot>online_status()</slot>
+  <slot>offline_status()</slot>
+  <slot>show_the_file()</slot>
+  <slot>unit_conversion()</slot>
+  <slot>consumer()</slot>
+  <slot>new_window()</slot>
+  <slot>default_on()</slot>
+  <slot>save_file()</slot>
+  <slot>return_image()</slot>
+  <slot>gray_image(bool)</slot>
+  <slot>thresh_image(bool)</slot>
+  <slot>filter_image(bool)</slot>
+  <slot>closed_image(bool)</slot>
+  <slot>no_gray()</slot>
+  <slot>no_filter()</slot>
+  <slot>horizenal_flip()</slot>
+  <slot>vertical_flip()</slot>
+  <slot>renew(int)</slot>
+  <slot>saturation(int)</slot>
+  <slot>canny_image(bool)</slot>
+  <slot>distancetransform(bool)</slot>
+ </slots>
+</ui>
