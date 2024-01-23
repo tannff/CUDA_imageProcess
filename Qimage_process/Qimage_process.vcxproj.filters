@@ -82,8 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="canny_cuda.cu" />
-    <CudaCompile Include="distancetransformm.cu" />
     <CudaCompile Include="ImgProcess.cu" />
+    <CudaCompile Include="distancetransform.cu" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Qimage_process.rc">

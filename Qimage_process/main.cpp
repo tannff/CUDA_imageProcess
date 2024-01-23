@@ -39,7 +39,7 @@ extern cudaError_t gaussian_filter(unsigned char* img_in, unsigned char* img_gau
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy,int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
-extern cudaError_t distancetransform(unsigned char* img_in, unsigned char* updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height);
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
 
 int main(int argc, char* argv[]) {
 
@@ -151,6 +151,9 @@ int main(int argc, char* argv[]) {
 		unsigned char* d_likedtresult;
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_likedtresult, img_width * img_height * sizeof(unsigned char)));
 
+		unsigned char* d_dist;
+		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_dist, img_width * img_height * sizeof(unsigned char)));
+
 		int* d_hist;
 		float* d_sum;
 		float* d_s;
@@ -173,11 +176,6 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaMemcpy(d_filter, filter, filterWidth * filterWidth * sizeof(float), cudaMemcpyHostToDevice));
 		unsigned* d_map;
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_map, img_width * img_height * sizeof(d_map[0])));
-
-		int* gpu_done;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&gpu_done, sizeof(int)));
-		float* dst;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&dst, img_width * img_height * sizeof(float)));
 
 		//6.转换颜色，同时记录所用时间
 		cudaEvent_t event_begin, event_end ;
@@ -221,9 +219,10 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(non_max(d_sobel, d_nms, d_gx, d_gy, img_width, img_height));
 		CHECK_CUDA_ERROR(hysteresis(d_nms, d_high, d_trace, d_map, t_high, t_low, img_width, img_height));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_canny, 0));
-		CHECK_CUDA_ERROR(distancetransform(d_gray, d_updown, d_downup, d_leftright, d_rightleft, d_likedtresult, img_width, img_height));
-		//CHECK_CUDA_ERROR(distanceTransform2D(im, scratch, img_width, img_height, zScratch, vScratch));
-		//CHECK_CUDA_ERROR(distancetransform(d_trace, img_width, img_height, src_stride, dst, dst_stride, distance_type, mask_size, gpu_done));
+
+		//CHECK_CUDA_ERROR(distancetransform(img_in, updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height) {
+		CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
+		
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end, 0));      //用于记录 CUDA 事件对象 event_begin(开始） 的时间戳,在调用时记录
 		CHECK_CUDA_ERROR(cudaStreamSynchronize(0));           //同步
 
@@ -239,12 +238,8 @@ int main(int argc, char* argv[]) {
 
 		//8.保存图像
 		cv::Mat binary_image(img_height, img_width, CV_8UC1);
-		cudaMemcpy(binary_image.data, d_likedtresult, img_width * img_height * sizeof(unsigned char), cudaMemcpyDeviceToHost);
+		cudaMemcpy(binary_image.data, d_dist, img_width * img_height * sizeof(unsigned char), cudaMemcpyDeviceToHost);
 
-		int host_done;
-		cudaMemcpy(&host_done, gpu_done, sizeof(int), cudaMemcpyDeviceToHost);
-		if (host_done > 0) 
-		return -1;
 
 		ImageUtils::write_image(binary_image, output1_file_path);  //写到指定地址
 
@@ -273,6 +268,7 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaFree(d_updown))
 		CHECK_CUDA_ERROR(cudaFree(d_downup))
 		CHECK_CUDA_ERROR(cudaFree(d_likedtresult))
+		CHECK_CUDA_ERROR(cudaFree(d_dist));
 
 		CHECK_CUDA_ERROR(cudaEventDestroy(event_begin));
 		CHECK_CUDA_ERROR(cudaEventDestroy(event_end));
@@ -405,4 +401,3 @@ int main(int argc, char* argv[]) {
 		return a.exec();
 
 	}
-

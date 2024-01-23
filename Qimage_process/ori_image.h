@@ -21,8 +21,8 @@ signals:
 	void camera_display(QImage);
 
 public slots:
-	void camera_status();
-	void showImage(QImage);
+	void camera_status(int);
+	void showImage(QImage, float, float, double);
 	void closed_view();
 
 private:

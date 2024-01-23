@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>40</y>
+     <x>50</x>
+     <y>0</y>
      <width>481</width>
      <height>401</height>
     </rect>
@@ -25,147 +25,6 @@
    <property name="text">
     <string>TextLabel</string>
    </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>270</y>
-     <width>261</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="minimumSize">
-       <size>
-        <width>60</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>80</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="text">
-       <string>采集帧率</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Sunken</enum>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_8">
-      <property name="minimumSize">
-       <size>
-        <width>10</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>30</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>帧/s</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>320</y>
-     <width>261</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="minimumSize">
-       <size>
-        <width>80</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="text">
-       <string>曝光时间</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="horizontalSlider">
-      <property name="maximumSize">
-       <size>
-        <width>135</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="maximum">
-       <number>500000</number>
-      </property>
-      <property name="singleStep">
-       <number>1000</number>
-      </property>
-      <property name="pageStep">
-       <number>1000</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="minimumSize">
-       <size>
-        <width>20</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>us</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_4">
    <property name="geometry">
@@ -198,7 +57,7 @@
        <enum>QFrame::Raised</enum>
       </property>
       <property name="text">
-       <string>选择连接方式</string>
+       <string>连接方式</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -231,7 +90,7 @@
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>230</y>
+     <y>180</y>
      <width>91</width>
      <height>40</height>
     </rect>
@@ -265,7 +124,7 @@
    <property name="geometry">
     <rect>
      <x>560</x>
-     <y>220</y>
+     <y>170</y>
      <width>80</width>
      <height>39</height>
     </rect>
@@ -346,24 +205,11 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>110</y>
-     <width>261</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>扫描可用相机</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
      <x>560</x>
-     <y>140</y>
+     <y>120</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -374,6 +220,11 @@
      <height>20</height>
     </size>
    </property>
+   <item>
+    <property name="text">
+     <string>扫描可用设备</string>
+    </property>
+   </item>
    <item>
     <property name="text">
      <string>Daheng 水星 </string>
@@ -393,7 +244,7 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>699</x>
+     <x>700</x>
      <y>330</y>
      <width>51</width>
      <height>39</height>
@@ -415,29 +266,316 @@
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>440</y>
-     <width>451</width>
-     <height>41</height>
+     <x>50</x>
+     <y>400</y>
+     <width>491</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
     <string>日志</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>220</y>
+     <width>80</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>80</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="text">
+    <string>图像尺寸</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>220</y>
+     <width>61</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_15">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>220</y>
+     <width>31</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>×</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>220</y>
+     <width>61</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>270</y>
+     <width>137</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>270</y>
+     <width>30</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>10</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>30</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>帧/s</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>270</y>
+     <width>80</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>60</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>80</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="text">
+    <string>采集帧率</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>320</y>
+     <width>80</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>80</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="text">
+    <string>曝光时间</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>330</y>
+     <width>135</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>135</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="maximum">
+    <number>500000</number>
+   </property>
+   <property name="singleStep">
+    <number>1000</number>
+   </property>
+   <property name="pageStep">
+    <number>1000</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>320</y>
+     <width>20</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>20</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>us</string>
+   </property>
   </widget>
   <zorder>label_2</zorder>
   <zorder>label</zorder>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>horizontalLayoutWidget_2</zorder>
   <zorder>horizontalLayoutWidget_4</zorder>
   <zorder>label_10</zorder>
   <zorder>label_9</zorder>
   <zorder>pushButton</zorder>
   <zorder>checkBox</zorder>
-  <zorder>pushButton_2</zorder>
   <zorder>comboBox_2</zorder>
   <zorder>label_11</zorder>
   <zorder>label_12</zorder>
+  <zorder>label_13</zorder>
+  <zorder>label_14</zorder>
+  <zorder>label_15</zorder>
+  <zorder>label_16</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_8</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>horizontalSlider</zorder>
+  <zorder>label_5</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
@@ -458,9 +596,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>ori_imageClass</receiver>
+   <slot>camera_status(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>576</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>514</x>
+     <y>80</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>camera_status()</slot>
+  <slot>camera_status(int)</slot>
   <slot>closed_view()</slot>
  </slots>
 </ui>

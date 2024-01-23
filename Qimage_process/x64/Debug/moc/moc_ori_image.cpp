@@ -62,16 +62,16 @@ static const uint qt_meta_data_ori_image[] = {
        1,    1,   34,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   37,    2, 0x0a /* Public */,
-       4,    1,   38,    2, 0x0a /* Public */,
-       5,    0,   41,    2, 0x0a /* Public */,
+       3,    1,   37,    2, 0x0a /* Public */,
+       4,    4,   40,    2, 0x0a /* Public */,
+       5,    0,   49,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QImage,    2,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QImage,    2,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::QImage, QMetaType::Float, QMetaType::Float, QMetaType::Double,    2,    2,    2,    2,
     QMetaType::Void,
 
        0        // eod
@@ -84,8 +84,8 @@ void ori_image::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->camera_display((*reinterpret_cast< QImage(*)>(_a[1]))); break;
-        case 1: _t->camera_status(); break;
-        case 2: _t->showImage((*reinterpret_cast< QImage(*)>(_a[1]))); break;
+        case 1: _t->camera_status((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->showImage((*reinterpret_cast< QImage(*)>(_a[1])),(*reinterpret_cast< float(*)>(_a[2])),(*reinterpret_cast< float(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4]))); break;
         case 3: _t->closed_view(); break;
         default: ;
         }

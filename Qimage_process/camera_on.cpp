@@ -10,6 +10,9 @@ std::mutex imageMutex;
 Mat capturedImage;
 ori_image* ori;
 
+int frameCount = 0;
+auto startTime = std::chrono::steady_clock::now();
+
 void CSampleDeviceOfflineEventHandler::DoOnDeviceOfflineEvent(void* pUserParam)
 {
 	std::cout << "收到设备掉线事件!" << std::endl;
@@ -24,11 +27,11 @@ void CSampleFeatureEventHandler::DoOnFeatureEvent(const GxIAPICPP::gxstring& str
 void CSampleCaptureEventHandler ::DoOnImageCaptured(CImageDataPointer& objImageDataPointer, void* pUserParam)
 	{
 
-	std::cout << "收到一帧图像!" << endl;
-	std::cout << "ImageInfo: " << objImageDataPointer->GetStatus() << endl;
-	std::cout << "ImageInfo: " << objImageDataPointer->GetWidth() << endl;
-	std::cout << "ImageInfo: " << objImageDataPointer->GetHeight() << endl;
-	std::cout << "ImageInfo: " << objImageDataPointer->GetPayloadSize() << endl;
+		std::cout << "收到一帧图像!" << endl;
+		std::cout << "ImageInfo: " << objImageDataPointer->GetStatus() << endl;
+		std::cout << "ImageInfo: " << objImageDataPointer->GetWidth() << endl;
+		std::cout << "ImageInfo: " << objImageDataPointer->GetHeight() << endl;
+		std::cout << "ImageInfo: " << objImageDataPointer->GetPayloadSize() << endl;
 
 		Mat img;
 		int size_max;
@@ -40,24 +43,24 @@ void CSampleCaptureEventHandler ::DoOnImageCaptured(CImageDataPointer& objImageD
 		memcpy(img.data, pRGB24Buffer, (objImageDataPointer->GetHeight()) * (objImageDataPointer->GetWidth()) * 3);
 		flip(img, img, 0);                  //沿x轴翻转
 
-		//imshow("sss", img);
 		// 如果图像的颜色通道顺序是BGR而不是RGB，则需要进行颜色通道顺序转换
 
-		//ori_image ori;
 		QImage qimage(img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
 		qimage = qimage.rgbSwapped();
 		
-		//waitKey(1);
-
 		std::cout << "帧数：" << objImageDataPointer->GetFrameID() << endl;
 
-		//QImage qimage(img.cols, img.rows, QImage::Format_RGB888);
-		
-		//while (1)
-		//emit ori->camera_display(qimage);
-		ori->showImage(qimage);
+		++frameCount;
 
-		
+		auto endTime = std::chrono::steady_clock::now();
+		double elapsedSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
+		if (elapsedSeconds >= 1.0) {
+			double fps = frameCount / elapsedSeconds;
+
+			startTime = endTime;
+			frameCount = 0;
+		}
+		ori->showImage(qimage, objImageDataPointer->GetWidth(), objImageDataPointer->GetHeight(), elapsedSeconds);
 	}
 
 int camera_on(ori_image* ori_img)

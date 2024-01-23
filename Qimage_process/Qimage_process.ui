@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="mouseTracking">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="tabletTracking">
    <bool>false</bool>
@@ -227,34 +227,6 @@ border-style: outset;#样式为外凹}</string>
     <property name="checkable">
      <bool>false</bool>
     </property>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Adobe Arabic</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>阈值化</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
@@ -272,31 +244,6 @@ border-style: outset;#样式为外凹}</string>
      </property>
      <property name="text">
       <string>图像增强</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_5">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Adobe Arabic</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>去噪滤波</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -353,6 +300,65 @@ border-style: outset;#样式为外凹}</string>
      </property>
      <property name="autoExclusive">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>去噪滤波</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>阈值化</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>10</number>
+     </property>
+     <property name="autoRepeatInterval">
+      <number>0</number>
+     </property>
+     <property name="default">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>
@@ -620,7 +626,7 @@ border-style: outset;#样式为外凹}</string>
     <property name="geometry">
      <rect>
       <x>670</x>
-      <y>580</y>
+      <y>660</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -633,7 +639,7 @@ border-style: outset;#样式为外凹}</string>
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>580</y>
+      <y>660</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -645,7 +651,7 @@ border-style: outset;#样式为外凹}</string>
      </font>
     </property>
     <property name="text">
-     <string>确认</string>
+     <string>确定</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_13">
@@ -793,7 +799,7 @@ border-style: outset;#样式为外凹}</string>
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>660</y>
+      <y>580</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -821,7 +827,7 @@ border-style: outset;#样式为外凹}</string>
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>660</y>
+      <y>580</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -858,7 +864,7 @@ rgb(255, 255, 255)
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>580</y>
+      <y>660</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -973,9 +979,9 @@ rgb(255, 255, 255)
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>790</y>
+      <y>820</y>
       <width>311</width>
-      <height>131</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="font">
@@ -1023,9 +1029,9 @@ rgb(255, 255, 255)
     <widget class="QLineEdit" name="lineEdit_2">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>20</y>
-       <width>61</width>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
@@ -1039,14 +1045,14 @@ rgb(255, 255, 255)
     <widget class="QLabel" name="label_17">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>20</y>
        <width>91</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>像素(pixels)</string>
+      <string>pixels</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_18">
@@ -1080,9 +1086,9 @@ rgb(255, 255, 255)
     <widget class="QLineEdit" name="lineEdit_3">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>60</y>
-       <width>61</width>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
@@ -1096,46 +1102,27 @@ rgb(255, 255, 255)
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>91</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>像素(pixels）</string>
+      <string>pixels</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QPushButton" name="pushButton_26">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>105</y>
-       <width>121</width>
-       <height>21</height>
+       <x>240</x>
+       <y>40</y>
+       <width>51</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
-      <string>自适应</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_3">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>105</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>按照设定值</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
+      <string>确定</string>
      </property>
     </widget>
    </widget>
@@ -1620,7 +1607,7 @@ rgb(255, 255, 255)
       <x>80</x>
       <y>430</y>
       <width>311</width>
-      <height>351</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="font">
@@ -1912,7 +1899,7 @@ rgb(255, 255, 255)
       </font>
      </property>
      <property name="text">
-      <string>图像裁剪</string>
+      <string>畸变校正</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -1947,7 +1934,7 @@ rgb(255, 255, 255)
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>290</y>
+       <y>320</y>
        <width>271</width>
        <height>51</height>
       </rect>
@@ -2051,7 +2038,7 @@ rgb(255, 255, 255)
        <x>180</x>
        <y>200</y>
        <width>20</width>
-       <height>71</height>
+       <height>91</height>
       </rect>
      </property>
      <property name="orientation">
@@ -2131,6 +2118,97 @@ rgb(255, 255, 255)
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="label_38">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>280</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string>图像翻转</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_27">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>280</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>水平翻转</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_28">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>280</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>SimSun-ExtB</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>竖直翻转</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="Line" name="line_4">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>290</y>
+       <width>21</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
     <zorder>mdiArea</zorder>
     <zorder>label_35</zorder>
     <zorder>lineEdit_6</zorder>
@@ -2149,6 +2227,10 @@ rgb(255, 255, 255)
     <zorder>label_46</zorder>
     <zorder>label_47</zorder>
     <zorder>label_48</zorder>
+    <zorder>label_38</zorder>
+    <zorder>pushButton_27</zorder>
+    <zorder>pushButton_28</zorder>
+    <zorder>line_4</zorder>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
@@ -2179,7 +2261,7 @@ rgb(255, 255, 255)
      </font>
     </property>
     <property name="text">
-     <string>确认</string>
+     <string>确定</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -2993,7 +3075,7 @@ rgb(255, 255, 255)
    <hints>
     <hint type="sourcelabel">
      <x>690</x>
-     <y>492</y>
+     <y>695</y>
     </hint>
     <hint type="destinationlabel">
      <x>865</x>
@@ -3014,38 +3096,6 @@ rgb(255, 255, 255)
     <hint type="destinationlabel">
      <x>1049</x>
      <y>406</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEdit_2</sender>
-   <signal>returnPressed()</signal>
-   <receiver>Qimage_processClass</receiver>
-   <slot>show_ROI()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>658</x>
-     <y>898</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>861</x>
-     <y>856</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEdit_3</sender>
-   <signal>returnPressed()</signal>
-   <receiver>Qimage_processClass</receiver>
-   <slot>show_ROI()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>637</x>
-     <y>945</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>844</x>
-     <y>993</y>
     </hint>
    </hints>
   </connection>
@@ -3088,8 +3138,8 @@ rgb(255, 255, 255)
    <slot>unit_conversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>783</x>
-     <y>752</y>
+     <x>812</x>
+     <y>880</y>
     </hint>
     <hint type="destinationlabel">
      <x>845</x>
@@ -3121,7 +3171,7 @@ rgb(255, 255, 255)
    <hints>
     <hint type="sourcelabel">
      <x>795</x>
-     <y>493</y>
+     <y>695</y>
     </hint>
     <hint type="destinationlabel">
      <x>854</x>
@@ -3168,8 +3218,8 @@ rgb(255, 255, 255)
    <slot>save_file()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>363</x>
-     <y>931</y>
+     <x>760</x>
+     <y>505</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -3184,12 +3234,92 @@ rgb(255, 255, 255)
    <slot>show_the_file()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>379</x>
-     <y>887</y>
+     <x>760</x>
+     <y>465</y>
     </hint>
     <hint type="destinationlabel">
      <x>425</x>
      <y>900</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>gray_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>530</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>481</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>filter_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>526</x>
+     <y>631</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>719</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>closed_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>747</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>787</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>canny_image()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>849</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>835</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>thresh_image(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>706</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>605</y>
     </hint>
    </hints>
   </connection>
@@ -3200,44 +3330,60 @@ rgb(255, 255, 255)
    <slot>return_image()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>188</x>
-     <y>780</y>
+     <x>218</x>
+     <y>808</y>
     </hint>
     <hint type="destinationlabel">
-     <x>7</x>
-     <y>787</y>
+     <x>21</x>
+     <y>797</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>Qimage_processClass</receiver>
-   <slot>gray_image()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>530</x>
-     <y>450</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>416</x>
-     <y>481</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
+   <sender>pushButton_26</sender>
    <signal>clicked()</signal>
    <receiver>Qimage_processClass</receiver>
-   <slot>thresh_image()</slot>
+   <slot>show_ROI()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>540</x>
-     <y>500</y>
+     <x>337</x>
+     <y>908</y>
     </hint>
     <hint type="destinationlabel">
-     <x>419</x>
-     <y>547</y>
+     <x>437</x>
+     <y>1001</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_27</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>horizenal_flip()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>762</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>30</x>
+     <y>767</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_28</sender>
+   <signal>clicked()</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>vertical_flip()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>764</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>22</x>
+     <y>849</y>
     </hint>
    </hints>
   </connection>
@@ -3257,7 +3403,14 @@ rgb(255, 255, 255)
   <slot>default_on()</slot>
   <slot>save_file()</slot>
   <slot>return_image()</slot>
-  <slot>gray_image()</slot>
-  <slot>thresh_image()</slot>
+  <slot>gray_image(bool)</slot>
+  <slot>thresh_image(bool)</slot>
+  <slot>filter_image(bool)</slot>
+  <slot>closed_image(bool)</slot>
+  <slot>canny_image()</slot>
+  <slot>no_gray()</slot>
+  <slot>no_filter()</slot>
+  <slot>horizenal_flip()</slot>
+  <slot>vertical_flip()</slot>
  </slots>
 </ui>

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Qimage_process_t {
-    QByteArrayData data[31];
-    char stringdata0[389];
+    QByteArrayData data[35];
+    char stringdata0[442];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -56,13 +56,17 @@ QT_MOC_LITERAL(20, 255, 8), // "consumer"
 QT_MOC_LITERAL(21, 264, 10), // "new_window"
 QT_MOC_LITERAL(22, 275, 10), // "default_on"
 QT_MOC_LITERAL(23, 286, 9), // "save_file"
-QT_MOC_LITERAL(24, 296, 13), // "rotated_image"
-QT_MOC_LITERAL(25, 310, 12), // "return_image"
-QT_MOC_LITERAL(26, 323, 9), // "close_app"
-QT_MOC_LITERAL(27, 333, 10), // "gray_image"
-QT_MOC_LITERAL(28, 344, 12), // "thresh_image"
-QT_MOC_LITERAL(29, 357, 12), // "timer_Update"
-QT_MOC_LITERAL(30, 370, 18) // "offline_image_down"
+QT_MOC_LITERAL(24, 296, 12), // "return_image"
+QT_MOC_LITERAL(25, 309, 9), // "close_app"
+QT_MOC_LITERAL(26, 319, 10), // "gray_image"
+QT_MOC_LITERAL(27, 330, 12), // "thresh_image"
+QT_MOC_LITERAL(28, 343, 12), // "filter_image"
+QT_MOC_LITERAL(29, 356, 12), // "closed_image"
+QT_MOC_LITERAL(30, 369, 11), // "canny_image"
+QT_MOC_LITERAL(31, 381, 14), // "horizenal_flip"
+QT_MOC_LITERAL(32, 396, 13), // "vertical_flip"
+QT_MOC_LITERAL(33, 410, 12), // "timer_Update"
+QT_MOC_LITERAL(34, 423, 18) // "offline_image_down"
 
     },
     "Qimage_process\0image_proccess_speed\0"
@@ -73,9 +77,10 @@ QT_MOC_LITERAL(30, 370, 18) // "offline_image_down"
     "show_demarcate\0show_ROI\0online_status\0"
     "offline_status\0show_the_file\0consumer\0"
     "new_window\0default_on\0save_file\0"
-    "rotated_image\0return_image\0close_app\0"
-    "gray_image\0thresh_image\0timer_Update\0"
-    "offline_image_down"
+    "return_image\0close_app\0gray_image\0"
+    "thresh_image\0filter_image\0closed_image\0"
+    "canny_image\0horizenal_flip\0vertical_flip\0"
+    "timer_Update\0offline_image_down"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,7 +90,7 @@ static const uint qt_meta_data_Qimage_process[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      29,   14, // methods
+      33,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,37 +98,41 @@ static const uint qt_meta_data_Qimage_process[] = {
        8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,   12,  159,    2, 0x06 /* Public */,
-       3,    2,  184,    2, 0x06 /* Public */,
-       4,    2,  189,    2, 0x06 /* Public */,
-       5,    1,  194,    2, 0x06 /* Public */,
-       6,    1,  197,    2, 0x06 /* Public */,
-       7,    1,  200,    2, 0x06 /* Public */,
-       8,    2,  203,    2, 0x06 /* Public */,
-       9,    1,  208,    2, 0x06 /* Public */,
+       1,   12,  179,    2, 0x06 /* Public */,
+       3,    2,  204,    2, 0x06 /* Public */,
+       4,    2,  209,    2, 0x06 /* Public */,
+       5,    1,  214,    2, 0x06 /* Public */,
+       6,    1,  217,    2, 0x06 /* Public */,
+       7,    1,  220,    2, 0x06 /* Public */,
+       8,    2,  223,    2, 0x06 /* Public */,
+       9,    1,  228,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      10,   12,  211,    2, 0x0a /* Public */,
-      11,    2,  236,    2, 0x0a /* Public */,
-      12,    0,  241,    2, 0x0a /* Public */,
-      13,    0,  242,    2, 0x0a /* Public */,
-      14,    0,  243,    2, 0x0a /* Public */,
-      15,    0,  244,    2, 0x0a /* Public */,
-      16,    0,  245,    2, 0x0a /* Public */,
-      17,    0,  246,    2, 0x0a /* Public */,
-      18,    0,  247,    2, 0x0a /* Public */,
-      19,    0,  248,    2, 0x0a /* Public */,
-      20,    0,  249,    2, 0x0a /* Public */,
-      21,    0,  250,    2, 0x0a /* Public */,
-      22,    0,  251,    2, 0x0a /* Public */,
-      23,    0,  252,    2, 0x0a /* Public */,
-      24,    1,  253,    2, 0x0a /* Public */,
-      25,    1,  256,    2, 0x0a /* Public */,
-      26,    0,  259,    2, 0x0a /* Public */,
-      27,    0,  260,    2, 0x0a /* Public */,
-      28,    0,  261,    2, 0x0a /* Public */,
-      29,    0,  262,    2, 0x08 /* Private */,
-      30,    0,  263,    2, 0x08 /* Private */,
+      10,   12,  231,    2, 0x0a /* Public */,
+      11,    2,  256,    2, 0x0a /* Public */,
+      12,    0,  261,    2, 0x0a /* Public */,
+      13,    0,  262,    2, 0x0a /* Public */,
+      14,    0,  263,    2, 0x0a /* Public */,
+      15,    0,  264,    2, 0x0a /* Public */,
+      16,    0,  265,    2, 0x0a /* Public */,
+      17,    0,  266,    2, 0x0a /* Public */,
+      18,    0,  267,    2, 0x0a /* Public */,
+      19,    0,  268,    2, 0x0a /* Public */,
+      20,    0,  269,    2, 0x0a /* Public */,
+      21,    0,  270,    2, 0x0a /* Public */,
+      22,    0,  271,    2, 0x0a /* Public */,
+      23,    0,  272,    2, 0x0a /* Public */,
+      24,    0,  273,    2, 0x0a /* Public */,
+      25,    0,  274,    2, 0x0a /* Public */,
+      26,    1,  275,    2, 0x0a /* Public */,
+      27,    1,  278,    2, 0x0a /* Public */,
+      28,    1,  281,    2, 0x0a /* Public */,
+      29,    1,  284,    2, 0x0a /* Public */,
+      30,    0,  287,    2, 0x0a /* Public */,
+      31,    0,  288,    2, 0x0a /* Public */,
+      32,    0,  289,    2, 0x0a /* Public */,
+      33,    0,  290,    2, 0x08 /* Private */,
+      34,    0,  291,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
@@ -150,8 +159,12 @@ static const uint qt_meta_data_Qimage_process[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Float,    2,
-    QMetaType::Void, QMetaType::QImage,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -189,13 +202,17 @@ void Qimage_process::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 19: _t->new_window(); break;
         case 20: _t->default_on(); break;
         case 21: _t->save_file(); break;
-        case 22: _t->rotated_image((*reinterpret_cast< float(*)>(_a[1]))); break;
-        case 23: _t->return_image((*reinterpret_cast< QImage(*)>(_a[1]))); break;
-        case 24: _t->close_app(); break;
-        case 25: _t->gray_image(); break;
-        case 26: _t->thresh_image(); break;
-        case 27: _t->timer_Update(); break;
-        case 28: _t->offline_image_down(); break;
+        case 22: _t->return_image(); break;
+        case 23: _t->close_app(); break;
+        case 24: _t->gray_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 25: _t->thresh_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 26: _t->filter_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 27: _t->closed_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 28: _t->canny_image(); break;
+        case 29: _t->horizenal_flip(); break;
+        case 30: _t->vertical_flip(); break;
+        case 31: _t->timer_Update(); break;
+        case 32: _t->offline_image_down(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -288,13 +305,13 @@ int Qimage_process::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 29)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 33;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 29)
+        if (_id < 33)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 29;
+        _id -= 33;
     }
     return _id;
 }

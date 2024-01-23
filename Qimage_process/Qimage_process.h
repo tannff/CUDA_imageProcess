@@ -28,8 +28,6 @@ public:
     Qimage_process(QWidget *parent = nullptr);
     ~Qimage_process();
     void setLED(QLabel* label, int color, int size);
-    int resize_value;
-    bool switch_resize;
     ori_image* ori_display;
     
 
@@ -59,11 +57,15 @@ public slots:
     void new_window();
     void default_on();
     void save_file();
-    void rotated_image(float);
-    void return_image(QImage);
+    void return_image();
     void close_app();
-    void gray_image();
-    void thresh_image();
+    void gray_image(bool);
+    void thresh_image(bool);
+    void filter_image(bool);
+    void closed_image(bool);
+    void canny_image();
+    void horizenal_flip();
+    void vertical_flip();
 
 protected:
     void mouseMoveEvent(QMouseEvent* event);
@@ -78,7 +80,15 @@ private:
     QTimer* timer_unit;
     QString default_Path = "F:/about_the_lesson/Qimage_process/CUDA_imageProcess/";
     QImage image_ori;
+    QImage image_ori_copy;
     QImage q_image_gray;
     QImage q_image_thresh;
+    QImage q_image_gauss;
+    QImage q_image_closed;
+    QImage q_image_canny;
     QImage gray_cpu_image;
+    QImage filter_cpu_image;
+    QImage binary_cpu_image;
+    QImage closed_cpu_image;
+    int* d_hist;
 };

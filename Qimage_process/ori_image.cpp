@@ -42,29 +42,43 @@ ori_image::ori_image(QWidget *parent)
 {
 	ui.setupUi(this);
 
-    setLED(ui.label_10, 1, 16);
+    setLED(ui.label_10, 2, 16);
     ui.label_11->setText("0");
     connect(ui.horizontalSlider, &QSlider::valueChanged, this, [this](int value) {
         ui.label_11->setText(QString::number(value));
     });
-    connect(this, SIGNAL(camera_display(QImage)), this, SLOT(showImage(QImage)));
+    connect(this, SIGNAL(camera_display(QImage, float, float, double)), this, SLOT(showImage(QImage, float, float, double)));
   
 }
 
 ori_image::~ori_image()
 {}
 
-void ori_image::showImage(QImage qimage) {
+void ori_image::showImage(QImage qimage,float width, float height, double elapsedSeconds) {
       
       qimage = qimage.scaled(ui.label->size(), Qt::KeepAspectRatio);
       QPixmap pixmap = QPixmap::fromImage(qimage);
       ui.label->setPixmap(pixmap);
       ui.label->show();  
+      ui.label_14->setText(QString::number(width));
+      ui.label_16->setText(QString::number(height));
+      ui.label_6->setText(QString::number(elapsedSeconds));
 
 }
 
-void ori_image::camera_status() {
-    setLED(ui.label_10, 2, 16);
+void ori_image::camera_status(int arg1) {
+
+    bool status = ui.checkBox->isChecked();
+    if (status == true)
+    {
+        setLED(ui.label_10, 2, 16);
+
+    }
+    else if (status == false)
+    {
+        setLED(ui.label_10, 1, 16);
+        //ui.label->close();
+    }
 }
 
 

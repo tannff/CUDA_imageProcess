@@ -111,7 +111,7 @@
       <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="canny_cuda.cu" />
-    <CudaCompile Include="distancetransformm.cu" />
+    <CudaCompile Include="distancetransform.cu" />
     <CudaCompile Include="ImgProcess.cu" />
   </ItemGroup>
   <ItemGroup>

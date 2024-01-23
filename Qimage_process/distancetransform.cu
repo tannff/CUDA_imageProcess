@@ -1,4 +1,6 @@
 #include "cuda_runtime.h"
+#include <cmath>
+#include <algorithm>
 
 #define INF 1e20
 
@@ -196,5 +198,56 @@ extern cudaError_t distancetransform(unsigned char* img_in, unsigned char* updow
 	up_to_downscan << <grid_dim, block_dim, 0 >> > (img_in, updown, img_width, img_height);
 	down_to_upscan << <grid_dim, block_dim, 0 >> > (img_in, downup, img_width, img_height);
 	likedtresult << <grid_dim, block_dim, 0 >> > (updown, downup, leftright, rightleft, dtresult, img_width, img_height);
+	return cudaDeviceSynchronize();
+}
+
+__device__ int calculate_d4_distance(int2 pos_pre, int2 pos_target) {
+	return abs(pos_pre.x - pos_target.x) + abs(pos_pre.y - pos_target.y);
+}
+
+__device__ int calculate_d8_distance(int2 pos_pre, int2 pos_target) {
+	return max(abs(pos_pre.x - pos_target.x), abs(pos_pre.y - pos_target.y));
+}
+
+__global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height) {
+	int idx = blockDim.x * blockIdx.x + threadIdx.x;
+	int idy = blockDim.y * blockIdx.y + threadIdx.y;
+
+	if (idx >= img_width || idy >= img_height) {
+		return;
+	}
+
+	int id = idy * img_width + idx;
+	if (img_in[id] == 0) {
+		img_out[id] = 0;
+		return;
+	}
+
+	int min_distance = img_width * img_height;
+	for (int i = 0; i < img_height; i++) {
+		for (int j = 0; j < img_width; j++) {
+			int cur_process_index = i * img_width + j;
+			if (img_in[cur_process_index] == 0) {
+				const int cur_distance = calculate_d4_distance(make_int2(idx, idy), make_int2(j, i));
+				if (cur_distance == 1) {
+					img_out[id] = 1;
+					return;
+				}
+				min_distance = cur_distance < min_distance ? cur_distance : min_distance;
+			}
+		}
+	}
+	img_out[id] = min_distance >= 255 ? 255 : min_distance;
+}
+
+
+
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height) {
+
+	dim3 block_dim(16, 16);   //定义线程块
+	dim3 grid_dim = dim3((img_width + block_dim.x - 1) / block_dim.x,
+		(img_height + block_dim.y - 1) / block_dim.y);
+	
+	kernel_distance_transform<<<grid_dim, block_dim>>>(img_in, img_out, img_width, img_height);
 	return cudaDeviceSynchronize();
 }
