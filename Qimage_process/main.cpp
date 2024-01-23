@@ -39,7 +39,7 @@ extern cudaError_t gaussian_filter(unsigned char* img_in, unsigned char* img_gau
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy,int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
-extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
+//extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
 
 int main(int argc, char* argv[]) {
 
@@ -221,7 +221,7 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_canny, 0));
 
 		//CHECK_CUDA_ERROR(distancetransform(img_in, updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height) {
-		CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
+		//CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
 		
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end, 0));      //用于记录 CUDA 事件对象 event_begin(开始） 的时间戳,在调用时记录
 		CHECK_CUDA_ERROR(cudaStreamSynchronize(0));           //同步

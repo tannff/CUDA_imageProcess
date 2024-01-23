@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1;F:\QT\5.15.2\msvc2019_64\include;F:\QT\5.15.2\msvc2019_64\include\QtCharts;F:\QT\5.15.2\msvc2019_64\include\QtWidgets;F:\QT\5.15.2\msvc2019_64\include\QtGui;F:\QT\5.15.2\msvc2019_64\include\QtANGLE;F:\QT\5.15.2\msvc2019_64\include\QtCore;C:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1;/include;F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tann\AppData\Local\Temp\na1j30mk.d5u;F:\QT\5.15.2\msvc2019_64\include;F:\QT\5.15.2\msvc2019_64\include\QtCharts;F:\QT\5.15.2\msvc2019_64\include\QtWidgets;F:\QT\5.15.2\msvc2019_64\include\QtGui;F:\QT\5.15.2\msvc2019_64\include\QtANGLE;F:\QT\5.15.2\msvc2019_64\include\QtConcurrent;F:\QT\5.15.2\msvc2019_64\include\QtCore;C:\Users\tann\AppData\Local\Temp\na1j30mk.d5u;/include;F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>.\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -41,7 +41,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>.\</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -49,7 +49,7 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>F:\QT\5.15.2\msvc2019_64\lib\Qt5Chartsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Guid.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Cored.lib;F:\QT\5.15.2\msvc2019_64\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>F:\QT\5.15.2\msvc2019_64\lib\Qt5Chartsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Guid.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Concurrentd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Cored.lib;F:\QT\5.15.2\msvc2019_64\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -66,7 +66,7 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

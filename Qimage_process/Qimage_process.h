@@ -28,6 +28,7 @@ public:
     Qimage_process(QWidget *parent = nullptr);
     ~Qimage_process();
     void setLED(QLabel* label, int color, int size);
+    void init_pushButton();
     ori_image* ori_display;
     
 
@@ -39,7 +40,6 @@ signals:
     void image_thresh(int);
     void image_demarcate(int);
     void image_ROI(int,int);
-    void pre_image(QImage);
 
 
 public slots:
@@ -47,7 +47,6 @@ public slots:
     void display_width(float, double);
     void show_resize();
     void show_angle();
-    void show_thresh();
     void show_demarcate();
     void show_ROI();
     void online_status();
@@ -59,20 +58,22 @@ public slots:
     void save_file();
     void return_image();
     void close_app();
+    void horizenal_flip();
+    void vertical_flip();
+    void renew(int);
+    void saturation(int);
     void gray_image(bool);
     void thresh_image(bool);
     void filter_image(bool);
     void closed_image(bool);
-    void canny_image();
-    void horizenal_flip();
-    void vertical_flip();
+    void canny_image(bool);
+    void distancetransform(bool);
 
 protected:
     void mouseMoveEvent(QMouseEvent* event);
 
 private slots:
     void timer_Update(); //定时器更新槽函数
-    void offline_image_down();
 
 private:
     Ui::Qimage_processClass ui;
@@ -86,9 +87,12 @@ private:
     QImage q_image_gauss;
     QImage q_image_closed;
     QImage q_image_canny;
+    QImage q_image_distrans;
     QImage gray_cpu_image;
     QImage filter_cpu_image;
     QImage binary_cpu_image;
     QImage closed_cpu_image;
+    QImage canny_cpu_image;
+    QImage dist_cpu_image;
     int* d_hist;
 };

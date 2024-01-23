@@ -1,39 +1,6 @@
 ﻿F:\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(ImageProcess.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
-  Compiling CUDA source file distancetransformm.cu...
-  
-  F:\about_lesson\Qimage_process\Qimage_process>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "F:\VS2022\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64" -x cu   -I"F:\GalaxySDK\Samples\C++ SDK\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\include" -IC:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1 -IF:\QT\5.15.2\msvc2019_64\include -IF:\QT\5.15.2\msvc2019_64\include\QtCharts -IF:\QT\5.15.2\msvc2019_64\include\QtWidgets -IF:\QT\5.15.2\msvc2019_64\include\QtGui -IF:\QT\5.15.2\msvc2019_64\include\QtANGLE -IF:\QT\5.15.2\msvc2019_64\include\QtCore -IC:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1 -I/include -I"F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc" -Ix64\Debug\moc -Ix64\Debug\uic -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\include"  -G   --keep-dir x64\Debug  -maxrregcount=0  --machine 64 --compile -cudart static  -g  -D_WINDOWS -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -Xcompiler "/EHsc /W1 /nologo /Od /Fdx64\Debug\vc143.pdb /FS /Zi  /MDd " -o F:\about_lesson\Qimage_process\Qimage_process\x64\Debug\distancetransformm.cu.obj "F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu" 
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(35): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(35): note #2689-D: the value of parameter "img_width"
-  (29): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(47): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(47): note #2689-D: the value of parameter "img_width"
-  (29): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(70): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(70): note #2689-D: the value of parameter "img_width"
-  (64): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(82): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(82): note #2689-D: the value of parameter "img_width"
-  (64): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(109): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(109): note #2689-D: the value of parameter "img_height"
-  (100): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(115): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(115): note #2689-D: the value of parameter "img_height"
-  (100): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(136): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(136): note #2689-D: the value of parameter "img_height"
-  (127): here cannot be used as a constant
-  
-F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(142): error : expression must have a constant value
-  F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu(142): note #2689-D: the value of parameter "img_height"
-  (127): here cannot be used as a constant
-  
-  8 errors detected in the compilation of "F:/about_lesson/Qimage_process/Qimage_process/distancetransformm.cu".
-  distancetransformm.cu
-F:\VS2022\MSBuild\Microsoft\VC\v170\BuildCustomizations\CUDA 12.0.targets(794,9): error MSB3721: 命令“"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "F:\VS2022\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64" -x cu   -I"F:\GalaxySDK\Samples\C++ SDK\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\include" -IC:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1 -IF:\QT\5.15.2\msvc2019_64\include -IF:\QT\5.15.2\msvc2019_64\include\QtCharts -IF:\QT\5.15.2\msvc2019_64\include\QtWidgets -IF:\QT\5.15.2\msvc2019_64\include\QtGui -IF:\QT\5.15.2\msvc2019_64\include\QtANGLE -IF:\QT\5.15.2\msvc2019_64\include\QtCore -IC:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1 -I/include -I"F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc" -Ix64\Debug\moc -Ix64\Debug\uic -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\include"  -G   --keep-dir x64\Debug  -maxrregcount=0  --machine 64 --compile -cudart static  -g  -D_WINDOWS -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -Xcompiler "/EHsc /W1 /nologo /Od /Fdx64\Debug\vc143.pdb /FS /Zi  /MDd " -o F:\about_lesson\Qimage_process\Qimage_process\x64\Debug\distancetransformm.cu.obj "F:\about_lesson\Qimage_process\Qimage_process\distancetransformm.cu"”已退出，返回代码为 2。
+  uic Qimage_process.ui
+  Qimage_process.cpp
+  main.cpp
+  moc_Qimage_process.cpp
+  Qimage_process.vcxproj -> F:\about_lesson\Qimage_process\develop\CUDA_imageProcess\x64\Debug\Qimage_process.exe

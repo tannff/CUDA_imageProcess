@@ -29,7 +29,11 @@
    <enum>Qt::WheelFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Qimage_process</string>
+   <string>MRCP</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Qimage_process.qrc">
+    <normaloff>:/Qimage_process/a6avc-bfprc-001.ico</normaloff>:/Qimage_process/a6avc-bfprc-001.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QLabel{
@@ -207,7 +211,7 @@ border-style: outset;#样式为外凹}</string>
       <x>460</x>
       <y>520</y>
       <width>131</width>
-      <height>221</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="font">
@@ -361,14 +365,39 @@ border-style: outset;#样式为外凹}</string>
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Adobe Arabic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>边缘检测</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>780</y>
+      <y>820</y>
       <width>131</width>
-      <height>141</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="font">
@@ -389,7 +418,7 @@ border-style: outset;#样式为外凹}</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>60</y>
+       <y>20</y>
        <width>91</width>
        <height>31</height>
       </rect>
@@ -405,7 +434,7 @@ border-style: outset;#样式为外凹}</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>100</y>
+       <y>60</y>
        <width>91</width>
        <height>31</height>
       </rect>
@@ -415,31 +444,6 @@ border-style: outset;#样式为外凹}</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_6">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Adobe Arabic</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>边缘检测</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
      </property>
     </widget>
    </widget>
@@ -1755,6 +1759,15 @@ rgb(255, 255, 255)
         <property name="styleSheet">
          <string notr="true"/>
         </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
+        </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -1765,7 +1778,7 @@ rgb(255, 255, 255)
          <enum>QSlider::NoTicks</enum>
         </property>
         <property name="tickInterval">
-         <number>10</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -1786,6 +1799,15 @@ rgb(255, 255, 255)
        <widget class="QSlider" name="verticalSlider_3">
         <property name="mouseTracking">
          <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
         </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -1809,6 +1831,15 @@ rgb(255, 255, 255)
        <widget class="QSlider" name="verticalSlider_2">
         <property name="mouseTracking">
          <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+        <property name="tracking">
+         <bool>false</bool>
         </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -1964,7 +1995,7 @@ rgb(255, 255, 255)
        <enum>Qt::StrongFocus</enum>
       </property>
       <property name="text">
-       <string>全部重置</string>
+       <string>清空工作区</string>
       </property>
       <property name="checkable">
        <bool>false</bool>
@@ -2350,7 +2381,7 @@ rgb(255, 255, 255)
       <x>440</x>
       <y>500</y>
       <width>391</width>
-      <height>251</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -2388,9 +2419,9 @@ rgb(255, 255, 255)
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>760</y>
+      <y>800</y>
       <width>391</width>
-      <height>171</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -2761,6 +2792,34 @@ rgb(255, 255, 255)
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_49">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>740</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adobe Arabic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>检测范围</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>label_8</zorder>
    <zorder>groupBox_9</zorder>
    <zorder>label_12</zorder>
@@ -2800,6 +2859,7 @@ rgb(255, 255, 255)
    <zorder>label_40</zorder>
    <zorder>label_43</zorder>
    <zorder>label_44</zorder>
+   <zorder>label_49</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -3164,22 +3224,6 @@ rgb(255, 255, 255)
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_12</sender>
-   <signal>clicked()</signal>
-   <receiver>Qimage_processClass</receiver>
-   <slot>show_thresh()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>795</x>
-     <y>695</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>854</x>
-     <y>499</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_24</sender>
    <signal>clicked()</signal>
    <receiver>Qimage_processClass</receiver>
@@ -3293,13 +3337,13 @@ rgb(255, 255, 255)
   </connection>
   <connection>
    <sender>pushButton_6</sender>
-   <signal>clicked()</signal>
+   <signal>clicked(bool)</signal>
    <receiver>Qimage_processClass</receiver>
-   <slot>canny_image()</slot>
+   <slot>canny_image(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>513</x>
-     <y>849</y>
+     <y>805</y>
     </hint>
     <hint type="destinationlabel">
      <x>424</x>
@@ -3387,6 +3431,70 @@ rgb(255, 255, 255)
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>verticalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>renew(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>24</x>
+     <y>526</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>renew(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>234</x>
+     <y>564</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>25</x>
+     <y>588</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>saturation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>334</x>
+     <y>561</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>37</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>distancetransform(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>891</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>566</x>
+     <y>1046</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>show_reszie()</slot>
@@ -3407,10 +3515,13 @@ rgb(255, 255, 255)
   <slot>thresh_image(bool)</slot>
   <slot>filter_image(bool)</slot>
   <slot>closed_image(bool)</slot>
-  <slot>canny_image()</slot>
   <slot>no_gray()</slot>
   <slot>no_filter()</slot>
   <slot>horizenal_flip()</slot>
   <slot>vertical_flip()</slot>
+  <slot>renew(int)</slot>
+  <slot>saturation(int)</slot>
+  <slot>canny_image(bool)</slot>
+  <slot>distancetransform(bool)</slot>
  </slots>
 </ui>

@@ -1,11 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Qt_DEFINES_>
-<Qt_INCLUDEPATH_>C:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1;F:\QT\5.15.2\msvc2019_64\include;F:\QT\5.15.2\msvc2019_64\include\QtCharts;F:\QT\5.15.2\msvc2019_64\include\QtWidgets;F:\QT\5.15.2\msvc2019_64\include\QtGui;F:\QT\5.15.2\msvc2019_64\include\QtANGLE;F:\QT\5.15.2\msvc2019_64\include\QtCore;C:\Users\tann\AppData\Local\Temp\3dmq4ppb.dr1;/include;F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CHARTS_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB</Qt_DEFINES_>
+<Qt_INCLUDEPATH_>C:\Users\tann\AppData\Local\Temp\na1j30mk.d5u;F:\QT\5.15.2\msvc2019_64\include;F:\QT\5.15.2\msvc2019_64\include\QtCharts;F:\QT\5.15.2\msvc2019_64\include\QtWidgets;F:\QT\5.15.2\msvc2019_64\include\QtGui;F:\QT\5.15.2\msvc2019_64\include\QtANGLE;F:\QT\5.15.2\msvc2019_64\include\QtConcurrent;F:\QT\5.15.2\msvc2019_64\include\QtCore;C:\Users\tann\AppData\Local\Temp\na1j30mk.d5u;/include;F:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
 <Qt_STDCPP_></Qt_STDCPP_>
 <Qt_RUNTIME_>MultiThreadedDebugDLL</Qt_RUNTIME_>
 <Qt_CL_OPTIONS_>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus</Qt_CL_OPTIONS_>
-<Qt_LIBS_>F:\QT\5.15.2\msvc2019_64\lib\Qt5Chartsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Guid.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Cored.lib;F:\QT\5.15.2\msvc2019_64\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
+<Qt_LIBS_>F:\QT\5.15.2\msvc2019_64\lib\Qt5Chartsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Guid.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Concurrentd.lib;F:\QT\5.15.2\msvc2019_64\lib\Qt5Cored.lib;F:\QT\5.15.2\msvc2019_64\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
 <Qt_LINK_OPTIONS_>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"</Qt_LINK_OPTIONS_>
 <QMake_QT_SYSROOT_></QMake_QT_SYSROOT_>
 <QMake_QT_INSTALL_PREFIX_>F:/QT/5.15.2/msvc2019_64</QMake_QT_INSTALL_PREFIX_>
@@ -37,7 +37,7 @@
     <QtBkup_QtInstall
       >5.15.2_msvc2019_64</QtBkup_QtInstall>
     <QtBkup_QtModules
-      >core;gui;widgets;charts</QtBkup_QtModules>
+      >core;gui;widgets;concurrent;charts</QtBkup_QtModules>
     <QtBkup_QtPathBinaries
       >bin</QtBkup_QtPathBinaries>
     <QtBkup_QtPathLibraryExecutables

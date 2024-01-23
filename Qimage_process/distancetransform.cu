@@ -209,7 +209,7 @@ __device__ int calculate_d8_distance(int2 pos_pre, int2 pos_target) {
 	return max(abs(pos_pre.x - pos_target.x), abs(pos_pre.y - pos_target.y));
 }
 
-__global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height) {
+__global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height, int* max_x, int* max_y) {
 	int idx = blockDim.x * blockIdx.x + threadIdx.x;
 	int idy = blockDim.y * blockIdx.y + threadIdx.y;
 
@@ -223,6 +223,9 @@ __global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* 
 		return;
 	}
 
+	*max_x = 0;
+	*max_y = 0;
+
 	int min_distance = img_width * img_height;
 	for (int i = 0; i < img_height; i++) {
 		for (int j = 0; j < img_width; j++) {
@@ -234,6 +237,10 @@ __global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* 
 					return;
 				}
 				min_distance = cur_distance < min_distance ? cur_distance : min_distance;
+				if (cur_distance > img_out[*max_y * img_width + *max_x]) {
+					*max_x = j;
+					*max_y = i;
+				}
 			}
 		}
 	}
@@ -242,12 +249,12 @@ __global__ void kernel_distance_transform(unsigned char* img_in, unsigned char* 
 
 
 
-extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height) {
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height, int* max_x, int* max_y) {
 
 	dim3 block_dim(16, 16);   //定义线程块
 	dim3 grid_dim = dim3((img_width + block_dim.x - 1) / block_dim.x,
 		(img_height + block_dim.y - 1) / block_dim.y);
 	
-	kernel_distance_transform<<<grid_dim, block_dim>>>(img_in, img_out, img_width, img_height);
+	kernel_distance_transform<<<grid_dim, block_dim>>>(img_in, img_out, img_width, img_height, max_x, max_y);
 	return cudaDeviceSynchronize();
 }

@@ -133,8 +133,6 @@
     <ClInclude Include="camera_on.h" />
     <ClInclude Include="imageProcess.h" />
     <ClInclude Include="ImageUtils.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <QtMoc Include="ori_image.h" />
   </ItemGroup>
   <ItemGroup>
