@@ -11,6 +11,7 @@
 #include "camera_on.h"
 #include <QtWidgets/QApplication>
 #include <QObject>
+#include <QElapsedTimer>
 
 #define MAX_THREADS 1024
 
@@ -192,23 +193,25 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(rgb_to_gray(d_rgb, d_gray, img_width, img_height, d_hist));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_gray, 0));
 
+		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_gauss));
+		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_gauss));
+		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_gauss, 0));
+		CHECK_CUDA_ERROR(gaussian_filter(d_gray, d_gauss, img_width, img_height, filterWidth, d_filter));
+		CHECK_CUDA_ERROR(cudaEventRecord(event_end_gauss, 0));
+
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_thresh));
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_thresh));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_thresh, 0));
 		CHECK_CUDA_ERROR(thresh_cal(d_hist, d_sum, d_s, d_n, d_val, img_width, img_height, d_t));
-		CHECK_CUDA_ERROR(gray_to_otsu_binary(d_gray, d_thresh, img_width, img_height, d_t));
+		CHECK_CUDA_ERROR(gray_to_otsu_binary(d_gauss, d_thresh, img_width, img_height, d_t));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_thresh, 0));
 
-		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_gauss));
-		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_gauss));
-		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_gauss, 0));
-		CHECK_CUDA_ERROR(gaussian_filter(d_thresh, d_gauss, img_width, img_height, filterWidth, d_filter));
-		CHECK_CUDA_ERROR(cudaEventRecord(event_end_gauss, 0));
+		
 
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_closed));
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_closed));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_closed, 0));
-		CHECK_CUDA_ERROR(dilation(d_gauss, d_dil, img_width, img_height));
+		CHECK_CUDA_ERROR(dilation(d_thresh, d_dil, img_width, img_height));
 		CHECK_CUDA_ERROR(erosion(d_dil, d_closed, img_width, img_height));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_closed, 0));
 		
@@ -234,7 +237,7 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes3, event_begin_gauss, event_end_gauss));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes4, event_begin_closed, event_end_closed));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes5, event_begin_canny, event_end_canny));
-		std::cout << "rgb_to_gray cost time(gpu): " << cost_time << "ms" << std::endl;
+		std::cout << "rgb_to_gray cost time(gpu): " << gtimes5 << "ms" << std::endl;
 
 		//8.保存图像
 		cv::Mat binary_image(img_height, img_width, CV_8UC1);
@@ -291,47 +294,49 @@ int main(int argc, char* argv[]) {
 			    end_time_gray, end_time_thresh, end_time_gauss, end_time_closed, end_time_canny, end_time_distancetransform;
 
 		start_time = clock();
-		start_time_gray = clock();   //开始
+		QElapsedTimer timer_gray;
+		timer_gray.start();
 
 		//1.灰度化
 		cv::Mat gray_cpu_image(img_height, img_width, CV_8UC1);
 		cvtColor(rgb_image, gray_cpu_image, COLOR_BGR2GRAY);
 		rgb2grayincpu(rgb_image.data, gray_cpu_image.data, img_width, img_height);
 
-		end_time_gray = clock();     //结束
-		double times1 = (double)(end_time_gray - start_time_gray) * 1000 / CLOCKS_PER_SEC;
-		cout << "rgb to gray cost time(cpu)： " << times1 << " ms" << endl;
+		qint64 elapsed1 = timer_gray.nsecsElapsed();
+		cout << "rgb to gray cost time(cpu)： " << elapsed1 << " us" << endl;
 
-		start_time_thresh = clock();   //开始
+		QElapsedTimer timer_gas;
+		timer_gas.start();
+
+		//3.高斯滤波
+		Mat img_gaussian = Mat(gray_cpu_image.size(), CV_8UC1, Scalar(0));
+		GaussianBlur(gray_cpu_image, img_gaussian, Size(5, 5), 0, 0);
+
+		//imshow("", img_gaussian);
+
+		qint64 elapsed2 = timer_gas.nsecsElapsed();
+		cout << "thresh to gauss cost time(cpu)： " << elapsed2 << " us" << endl;
+
+		QElapsedTimer timer_the;
+		timer_the.start();
 
 		//2.二值化
 		cv::Mat binary_cpu_image(img_height, img_width, CV_8UC1);
-		threshold(gray_cpu_image, binary_cpu_image, 40, 255, THRESH_BINARY /*| THRESH_OTSU*/);
+		threshold(img_gaussian, binary_cpu_image, 40, 255, THRESH_BINARY /*| THRESH_OTSU*/);
 
-		end_time_thresh = clock();     //结束
-		double times2 = (double)(end_time_thresh - start_time_thresh) * 1000 / CLOCKS_PER_SEC;
-		cout << "gray to thresh cost time(cpu)： " << times2 << " ms" << endl;
+		qint64 elapsed3 = timer_the.nsecsElapsed();
+		cout << "gray to thresh cost time(cpu)： " << elapsed3 << " us" << endl;
 
-		start_time_gauss = clock();   //开始
-
-		//3.高斯滤波
-		Mat img_gaussian = Mat(gray_cpu_image.size(), CV_8U, Scalar(0));
-		GaussianBlur(binary_cpu_image, img_gaussian, Size(5, 5), 0, 0);
-
-		end_time_gauss = clock();     //结束
-		double times3 = (double)(end_time_gauss - start_time_gauss) * 1000 / CLOCKS_PER_SEC;
-		cout << "thresh to gauss cost time(cpu)： " << times3 << " ms" << endl;
-
-		start_time_closed = clock();   //开始
+		QElapsedTimer timerr;
+		timerr.start();
 
 		//4.闭运算，将断续的轮廓连接
 		Mat element = getStructuringElement(MORPH_RECT, Size(7, 7));
-		Mat blkImg(img_gaussian.size(), CV_8UC1, Scalar(0));
-		morphologyEx(img_gaussian, blkImg, MORPH_CLOSE, element);
+		Mat blkImg(binary_cpu_image.size(), CV_8UC1, Scalar(0));
+		morphologyEx(binary_cpu_image, blkImg, MORPH_CLOSE, element);
 
-		end_time_closed = clock();     //结束
-		double times4 = (double)(end_time_closed - start_time_closed) * 1000 / CLOCKS_PER_SEC;
-		cout << "gauss to closed cost time(cpu)： " << times4 << " ms" << endl;
+		qint64 elapsed = timerr.nsecsElapsed();
+		cout << "gauss to closed cost time(cpu)： " << elapsed << " us" << endl;
 
 		//4.灰度梯度增强
 		//Mat sobel_x, sobel_y, sobel_xy;
@@ -339,7 +344,8 @@ int main(int argc, char* argv[]) {
 		//Sobel(blkImg, sobel_y, CV_8U, 0, 1, 3);
 		//addWeighted(sobel_x, 0.5, sobel_y, 0.5, 1, sobel_xy);                    //沿x,y轴方向叠加梯度
 
-		start_time_canny = clock();   //开始
+		QElapsedTimer timer_canny;
+		timer_canny.start();
 
 		//5.canny边缘检测
 		Mat img_canny = Mat(blkImg.size(), CV_8U, Scalar(0));
@@ -351,9 +357,9 @@ int main(int argc, char* argv[]) {
 			drawContours(rgb_image, contour_vec, real_contour, Scalar(255, 255, 255), 1.8, 8);
 		}
 
-		end_time_canny = clock();     //结束
-		double times5 = (double)(end_time_canny - start_time_canny) * 1000 / CLOCKS_PER_SEC;
-		cout << "closed to canny cost time(cpu)： " << times5 << " ms" << endl;
+		qint64 elapsed4 = timer_canny.nsecsElapsed();
+		double times5 ;
+		cout << "closed to canny cost time(cpu)： " << elapsed4 << " us" << endl;
 
 		//6.最大连通域
 		cv::Mat img_dom;
@@ -377,11 +383,11 @@ int main(int argc, char* argv[]) {
 
 		end_time_distancetransform = clock();     //结束
 		double times6 = (double)(end_time_distancetransform - start_time_distancetransform) * 1000 / CLOCKS_PER_SEC;
-		cout << "canny to distancetransform cost time(cpu)： " << times6 << " ms" << endl;
+		//cout << "canny to distancetransform cost time(cpu)： " << times6 << " ms" << endl;
 	
 		end_time = clock();     //结束
 		double Times = (double)(end_time - start_time) * 1000 / CLOCKS_PER_SEC;
-		cout << "rgb to gray cost time(cpu)： " << Times << " ms" << endl;
+		//cout << "rgb to gray cost time(cpu)： " << times1 << " ms" << endl;
 		ImageUtils::write_image(rgb_image, output2_file_path);  //写到指定地址
 
 		/*ori_image ori_display;
@@ -390,6 +396,7 @@ int main(int argc, char* argv[]) {
 
 		//camera_on(qimage, a);
 
+		double times1, times2, times3, times4;
 		emit w.image_proccess_speed(times1, times2, times3, times4, times5, times6, 
 									cost_time, 
 									gtimes1, gtimes2, gtimes3, gtimes4, gtimes5);

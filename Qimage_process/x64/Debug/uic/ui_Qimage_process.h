@@ -153,7 +153,6 @@ public:
     QLabel *label_29;
     QLabel *label_32;
     QLabel *label_31;
-    QPushButton *pushButton_10;
     QPushButton *pushButton_11;
     QGroupBox *groupBox_2;
     QPushButton *pushButton_16;
@@ -168,6 +167,7 @@ public:
     QPushButton *pushButton_27;
     QPushButton *pushButton_28;
     QFrame *line_4;
+    QComboBox *comboBox_6;
     QFrame *line;
     QPushButton *pushButton_17;
     QLabel *label_7;
@@ -187,7 +187,6 @@ public:
     QLabel *label_40;
     QLabel *label_43;
     QLabel *label_44;
-    QLabel *label_49;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
@@ -202,7 +201,7 @@ public:
         if (Qimage_processClass->objectName().isEmpty())
             Qimage_processClass->setObjectName(QString::fromUtf8("Qimage_processClass"));
         Qimage_processClass->setWindowModality(Qt::NonModal);
-        Qimage_processClass->resize(1659, 1087);
+        Qimage_processClass->resize(1313, 1020);
         Qimage_processClass->setMinimumSize(QSize(300, 200));
         Qimage_processClass->setMouseTracking(false);
         Qimage_processClass->setTabletTracking(false);
@@ -215,6 +214,7 @@ public:
 "color: white;#\345\255\227\344\275\223\351\242\234\350\211\262\n"
 "border-radius: lpx; border: 2px groove gray;#\345\234\206\350\247\222\350\256\276\347\275\256\n"
 "border-style: outset;#\346\240\267\345\274\217\344\270\272\345\244\226\345\207\271}"));
+        Qimage_processClass->setAnimated(true);
         Qimage_processClass->setTabShape(QTabWidget::Rounded);
         action_3 = new QAction(Qimage_processClass);
         action_3->setObjectName(QString::fromUtf8("action_3"));
@@ -270,7 +270,7 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(100, -1, 1151, 30));
+        horizontalLayoutWidget_2->setGeometry(QRect(80, -1, 1221, 30));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -295,12 +295,13 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_20);
 
-        horizontalSpacer_2 = new QSpacerItem(50, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(52, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
         label_2 = new QLabel(horizontalLayoutWidget_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setMinimumSize(QSize(100, 0));
         label_2->setFont(font);
         label_2->setAlignment(Qt::AlignCenter);
         label_2->setMargin(6);
@@ -313,7 +314,7 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_18);
 
-        horizontalSpacer = new QSpacerItem(60, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(50, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
@@ -405,7 +406,7 @@ public:
         groupBox_6->setFont(font1);
         horizontalLayoutWidget_7 = new QWidget(groupBox_6);
         horizontalLayoutWidget_7->setObjectName(QString::fromUtf8("horizontalLayoutWidget_7"));
-        horizontalLayoutWidget_7->setGeometry(QRect(10, 20, 204, 31));
+        horizontalLayoutWidget_7->setGeometry(QRect(10, 20, 191, 31));
         horizontalLayout_7 = new QHBoxLayout(horizontalLayoutWidget_7);
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
@@ -442,7 +443,7 @@ public:
 
         horizontalLayoutWidget_8 = new QWidget(groupBox_6);
         horizontalLayoutWidget_8->setObjectName(QString::fromUtf8("horizontalLayoutWidget_8"));
-        horizontalLayoutWidget_8->setGeometry(QRect(10, 60, 204, 31));
+        horizontalLayoutWidget_8->setGeometry(QRect(10, 60, 191, 31));
         horizontalLayout_8 = new QHBoxLayout(horizontalLayoutWidget_8);
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -854,12 +855,6 @@ public:
         label_31->setGeometry(QRect(230, 160, 61, 31));
         label_31->setFont(font2);
         label_31->setAlignment(Qt::AlignCenter);
-        pushButton_10 = new QPushButton(groupBox_4);
-        pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(210, 200, 81, 31));
-        pushButton_10->setFont(font2);
-        pushButton_10->setCheckable(true);
-        pushButton_10->setAutoExclusive(true);
         pushButton_11 = new QPushButton(groupBox_4);
         pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
         pushButton_11->setGeometry(QRect(210, 240, 81, 31));
@@ -930,17 +925,28 @@ public:
         pushButton_27->setObjectName(QString::fromUtf8("pushButton_27"));
         pushButton_27->setGeometry(QRect(100, 280, 71, 31));
         pushButton_27->setFont(font3);
-        pushButton_27->setCheckable(true);
+        pushButton_27->setCheckable(false);
         pushButton_28 = new QPushButton(groupBox_4);
         pushButton_28->setObjectName(QString::fromUtf8("pushButton_28"));
         pushButton_28->setGeometry(QRect(210, 280, 81, 31));
         pushButton_28->setFont(font3);
-        pushButton_28->setCheckable(true);
+        pushButton_28->setCheckable(false);
         line_4 = new QFrame(groupBox_4);
         line_4->setObjectName(QString::fromUtf8("line_4"));
         line_4->setGeometry(QRect(180, 290, 21, 20));
         line_4->setFrameShape(QFrame::HLine);
         line_4->setFrameShadow(QFrame::Sunken);
+        comboBox_6 = new QComboBox(groupBox_4);
+        comboBox_6->addItem(QString());
+        comboBox_6->addItem(QString());
+        comboBox_6->addItem(QString());
+        comboBox_6->setObjectName(QString::fromUtf8("comboBox_6"));
+        comboBox_6->setGeometry(QRect(210, 200, 81, 31));
+        comboBox_6->setFont(font2);
+        comboBox_6->setStyleSheet(QString::fromUtf8("comboBox_4{\n"
+"\n"
+"rgb(255, 255, 255)\n"
+"}"));
         mdiArea->raise();
         label_35->raise();
         lineEdit_6->raise();
@@ -951,7 +957,6 @@ public:
         label_29->raise();
         label_32->raise();
         label_31->raise();
-        pushButton_10->raise();
         pushButton_11->raise();
         groupBox_2->raise();
         label_34->raise();
@@ -963,6 +968,7 @@ public:
         pushButton_27->raise();
         pushButton_28->raise();
         line_4->raise();
+        comboBox_6->raise();
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
         line->setGeometry(QRect(150, 350, 20, 21));
@@ -1104,13 +1110,6 @@ public:
         label_44->setGeometry(QRect(320, 360, 111, 21));
         label_44->setFont(font6);
         label_44->setFrameShadow(QFrame::Sunken);
-        label_49 = new QLabel(centralWidget);
-        label_49->setObjectName(QString::fromUtf8("label_49"));
-        label_49->setGeometry(QRect(600, 740, 61, 31));
-        label_49->setFont(font2);
-        label_49->setFrameShape(QFrame::Panel);
-        label_49->setFrameShadow(QFrame::Raised);
-        label_49->setAlignment(Qt::AlignCenter);
         Qimage_processClass->setCentralWidget(centralWidget);
         label_8->raise();
         groupBox_9->raise();
@@ -1151,10 +1150,9 @@ public:
         label_40->raise();
         label_43->raise();
         label_44->raise();
-        label_49->raise();
         menuBar = new QMenuBar(Qimage_processClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1659, 23));
+        menuBar->setGeometry(QRect(0, 0, 1313, 23));
         menu = new QMenu(menuBar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu->setSeparatorsCollapsible(false);
@@ -1305,13 +1303,13 @@ public:
         pushButton_7->setText(QCoreApplication::translate("Qimage_processClass", "\350\267\235\347\246\273\345\217\230\346\215\242", nullptr));
         pushButton_8->setText(QCoreApplication::translate("Qimage_processClass", "\346\244\255\345\234\206\350\277\233\351\230\266", nullptr));
         groupBox_6->setTitle(QCoreApplication::translate("Qimage_processClass", "\345\256\275\345\272\246\350\257\206\345\210\253", nullptr));
-        label_19->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
-        label_20->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
+        label_19->setText(QString());
+        label_20->setText(QString());
         comboBox_5->setItemText(0, QCoreApplication::translate("Qimage_processClass", "mm", nullptr));
         comboBox_5->setItemText(1, QCoreApplication::translate("Qimage_processClass", "mil", nullptr));
 
-        label_21->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
-        label_22->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
+        label_21->setText(QString());
+        label_22->setText(QString());
         comboBox_7->setItemText(0, QCoreApplication::translate("Qimage_processClass", "mm", nullptr));
         comboBox_7->setItemText(1, QCoreApplication::translate("Qimage_processClass", "mil", nullptr));
 
@@ -1354,8 +1352,8 @@ public:
         label_5->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label_3->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
-        label_24->setText(QCoreApplication::translate("Qimage_processClass", "\357\274\210x,y):(97,254)", nullptr));
-        label_25->setText(QCoreApplication::translate("Qimage_processClass", "RGB:(97,254,34)", nullptr));
+        label_24->setText(QCoreApplication::translate("Qimage_processClass", "\357\274\210x,y):(63,179)", nullptr));
+        label_25->setText(QCoreApplication::translate("Qimage_processClass", "RGB:(105,110.108)", nullptr));
         groupBox_8->setTitle(QCoreApplication::translate("Qimage_processClass", "\350\257\273\345\206\231\350\256\276\347\275\256", nullptr));
         label_26->setText(QCoreApplication::translate("Qimage_processClass", "\346\226\207\344\273\266\350\267\257\345\276\204", nullptr));
         label_27->setText(QCoreApplication::translate("Qimage_processClass", "\344\277\235\345\255\230\350\256\276\347\275\256", nullptr));
@@ -1372,7 +1370,6 @@ public:
         label_29->setText(QCoreApplication::translate("Qimage_processClass", "\344\272\256\345\272\246", nullptr));
         label_32->setText(QCoreApplication::translate("Qimage_processClass", "\345\257\271\346\257\224\345\272\246", nullptr));
         label_31->setText(QCoreApplication::translate("Qimage_processClass", "\351\245\261\345\222\214\345\272\246", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("Qimage_processClass", "\347\225\270\345\217\230\346\240\241\346\255\243", nullptr));
         pushButton_11->setText(QCoreApplication::translate("Qimage_processClass", "\345\203\217\347\264\240\347\202\271\346\240\207\350\256\260", nullptr));
         groupBox_2->setTitle(QString());
         pushButton_16->setText(QCoreApplication::translate("Qimage_processClass", "\346\270\205\347\251\272\345\267\245\344\275\234\345\214\272", nullptr));
@@ -1383,6 +1380,10 @@ public:
         label_38->setText(QCoreApplication::translate("Qimage_processClass", "\345\233\276\345\203\217\347\277\273\350\275\254", nullptr));
         pushButton_27->setText(QCoreApplication::translate("Qimage_processClass", "\346\260\264\345\271\263\347\277\273\350\275\254", nullptr));
         pushButton_28->setText(QCoreApplication::translate("Qimage_processClass", "\347\253\226\347\233\264\347\277\273\350\275\254", nullptr));
+        comboBox_6->setItemText(0, QCoreApplication::translate("Qimage_processClass", "  \345\275\242\347\212\266\347\273\230\345\210\266", nullptr));
+        comboBox_6->setItemText(1, QCoreApplication::translate("Qimage_processClass", "\345\234\206", nullptr));
+        comboBox_6->setItemText(2, QCoreApplication::translate("Qimage_processClass", "\347\237\251\345\275\242", nullptr));
+
         pushButton_17->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\345\256\232", nullptr));
         label_7->setText(QString());
         label_8->setText(QString());
@@ -1400,7 +1401,6 @@ public:
         label_40->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         label_43->setText(QString());
         label_44->setText(QString());
-        label_49->setText(QCoreApplication::translate("Qimage_processClass", "\346\243\200\346\265\213\350\214\203\345\233\264", nullptr));
         menu->setTitle(QCoreApplication::translate("Qimage_processClass", "\345\274\200\345\247\213", nullptr));
         menu_2->setTitle(QCoreApplication::translate("Qimage_processClass", "\346\226\260\345\273\272", nullptr));
         menu_5->setTitle(QCoreApplication::translate("Qimage_processClass", "\344\277\235\345\255\230\345\233\276\345\203\217", nullptr));

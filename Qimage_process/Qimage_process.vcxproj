@@ -133,6 +133,7 @@
     <ClInclude Include="camera_on.h" />
     <ClInclude Include="imageProcess.h" />
     <ClInclude Include="ImageUtils.h" />
+    <ClInclude Include="resource.h" />
     <QtMoc Include="ori_image.h" />
   </ItemGroup>
   <ItemGroup>
@@ -141,8 +142,12 @@
     <CudaCompile Include="ImgProcess.cu" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\杂\研究生\组会\软著\txy\a6avc-bfprc-001.ico" />
     <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\a6avc-bfprc-001.ico" />
     <Image Include="..\..\..\..\杂\研究生\组会\软著\txy\awjt4-ymoqf-001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Qimage_process.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

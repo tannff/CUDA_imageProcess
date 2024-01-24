@@ -104,8 +104,6 @@ Qimage_process::Qimage_process(QWidget* parent)
     ui.label_15->setText(QString::fromLocal8Bit("1毫米（mm）="));
     ui.label_28->setText(QString::fromLocal8Bit("像素（pixel)"));
 
-    QGridLayout* baseLayout = new QGridLayout();//布局管理器
-
     connect(this, SIGNAL(image_proccess_speed(double, double, double, double, double, double, float, float, float, float, float, float)),
             this, SLOT(display_speed(double, double, double, double, double, double, float, float, float, float, float, float)));
     connect(this, SIGNAL(width_measure(float, double)), this, SLOT(display_width(float, double)));
@@ -167,23 +165,47 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     QLineSeries* series1 = new QLineSeries();
     QLineSeries* series2 = new QLineSeries();
 
+
     series1->setName("cpu");
     series1->append(0, 0);
-    series1->append(times1, 1);
-    series1->append(times1 + times2, 2);
+    series1->append(0, 0);
+    series1->append(0, 0);
+    series1->append(0, 0);
+    series1->append(0, 0);
+    series1->append(0, 0);
+    
+    /*series1->append(0.7469, 1);
+    series1->append(1.2714, 2);
+    series1->append(1.3879, 3);
+    series1->append(1.8877, 4);
+    series1->append(4.1477, 5);*/
+    //series1->append(0, 6);
+   
+   /* series1->append(times1 + times2, 2);
     series1->append(times1 + times2 + times3, 3);
     series1->append(times1 + times2 + times3 + times4, 4);
-    series1->append(times1 + times2 + times3 + times4 + times5, 5);
-    series1->append(times1 + times2 + times3 + times4 + times5 + times6, 6);
+    series1->append(times1 + times2 + times3 + times4 + times5, 5);*/
+    /*series1->append(times1 + times2 + times3 + times4 + times5 + times6, 6);*/
 
     series2->setName("cuda");
     series2->append(0, 0);
-    series2->append(gtimes1, 1);
-    series2->append(gtimes1 + gtimes2, 2);
+    series2->append(0, 0);
+    series2->append(0, 0);
+    series2->append(0, 0);
+    series2->append(0, 0);
+    series2->append(0, 0);
+    /*series2->append(0.30032, 1);
+    series2->append(0.38128, 2);
+    series2->append(0.512351, 3);
+    series2->append(0.729439, 4);
+    series2->append(1.071455, 5);*/
+    //series2->append(0, 6);
+    
+    /*series2->append(gtimes1 + gtimes2, 2);
     series2->append(gtimes1 + gtimes2 + gtimes3, 3);
     series2->append(gtimes1 + gtimes2 + gtimes3 + gtimes4, 4);
-    series2->append(gtimes1 + gtimes2 + gtimes3 + gtimes4 + gtimes5, 5);
-    series2->append(1+gtimes1 + gtimes2 + gtimes3 + gtimes4 + gtimes5, 6);
+    series2->append(gtimes1 + gtimes2 + gtimes3 + gtimes4 + gtimes5, 5);*/
+    /*series2->append(1+gtimes1 + gtimes2 + gtimes3 + gtimes4 + gtimes5, 6);*/
 
     QChart* chart = new QChart();
     chart->addSeries(series1);
@@ -200,7 +222,7 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     ui.graphicsView->setChart(chart);
 
     QValueAxis* axisX = new QValueAxis;  //X轴
-    axisX->setRange(0, 50);   //设置坐标轴范围
+    axisX->setRange(0, 10);   //设置坐标轴范围
     axisX->setTitleText("time(ms)");  //标题
     axisX->setLabelFormat("%.2f");   //标签格式
     axisX->setTickCount(5);    //主分隔个数
@@ -215,9 +237,9 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     QBarSet* set0 = new QBarSet("cpu");
     QBarSet* set1 = new QBarSet("cuda");
 
-    *set0 << times1 << times2 << times3 << times4 << times5 << times6;
-    *set1 << gtimes1 << gtimes2 << gtimes3 << gtimes4 << gtimes5 << 0;
-
+    /**set1 << 0.30032 << 0.08096 << 0.131072 << 0.217088 << 0.342016 << 0;
+    *set0 << 0.7469 << 0.5245 << 0.1465 << 0.4998 << 2.26 << 0;*/
+   
     QBarSeries* series = new QBarSeries();
     series->append(set0);
     series->append(set1);
@@ -226,7 +248,7 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     ui.graphicsView_2->setChart(chartc);
 
     QValueAxis* axisY = new QValueAxis;  //Y轴
-    axisY->setRange(0, 18);
+    axisY->setRange(0, 3);
     axisY->setTitleText("time(ms)");
     axisY->setLabelFormat("%.1f"); 
     axisY->setTickCount(5); 
@@ -240,8 +262,8 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
 
     QStringList categories;
     categories << QString::fromLocal8Bit("灰度化")
-               << QString::fromLocal8Bit("阈值化")
                << QString::fromLocal8Bit("滤波")
+               << QString::fromLocal8Bit("阈值化")
                << QString::fromLocal8Bit("形态学")
                << QString::fromLocal8Bit("边缘检测")
                << QString::fromLocal8Bit("距离变换");
@@ -422,7 +444,9 @@ void Qimage_process::display_width(float maxValue, double interpolation) {
 
     if (ui.comboBox_5->currentText() == "mm")
     {
-        ui.label_19->setText(QString::number(mm_elipse_width));
+        ui.label_19->setText(("--"));
+        ui.label_20->setText(("--"));
+        //ui.label_19->setText(QString::number(mm_elipse_width));
         //ui.label_20->setText(QString::number());
 
     }
@@ -434,7 +458,9 @@ void Qimage_process::display_width(float maxValue, double interpolation) {
 
     if (ui.comboBox_7->currentText() == "mm")
     {
-        ui.label_21->setText(QString::number(interpolation));
+        //ui.label_21->setText(QString::number(interpolation));
+        ui.label_21->setText(("--"));
+        ui.label_22->setText(("--"));
         //ui.label_22->setText(QString::number());
 
     }
@@ -452,6 +478,10 @@ void Qimage_process::consumer() {
         tr("consumer_file(*.cpp *h *cu);;All files(*.*)"));
         QFileInfo fileInfo(fileName);
         QString baseName = fileInfo.fileName();
+
+        if (fileName.isEmpty()) {
+            QMessageBox::warning(this, "Warning!", "Failed to add the custom code!");
+        }
 
         // 将文件名显示在标签上
         ui.label_42->setText(baseName);
