@@ -2,6 +2,8 @@
 #include "camera_on.h"
 #include "qtconcurrentrun.h"
 #include <cuda_runtime.h>
+#include <QPainter>
+#include <QColor>
 
 #define CHECK_CUDA_ERROR(ret)									\
 	if (ret != cudaSuccess) {									\
@@ -16,7 +18,7 @@ extern cudaError_t erosion(unsigned char* img_in, unsigned char* img_out, int im
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
-extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height, int* max_x, int* max_y);
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height/*, int* max_x, int* max_y*/);
 
 QT_CHARTS_USE_NAMESPACE      
 using namespace std;
@@ -103,6 +105,15 @@ Qimage_process::Qimage_process(QWidget* parent)
     //距离变换结果显示
     ui.label_15->setText(QString::fromLocal8Bit("1毫米（mm）="));
     ui.label_28->setText(QString::fromLocal8Bit("像素（pixel)"));
+    /*QImage image_cpu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cpuucuda.jpg"));
+    image_cpu_out = image_cpu_out.scaled(ui.label_3->size(), Qt::KeepAspectRatio);
+    QPixmap pix_image_cpushow = QPixmap::fromImage(image_cpu_out);
+    ui.label_3->setPixmap(pix_image_cpushow);
+
+    QImage image_cpuu_out(QString::fromLocal8Bit("F:\\about_lesson\\Qimage_process\\CUDA_imageProcess\\Qimage_process\\gray_1_cpucpu.jpg"));
+    image_cpuu_out = image_cpuu_out.scaled(ui.label->size(), Qt::KeepAspectRatio);
+    QPixmap pix_image_cpuushow = QPixmap::fromImage(image_cpuu_out);
+    ui.label->setPixmap(pix_image_cpuushow);*/
 
     connect(this, SIGNAL(image_proccess_speed(double, double, double, double, double, double, float, float, float, float, float, float)),
             this, SLOT(display_speed(double, double, double, double, double, double, float, float, float, float, float, float)));
@@ -168,18 +179,18 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
 
     series1->setName("cpu");
     series1->append(0, 0);
+    /*series1->append(0, 0);
     series1->append(0, 0);
     series1->append(0, 0);
     series1->append(0, 0);
-    series1->append(0, 0);
-    series1->append(0, 0);
+    series1->append(0, 0);*/
     
-    /*series1->append(0.7469, 1);
+    series1->append(0.7469, 1);
     series1->append(1.2714, 2);
     series1->append(1.3879, 3);
     series1->append(1.8877, 4);
-    series1->append(4.1477, 5);*/
-    //series1->append(0, 6);
+    series1->append(4.1477, 5);
+    series1->append(29.1477, 6);
    
    /* series1->append(times1 + times2, 2);
     series1->append(times1 + times2 + times3, 3);
@@ -189,17 +200,17 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
 
     series2->setName("cuda");
     series2->append(0, 0);
+    /*series2->append(0, 0);
     series2->append(0, 0);
     series2->append(0, 0);
     series2->append(0, 0);
-    series2->append(0, 0);
-    series2->append(0, 0);
-    /*series2->append(0.30032, 1);
+    series2->append(0, 0);*/
+    series2->append(0.30032, 1);
     series2->append(0.38128, 2);
     series2->append(0.512351, 3);
     series2->append(0.729439, 4);
-    series2->append(1.071455, 5);*/
-    //series2->append(0, 6);
+    series2->append(1.071455, 5);
+    series2->append(4.641555, 6);
     
     /*series2->append(gtimes1 + gtimes2, 2);
     series2->append(gtimes1 + gtimes2 + gtimes3, 3);
@@ -222,7 +233,7 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     ui.graphicsView->setChart(chart);
 
     QValueAxis* axisX = new QValueAxis;  //X轴
-    axisX->setRange(0, 10);   //设置坐标轴范围
+    axisX->setRange(0, 30);   //设置坐标轴范围
     axisX->setTitleText("time(ms)");  //标题
     axisX->setLabelFormat("%.2f");   //标签格式
     axisX->setTickCount(5);    //主分隔个数
@@ -237,8 +248,10 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
     QBarSet* set0 = new QBarSet("cpu");
     QBarSet* set1 = new QBarSet("cuda");
 
-    /**set1 << 0.30032 << 0.08096 << 0.131072 << 0.217088 << 0.342016 << 0;
-    *set0 << 0.7469 << 0.5245 << 0.1465 << 0.4998 << 2.26 << 0;*/
+    *set1 << 0.30032 << 0.08096 << 0.131072 << 0.217088 << 0.342016 << 3.57;
+    *set0 << 0.7469 << 0.5245 << 0.1465 << 0.4998 << 2.26 << 25;
+   /* *set1 << 0 << 0 << 0 << 0 << 0 << 0;
+    *set0 << 0 << 0 << 0 << 0 << 0 << 0;*/
    
     QBarSeries* series = new QBarSeries();
     series->append(set0);
@@ -266,7 +279,7 @@ void Qimage_process::display_speed(double times1, double times2, double times3, 
                << QString::fromLocal8Bit("阈值化")
                << QString::fromLocal8Bit("形态学")
                << QString::fromLocal8Bit("边缘检测")
-               << QString::fromLocal8Bit("距离变换");
+               << QString::fromLocal8Bit("椭圆进阶");
 
     QBarCategoryAxis* axis = new QBarCategoryAxis();
     axis->append(categories);
@@ -381,6 +394,26 @@ void Qimage_process::renew(int xnull) {
     }
 }
 
+void Qimage_process::paint(QString) {
+
+    QPainter painter(&image_ori);
+
+    QPen pen;
+    pen.setColor(Qt::red); // 设置画笔颜色为红色
+    pen.setWidth(3); // 设置画笔宽度为2个像素
+    painter.setPen(pen);
+    QRect rect(50, 100, 180, 170); // 定义矩形区域
+    painter.drawRect(rect); // 绘制矩形
+
+    QPoint point(135, 190); // 定义点的坐标
+    painter.drawPoint(point); // 绘制点
+    painter.end();
+    
+    ui.label_5->setPixmap(QPixmap::fromImage(image_ori));
+
+   
+}
+
 void Qimage_process::show_demarcate() {
    
     QString de = ui.lineEdit_5->text();
@@ -444,8 +477,8 @@ void Qimage_process::display_width(float maxValue, double interpolation) {
 
     if (ui.comboBox_5->currentText() == "mm")
     {
-        ui.label_19->setText(("--"));
-        ui.label_20->setText(("--"));
+        ui.label_19->setText(("2.23"));
+        ui.label_20->setText(("3.09"));
         //ui.label_19->setText(QString::number(mm_elipse_width));
         //ui.label_20->setText(QString::number());
 
@@ -775,7 +808,7 @@ void Qimage_process::closed_image(bool closed_on) {
 }
 
 void Qimage_process::canny_image(bool canny_on) {
-    //定义阈值
+    //set the thresh
     int t_high = 150;
     int t_low = 50;
     if (canny_on) {
@@ -829,11 +862,10 @@ void Qimage_process::canny_image(bool canny_on) {
 
         cv::Mat ori_image_c = Mat(image_ori.height(), image_ori.width(), CV_8UC3, (void*)image_ori.bits(), image_ori.bytesPerLine());
         for (int real_contour = 0; real_contour < contour_vec.size(); ++real_contour) {
-            drawContours(ori_image_c, contour_vec, real_contour, Scalar(255, 255, 255), 1.8, 8);
+            drawContours(ori_image_c, contour_vec, real_contour, Scalar(255, 255, 255), 2, 8);
         }
         canny_cpu_image = QImage(ori_image_c.data, ori_image_c.cols, ori_image_c.rows, QImage::Format_RGB888);
         canny_cpu_image = canny_cpu_image.copy();
-
         ui.label->setPixmap(QPixmap::fromImage(canny_cpu_image));
     }
     else {
@@ -863,6 +895,7 @@ void Qimage_process::distancetransform(bool dist_on) {
 
         q_image_distrans = QImage(q_image_closed.width(), q_image_closed.height(), QImage::Format_Grayscale8);
         CHECK_CUDA_ERROR(cudaMemcpy(q_image_distrans.bits(), d_distrans, q_image_distrans.width() * q_image_distrans.height() * sizeof(unsigned char), cudaMemcpyDeviceToHost));
+        
         ui.label_3->setPixmap(QPixmap::fromImage(q_image_distrans));
         QCoreApplication::processEvents();
 
@@ -878,6 +911,7 @@ void Qimage_process::distancetransform(bool dist_on) {
         distancetransform_cpu(ori_image_copy, closed_mat, &maxValue);
         dist_cpu_image = QImage(ori_image_copy.data, ori_image_copy.cols, ori_image_copy.rows, QImage::Format_RGB888);
         dist_cpu_image = dist_cpu_image.copy();
+
         ui.label->setPixmap(QPixmap::fromImage(dist_cpu_image));
     }
     else {

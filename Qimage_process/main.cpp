@@ -40,7 +40,7 @@ extern cudaError_t gaussian_filter(unsigned char* img_in, unsigned char* img_gau
 extern cudaError_t sobel_intensity_gradient(unsigned char* img_in, unsigned char* img_sobel, int* Gx, int* Gy,int img_width, int img_height);
 extern cudaError_t non_max(unsigned char* img_in, unsigned char* img_nms, int* Gx, int* Gy, int img_width, int img_height);
 extern cudaError_t hysteresis(unsigned char* img_in, unsigned char* img_high, unsigned char* img_trace, unsigned* strong_edge_mask, int t_high, int t_low, int img_width, int img_height);
-//extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
+extern cudaError_t distance_transform(unsigned char* img_in, unsigned char* img_out, const int img_width, const int img_height);
 
 int main(int argc, char* argv[]) {
 
@@ -60,12 +60,6 @@ int main(int argc, char* argv[]) {
 	//2.图像尺寸参数
 	int img_width = rgb_image.cols, img_height = rgb_image.rows;
 	int img_depth = rgb_image.channels();
-	
-	//cout << "resize_value: " << w.resize_value << endl;  
-	//cout << "open/closed: " << w.switch_resize << endl; 
-	
-	resize_image(rgb_image, rgb_image);
-	rotated_image(rgb_image, rgb_image);
 
 	//3.check channnels
 	//[*]opencv的imread默认读取为bgr的格式，如果图像是四通道的，我们就将bgra转成rgb；如果图像是三通道的，就将bgr转rgb
@@ -141,17 +135,6 @@ int main(int argc, char* argv[]) {
 		unsigned char* d_high;
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_high, img_width * img_height * sizeof(unsigned char)));
 
-		unsigned char* d_leftright;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_leftright, img_width * img_height * sizeof(unsigned char)));
-		unsigned char* d_rightleft;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_rightleft, img_width * img_height * sizeof(unsigned char)));
-		unsigned char* d_updown;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_updown, img_width * img_height * sizeof(unsigned char)));
-		unsigned char* d_downup;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_downup, img_width * img_height * sizeof(unsigned char)));
-		unsigned char* d_likedtresult;
-		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_likedtresult, img_width * img_height * sizeof(unsigned char)));
-
 		unsigned char* d_dist;
 		CHECK_CUDA_ERROR(cudaMalloc((void**)&d_dist, img_width * img_height * sizeof(unsigned char)));
 
@@ -206,8 +189,6 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(gray_to_otsu_binary(d_gauss, d_thresh, img_width, img_height, d_t));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_thresh, 0));
 
-		
-
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_begin_closed));
 		CHECK_CUDA_ERROR(cudaEventCreate(&event_end_closed));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_begin_closed, 0));
@@ -223,8 +204,7 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(hysteresis(d_nms, d_high, d_trace, d_map, t_high, t_low, img_width, img_height));
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end_canny, 0));
 
-		//CHECK_CUDA_ERROR(distancetransform(img_in, updown, unsigned char* downup, unsigned char* leftright, unsigned char* rightleft, unsigned char* dtresult, const int img_width, const int img_height) {
-		//CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
+		CHECK_CUDA_ERROR(distance_transform(d_closed, d_dist, img_width, img_height));
 		
 		CHECK_CUDA_ERROR(cudaEventRecord(event_end, 0));      //用于记录 CUDA 事件对象 event_begin(开始） 的时间戳,在调用时记录
 		CHECK_CUDA_ERROR(cudaStreamSynchronize(0));           //同步
@@ -233,11 +213,11 @@ int main(int argc, char* argv[]) {
 		float cost_time, gtimes1, gtimes2, gtimes3, gtimes4, gtimes5;
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&cost_time, event_begin, event_end));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes1, event_begin_gray, event_end_gray));
-		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes2, event_begin_thresh, event_end_thresh));
-		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes3, event_begin_gauss, event_end_gauss));
+		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes2, event_begin_gauss, event_end_gauss));
+		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes3, event_begin_thresh, event_end_thresh));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes4, event_begin_closed, event_end_closed));
 		CHECK_CUDA_ERROR(cudaEventElapsedTime(&gtimes5, event_begin_canny, event_end_canny));
-		std::cout << "rgb_to_gray cost time(gpu): " << gtimes5 << "ms" << std::endl;
+		std::cout << "total(cuda): " << cost_time << "ms" << std::endl;
 
 		//8.保存图像
 		cv::Mat binary_image(img_height, img_width, CV_8UC1);
@@ -266,11 +246,6 @@ int main(int argc, char* argv[]) {
 		CHECK_CUDA_ERROR(cudaFree(d_gy));
 		CHECK_CUDA_ERROR(cudaFree(d_high));
 		CHECK_CUDA_ERROR(cudaFree(d_trace));
-		CHECK_CUDA_ERROR(cudaFree(d_leftright))
-		CHECK_CUDA_ERROR(cudaFree(d_rightleft))
-		CHECK_CUDA_ERROR(cudaFree(d_updown))
-		CHECK_CUDA_ERROR(cudaFree(d_downup))
-		CHECK_CUDA_ERROR(cudaFree(d_likedtresult))
 		CHECK_CUDA_ERROR(cudaFree(d_dist));
 
 		CHECK_CUDA_ERROR(cudaEventDestroy(event_begin));
@@ -290,10 +265,8 @@ int main(int argc, char* argv[]) {
 
 		//CPU图像处理算法
 		clock_t start_time, end_time;
-		clock_t start_time_gray, start_time_thresh, start_time_gauss, start_time_closed, start_time_canny, start_time_distancetransform,
-			    end_time_gray, end_time_thresh, end_time_gauss, end_time_closed, end_time_canny, end_time_distancetransform;
-
 		start_time = clock();
+		
 		QElapsedTimer timer_gray;
 		timer_gray.start();
 
@@ -302,41 +275,39 @@ int main(int argc, char* argv[]) {
 		cvtColor(rgb_image, gray_cpu_image, COLOR_BGR2GRAY);
 		rgb2grayincpu(rgb_image.data, gray_cpu_image.data, img_width, img_height);
 
-		qint64 elapsed1 = timer_gray.nsecsElapsed();
-		cout << "rgb to gray cost time(cpu)： " << elapsed1 << " us" << endl;
+		qint64 elapsed1 = timer_gray.nsecsElapsed() / 100000.000;
+		cout << "rgb to gray cost time(cpu)： " << elapsed1 << " ms" << endl;
 
-		QElapsedTimer timer_gas;
-		timer_gas.start();
+		QElapsedTimer timer_gauss;
+		timer_gauss.start();
 
-		//3.高斯滤波
+		//2.高斯滤波
 		Mat img_gaussian = Mat(gray_cpu_image.size(), CV_8UC1, Scalar(0));
 		GaussianBlur(gray_cpu_image, img_gaussian, Size(5, 5), 0, 0);
 
-		//imshow("", img_gaussian);
+		qint64 elapsed2 = timer_gauss.nsecsElapsed() / 100000.000;
+		cout << "gray to gauss cost time(cpu)： " << elapsed2 << " ms" << endl;
 
-		qint64 elapsed2 = timer_gas.nsecsElapsed();
-		cout << "thresh to gauss cost time(cpu)： " << elapsed2 << " us" << endl;
+		QElapsedTimer timer_thresh;
+		timer_thresh.start();
 
-		QElapsedTimer timer_the;
-		timer_the.start();
-
-		//2.二值化
+		//3.二值化
 		cv::Mat binary_cpu_image(img_height, img_width, CV_8UC1);
-		threshold(img_gaussian, binary_cpu_image, 40, 255, THRESH_BINARY /*| THRESH_OTSU*/);
+		threshold(img_gaussian, binary_cpu_image, 45, 255, THRESH_BINARY /*| THRESH_OTSU*/);
 
-		qint64 elapsed3 = timer_the.nsecsElapsed();
-		cout << "gray to thresh cost time(cpu)： " << elapsed3 << " us" << endl;
+		qint64 elapsed3 = timer_thresh.nsecsElapsed() / 100000.000;
+		cout << "gauss to thresh cost time(cpu)： " << elapsed3 << " ms" << endl;
 
-		QElapsedTimer timerr;
-		timerr.start();
+		QElapsedTimer timer_closed;
+		timer_closed.start();
 
 		//4.闭运算，将断续的轮廓连接
 		Mat element = getStructuringElement(MORPH_RECT, Size(7, 7));
 		Mat blkImg(binary_cpu_image.size(), CV_8UC1, Scalar(0));
 		morphologyEx(binary_cpu_image, blkImg, MORPH_CLOSE, element);
 
-		qint64 elapsed = timerr.nsecsElapsed();
-		cout << "gauss to closed cost time(cpu)： " << elapsed << " us" << endl;
+		qint64 elapsed4 = timer_closed.nsecsElapsed() / 100000.000;
+		cout << "thresh to closed cost time(cpu)： " << elapsed4 << " ms" << endl;
 
 		//4.灰度梯度增强
 		//Mat sobel_x, sobel_y, sobel_xy;
@@ -354,21 +325,21 @@ int main(int argc, char* argv[]) {
 		vector<Vec4i> hierarchy;
 		findContours(img_canny, contour_vec, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_NONE);
 		for (int real_contour = 0; real_contour < contour_vec.size(); ++real_contour) {
-			drawContours(rgb_image, contour_vec, real_contour, Scalar(255, 255, 255), 1.8, 8);
+			drawContours(rgb_image, contour_vec, real_contour, Scalar(255, 255, 255), 2, 8);
 		}
 
-		qint64 elapsed4 = timer_canny.nsecsElapsed();
-		double times5 ;
-		cout << "closed to canny cost time(cpu)： " << elapsed4 << " us" << endl;
+		qint64 elapsed5 = timer_canny.nsecsElapsed() / 100000.000;
+		cout << "closed to canny cost time(cpu)： " << elapsed5 << " ms" << endl;
 
 		//6.最大连通域
 		cv::Mat img_dom;
 		blkImg.copyTo(img_dom);
 		connected_domains_cpu(img_dom, img_dom);
-
-		start_time_distancetransform = clock();   //开始
 		
-		bool useDistanceTransform = true;        // 是否使用距离变换算法
+		QElapsedTimer timer_dist;
+		timer_dist.start();
+		
+		bool useDistanceTransform = false;        // 是否使用距离变换算法
 		
 		float maxValue = 0.0;
 		double interpolation = 0.0;
@@ -381,23 +352,15 @@ int main(int argc, char* argv[]) {
 			elipse_up(rgb_image, img_dom, contour_vec, &interpolation);
 		}
 
-		end_time_distancetransform = clock();     //结束
-		double times6 = (double)(end_time_distancetransform - start_time_distancetransform) * 1000 / CLOCKS_PER_SEC;
-		//cout << "canny to distancetransform cost time(cpu)： " << times6 << " ms" << endl;
+		qint64 elapsed6 = timer_dist.nsecsElapsed() / 100000.000;
+		cout << "closed to distancetransform cost time(cpu)： " << elapsed6 << " ms" << endl;
 	
 		end_time = clock();     //结束
 		double Times = (double)(end_time - start_time) * 1000 / CLOCKS_PER_SEC;
-		//cout << "rgb to gray cost time(cpu)： " << times1 << " ms" << endl;
+		cout << "total(cpu)： " << Times << " ms" << endl;
 		ImageUtils::write_image(rgb_image, output2_file_path);  //写到指定地址
 
-		/*ori_image ori_display;
-		int reys = 1;
-		emit ori_display.test(reys);*/
-
-		//camera_on(qimage, a);
-
-		double times1, times2, times3, times4;
-		emit w.image_proccess_speed(times1, times2, times3, times4, times5, times6, 
+		emit w.image_proccess_speed(elapsed1, elapsed2, elapsed3, elapsed4, elapsed5, elapsed6,
 									cost_time, 
 									gtimes1, gtimes2, gtimes3, gtimes4, gtimes5);
 

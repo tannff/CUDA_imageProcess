@@ -60,6 +60,7 @@ public slots:
     void close_app();
     void horizenal_flip();
     void vertical_flip();
+    void paint(QString);
     void renew(int);
     void saturation(int);
     void gray_image(bool);

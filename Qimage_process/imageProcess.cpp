@@ -117,8 +117,8 @@ void distancetransform_cpu(cv::Mat d_in, cv::Mat d_men, float* maxValue/*, cv::P
 		}
 	}
 	normalize(distShow, distShow, 0, 255, NORM_MINMAX); //为了显示清晰，做0~255归一化  
-	circle(d_in, Pt, *maxValue, Scalar(255, 0, 0), 2);//在原图中标示出最大距离半径
-	circle(d_in, Pt, 2, Scalar(255, 0, 0), 3);//在原图中标示出几何中心
+	circle(d_in, Pt, *maxValue, Scalar(0, 0, 255), 2);//在原图中标示出最大距离半径
+	circle(d_in, Pt, 2, Scalar(0, 0, 255), 3);//在原图中标示出几何中心
 
 }
 
@@ -147,7 +147,7 @@ void elipse_up(cv::Mat img_in, cv::Mat img_men, std::vector<std::vector<cv::Poin
 			continue;
 
 		//画出拟合的椭圆
-		ellipse(img_in, box, Scalar(255, 0, 0), 2, CV_AA);
+		ellipse(img_in, box, Scalar(0, 0, 255), 2, CV_AA);
 
 		// 计算椭圆的长短轴端点坐标
 		double radian = angle * CV_PI / 180.0;
@@ -160,8 +160,8 @@ void elipse_up(cv::Mat img_in, cv::Mat img_men, std::vector<std::vector<cv::Poin
 			center.y + (axes.height / 2) * cosine);
 
 		// 在图像上绘制椭圆的长短轴
-		line(img_in, center, longAxisEndPoint, Scalar(0, 255, 255), 2);
-		line(img_in, center, shortAxisEndPoint, Scalar(0, 0, 255), 2);
+		line(img_in, center, longAxisEndPoint, Scalar(204, 204, 255), 2);
+		line(img_in, center, shortAxisEndPoint, Scalar(255, 153, 153), 2);
 
 		// 根据椭圆的角度计算旋转矩阵
 		Mat rotationMatrix = getRotationMatrix2D(center, angle - 90, 1.0);

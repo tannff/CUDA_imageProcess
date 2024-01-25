@@ -2255,12 +2255,12 @@ rgb(255, 255, 255)
      </item>
      <item>
       <property name="text">
-       <string>圆</string>
+       <string>  圆</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>矩形</string>
+       <string>  矩形</string>
       </property>
      </item>
     </widget>
@@ -2901,6 +2901,7 @@ rgb(255, 255, 255)
      <string>帮助</string>
     </property>
     <addaction name="action_9"/>
+    <addaction name="action_5"/>
    </widget>
    <widget class="QMenu" name="menu_7">
     <property name="title">
@@ -3065,6 +3066,9 @@ rgb(255, 255, 255)
    </property>
   </action>
   <action name="action_19">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>保存相关数据</string>
    </property>
@@ -3075,6 +3079,11 @@ rgb(255, 255, 255)
   <action name="action_20">
    <property name="text">
     <string>属性</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>算法详解</string>
    </property>
   </action>
  </widget>
@@ -3193,8 +3202,8 @@ rgb(255, 255, 255)
    <slot>unit_conversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>812</x>
-     <y>880</y>
+     <x>799</x>
+     <y>899</y>
     </hint>
     <hint type="destinationlabel">
      <x>845</x>
@@ -3490,6 +3499,22 @@ rgb(255, 255, 255)
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboBox_6</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>Qimage_processClass</receiver>
+   <slot>paint(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>680</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>673</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>show_reszie()</slot>
@@ -3518,5 +3543,6 @@ rgb(255, 255, 255)
   <slot>saturation(int)</slot>
   <slot>canny_image(bool)</slot>
   <slot>distancetransform(bool)</slot>
+  <slot>paint(QString)</slot>
  </slots>
 </ui>

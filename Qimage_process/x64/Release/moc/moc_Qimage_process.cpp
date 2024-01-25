@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Qimage_process_t {
-    QByteArrayData data[35];
-    char stringdata0[436];
+    QByteArrayData data[36];
+    char stringdata0[442];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,15 +58,16 @@ QT_MOC_LITERAL(22, 274, 12), // "return_image"
 QT_MOC_LITERAL(23, 287, 9), // "close_app"
 QT_MOC_LITERAL(24, 297, 14), // "horizenal_flip"
 QT_MOC_LITERAL(25, 312, 13), // "vertical_flip"
-QT_MOC_LITERAL(26, 326, 5), // "renew"
-QT_MOC_LITERAL(27, 332, 10), // "saturation"
-QT_MOC_LITERAL(28, 343, 10), // "gray_image"
-QT_MOC_LITERAL(29, 354, 12), // "thresh_image"
-QT_MOC_LITERAL(30, 367, 12), // "filter_image"
-QT_MOC_LITERAL(31, 380, 12), // "closed_image"
-QT_MOC_LITERAL(32, 393, 11), // "canny_image"
-QT_MOC_LITERAL(33, 405, 17), // "distancetransform"
-QT_MOC_LITERAL(34, 423, 12) // "timer_Update"
+QT_MOC_LITERAL(26, 326, 5), // "paint"
+QT_MOC_LITERAL(27, 332, 5), // "renew"
+QT_MOC_LITERAL(28, 338, 10), // "saturation"
+QT_MOC_LITERAL(29, 349, 10), // "gray_image"
+QT_MOC_LITERAL(30, 360, 12), // "thresh_image"
+QT_MOC_LITERAL(31, 373, 12), // "filter_image"
+QT_MOC_LITERAL(32, 386, 12), // "closed_image"
+QT_MOC_LITERAL(33, 399, 11), // "canny_image"
+QT_MOC_LITERAL(34, 411, 17), // "distancetransform"
+QT_MOC_LITERAL(35, 429, 12) // "timer_Update"
 
     },
     "Qimage_process\0image_proccess_speed\0"
@@ -77,7 +78,7 @@ QT_MOC_LITERAL(34, 423, 12) // "timer_Update"
     "online_status\0offline_status\0show_the_file\0"
     "consumer\0new_window\0default_on\0save_file\0"
     "return_image\0close_app\0horizenal_flip\0"
-    "vertical_flip\0renew\0saturation\0"
+    "vertical_flip\0paint\0renew\0saturation\0"
     "gray_image\0thresh_image\0filter_image\0"
     "closed_image\0canny_image\0distancetransform\0"
     "timer_Update"
@@ -90,7 +91,7 @@ static const uint qt_meta_data_Qimage_process[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      33,   14, // methods
+      34,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -98,41 +99,42 @@ static const uint qt_meta_data_Qimage_process[] = {
        7,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,   12,  179,    2, 0x06 /* Public */,
-       3,    2,  204,    2, 0x06 /* Public */,
-       4,    2,  209,    2, 0x06 /* Public */,
-       5,    1,  214,    2, 0x06 /* Public */,
-       6,    1,  217,    2, 0x06 /* Public */,
-       7,    1,  220,    2, 0x06 /* Public */,
-       8,    2,  223,    2, 0x06 /* Public */,
+       1,   12,  184,    2, 0x06 /* Public */,
+       3,    2,  209,    2, 0x06 /* Public */,
+       4,    2,  214,    2, 0x06 /* Public */,
+       5,    1,  219,    2, 0x06 /* Public */,
+       6,    1,  222,    2, 0x06 /* Public */,
+       7,    1,  225,    2, 0x06 /* Public */,
+       8,    2,  228,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,   12,  228,    2, 0x0a /* Public */,
-      10,    2,  253,    2, 0x0a /* Public */,
-      11,    0,  258,    2, 0x0a /* Public */,
-      12,    0,  259,    2, 0x0a /* Public */,
-      13,    0,  260,    2, 0x0a /* Public */,
-      14,    0,  261,    2, 0x0a /* Public */,
-      15,    0,  262,    2, 0x0a /* Public */,
-      16,    0,  263,    2, 0x0a /* Public */,
-      17,    0,  264,    2, 0x0a /* Public */,
-      18,    0,  265,    2, 0x0a /* Public */,
-      19,    0,  266,    2, 0x0a /* Public */,
-      20,    0,  267,    2, 0x0a /* Public */,
-      21,    0,  268,    2, 0x0a /* Public */,
-      22,    0,  269,    2, 0x0a /* Public */,
-      23,    0,  270,    2, 0x0a /* Public */,
-      24,    0,  271,    2, 0x0a /* Public */,
-      25,    0,  272,    2, 0x0a /* Public */,
-      26,    1,  273,    2, 0x0a /* Public */,
-      27,    1,  276,    2, 0x0a /* Public */,
-      28,    1,  279,    2, 0x0a /* Public */,
-      29,    1,  282,    2, 0x0a /* Public */,
-      30,    1,  285,    2, 0x0a /* Public */,
-      31,    1,  288,    2, 0x0a /* Public */,
-      32,    1,  291,    2, 0x0a /* Public */,
-      33,    1,  294,    2, 0x0a /* Public */,
-      34,    0,  297,    2, 0x08 /* Private */,
+       9,   12,  233,    2, 0x0a /* Public */,
+      10,    2,  258,    2, 0x0a /* Public */,
+      11,    0,  263,    2, 0x0a /* Public */,
+      12,    0,  264,    2, 0x0a /* Public */,
+      13,    0,  265,    2, 0x0a /* Public */,
+      14,    0,  266,    2, 0x0a /* Public */,
+      15,    0,  267,    2, 0x0a /* Public */,
+      16,    0,  268,    2, 0x0a /* Public */,
+      17,    0,  269,    2, 0x0a /* Public */,
+      18,    0,  270,    2, 0x0a /* Public */,
+      19,    0,  271,    2, 0x0a /* Public */,
+      20,    0,  272,    2, 0x0a /* Public */,
+      21,    0,  273,    2, 0x0a /* Public */,
+      22,    0,  274,    2, 0x0a /* Public */,
+      23,    0,  275,    2, 0x0a /* Public */,
+      24,    0,  276,    2, 0x0a /* Public */,
+      25,    0,  277,    2, 0x0a /* Public */,
+      26,    1,  278,    2, 0x0a /* Public */,
+      27,    1,  281,    2, 0x0a /* Public */,
+      28,    1,  284,    2, 0x0a /* Public */,
+      29,    1,  287,    2, 0x0a /* Public */,
+      30,    1,  290,    2, 0x0a /* Public */,
+      31,    1,  293,    2, 0x0a /* Public */,
+      32,    1,  296,    2, 0x0a /* Public */,
+      33,    1,  299,    2, 0x0a /* Public */,
+      34,    1,  302,    2, 0x0a /* Public */,
+      35,    0,  305,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
@@ -161,6 +163,7 @@ static const uint qt_meta_data_Qimage_process[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::Bool,    2,
@@ -204,15 +207,16 @@ void Qimage_process::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 21: _t->close_app(); break;
         case 22: _t->horizenal_flip(); break;
         case 23: _t->vertical_flip(); break;
-        case 24: _t->renew((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 25: _t->saturation((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 26: _t->gray_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 27: _t->thresh_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 28: _t->filter_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 29: _t->closed_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 30: _t->canny_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 31: _t->distancetransform((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 32: _t->timer_Update(); break;
+        case 24: _t->paint((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 25: _t->renew((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 26: _t->saturation((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 27: _t->gray_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 28: _t->thresh_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 29: _t->filter_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 30: _t->closed_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 31: _t->canny_image((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 32: _t->distancetransform((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 33: _t->timer_Update(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -298,13 +302,13 @@ int Qimage_process::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 33)
+        if (_id < 34)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 33;
+        _id -= 34;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 33)
+        if (_id < 34)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 33;
+        _id -= 34;
     }
     return _id;
 }

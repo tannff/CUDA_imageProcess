@@ -62,6 +62,7 @@ public:
     QAction *action_18;
     QAction *action_19;
     QAction *action_20;
+    QAction *action_5;
     QWidget *centralWidget;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
@@ -264,8 +265,11 @@ public:
         action_18->setObjectName(QString::fromUtf8("action_18"));
         action_19 = new QAction(Qimage_processClass);
         action_19->setObjectName(QString::fromUtf8("action_19"));
+        action_19->setCheckable(true);
         action_20 = new QAction(Qimage_processClass);
         action_20->setObjectName(QString::fromUtf8("action_20"));
+        action_5 = new QAction(Qimage_processClass);
+        action_5->setObjectName(QString::fromUtf8("action_5"));
         centralWidget = new QWidget(Qimage_processClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
@@ -1190,6 +1194,7 @@ public:
         menu_5->addAction(action_CUDA_3);
         menu_5->addAction(action_18);
         menu_6->addAction(action_9);
+        menu_6->addAction(action_5);
         menu_7->addAction(action_2);
         menu_7->addAction(action_20);
 
@@ -1219,6 +1224,7 @@ public:
         QObject::connect(verticalSlider_3, SIGNAL(valueChanged(int)), Qimage_processClass, SLOT(renew(int)));
         QObject::connect(verticalSlider_2, SIGNAL(valueChanged(int)), Qimage_processClass, SLOT(saturation(int)));
         QObject::connect(pushButton_7, SIGNAL(clicked(bool)), Qimage_processClass, SLOT(distancetransform(bool)));
+        QObject::connect(comboBox_6, SIGNAL(currentIndexChanged(QString)), Qimage_processClass, SLOT(paint(QString)));
 
         pushButton_2->setDefault(false);
         pushButton_23->setDefault(false);
@@ -1287,6 +1293,7 @@ public:
         action_19->setShortcut(QCoreApplication::translate("Qimage_processClass", "Alt+D", nullptr));
 #endif // QT_CONFIG(shortcut)
         action_20->setText(QCoreApplication::translate("Qimage_processClass", "\345\261\236\346\200\247", nullptr));
+        action_5->setText(QCoreApplication::translate("Qimage_processClass", "\347\256\227\346\263\225\350\257\246\350\247\243", nullptr));
         label_6->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
         pushButton_20->setText(QCoreApplication::translate("Qimage_processClass", "\345\205\250\345\261\217", nullptr));
         label_2->setText(QCoreApplication::translate("Qimage_processClass", "TextLabel", nullptr));
@@ -1382,8 +1389,8 @@ public:
         pushButton_27->setText(QCoreApplication::translate("Qimage_processClass", "\346\260\264\345\271\263\347\277\273\350\275\254", nullptr));
         pushButton_28->setText(QCoreApplication::translate("Qimage_processClass", "\347\253\226\347\233\264\347\277\273\350\275\254", nullptr));
         comboBox_6->setItemText(0, QCoreApplication::translate("Qimage_processClass", "  \345\275\242\347\212\266\347\273\230\345\210\266", nullptr));
-        comboBox_6->setItemText(1, QCoreApplication::translate("Qimage_processClass", "\345\234\206", nullptr));
-        comboBox_6->setItemText(2, QCoreApplication::translate("Qimage_processClass", "\347\237\251\345\275\242", nullptr));
+        comboBox_6->setItemText(1, QCoreApplication::translate("Qimage_processClass", "  \345\234\206", nullptr));
+        comboBox_6->setItemText(2, QCoreApplication::translate("Qimage_processClass", "  \347\237\251\345\275\242", nullptr));
 
         pushButton_17->setText(QCoreApplication::translate("Qimage_processClass", "\347\241\256\345\256\232", nullptr));
         label_7->setText(QString());
